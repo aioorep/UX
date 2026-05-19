@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AiOO Center</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --navy:#1A1F2E; --navy2:#252B3B; --teal:#22D3C8;
+  --bg:#F5F6F8; --white:#fff; --border:#E8E8E8; --border2:#F0F0F0;
+  --t1:#111827; --t2:#374151; --t3:#6B7280; --t4:#9CA3AF;
+  --red:#DC2626; --red-bg:#FEF2F2; --red-bd:#FECACA;
+  --amber:#D97706; --amber-bg:#FFFBEB; --amber-bd:#FDE68A;
+  --green:#16A34A; --green-bg:#F0FDF4; --green-bd:#A7F3D0;
+  --r:8px; --r-sm:6px; --r-lg:12px;
+  --sh:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --sh-md:0 4px 16px rgba(0,0,0,.08);
+  --sw:232px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+/* ── Layout ── */
+.layout{display:flex;height:100vh;overflow:hidden}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+
+/* ── Sidebar ── */
+.sidebar{width:var(--sw);background:var(--navy);display:flex;flex-direction:column;flex-shrink:0;height:100vh;overflow-y:auto}
+.sb-logo{padding:18px 16px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-logo img{height:30px;width:auto;object-fit:contain}
+.sb-logo-label{font-size:11px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.9px;font-weight:600}
+.sb-section{padding:16px 10px 4px}
+.sb-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.22);text-transform:uppercase;letter-spacing:1.1px;padding:0 8px;margin-bottom:6px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);cursor:pointer;color:rgba(255,255,255,.5);font-size:13px;font-weight:500;transition:all .12s;margin-bottom:1px;user-select:none;position:relative}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.85)}
+.nav-item.active{background:rgba(34,211,200,.18);color:var(--teal);font-weight:600}
+.nav-icon{font-size:16px;width:18px;text-align:center;flex-shrink:0}
+.nav-badge{margin-left:auto;font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px;min-width:18px;text-align:center;line-height:16px}
+.nb-red{background:var(--red);color:#fff}
+.nb-amber{background:var(--amber);color:#fff}
+.sb-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,.08);padding:10px}
+.user-row{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);cursor:pointer;transition:background .12s}
+.user-row:hover{background:rgba(255,255,255,.07)}
+.avatar{width:30px;height:30px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--navy);flex-shrink:0}
+.uname{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.8)}
+.urole{font-size:11px;color:rgba(255,255,255,.3)}
+.online-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);margin-left:auto}
+
+/* ── Topbar ── */
+.topbar{height:52px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:8px;flex-shrink:0}
+.breadcrumb{display:flex;align-items:center;gap:5px}
+.bc-sep{color:var(--t4);font-size:12px}
+.bc-item{font-size:13px;color:var(--t3);cursor:pointer;transition:color .12s}
+.bc-item:hover{color:var(--navy)}
+.bc-item.cur{color:var(--t1);font-weight:600;cursor:default}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.icon-btn{width:32px;height:32px;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t3);font-size:15px;position:relative;transition:all .12s}
+.icon-btn:hover{border-color:var(--t3);color:var(--t1)}
+.notif-dot{position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--red);border:1.5px solid var(--white)}
+
+/* ── Alert banner ── */
+.alert-banner{padding:9px 24px;display:flex;align-items:center;gap:10px;flex-shrink:0;font-size:13px;border-bottom:1px solid}
+.alert-banner.red{background:var(--red-bg);border-color:var(--red-bd);color:var(--red)}
+.alert-banner.amber{background:var(--amber-bg);border-color:var(--amber-bd);color:var(--amber)}
+.ab-text{flex:1;color:var(--t2)}
+.ab-text strong{color:var(--t1)}
+.ab-btn{font-size:12px;font-weight:600;background:none;border-radius:var(--r-sm);padding:4px 12px;cursor:pointer;border:1px solid currentColor;transition:all .12s;white-space:nowrap}
+.alert-banner.red .ab-btn{color:var(--red)}.alert-banner.red .ab-btn:hover{background:var(--red);color:#fff}
+.alert-banner.amber .ab-btn{color:var(--amber)}.alert-banner.amber .ab-btn:hover{background:var(--amber);color:#fff}
+
+/* ── Pages ── */
+.page{flex:1;overflow-y:auto;padding:24px;display:none}
+.page.active{display:block;animation:fadeUp .15s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.page-title{font-size:18px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.page-sub{font-size:13px;color:var(--t3);margin-bottom:20px}
+
+/* ── Cards ── */
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh)}
+.card-header{padding:14px 18px;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-title{font-size:13.5px;font-weight:600;color:var(--t1)}
+.card-sub{font-size:11.5px;color:var(--t3);margin-top:1px}
+.card-body{padding:18px}
+
+/* ── KPI grid ── */
+.kpi-row{display:grid;gap:12px;margin-bottom:20px}
+.kpi-4{grid-template-columns:repeat(4,1fr)}
+.kpi-3{grid-template-columns:repeat(3,1fr)}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--sh);transition:box-shadow .12s;cursor:default}
+.kpi-card:hover{box-shadow:var(--sh-md)}
+.kpi-label{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.kpi-value{font-size:26px;font-weight:700;color:var(--t1);letter-spacing:-1px;line-height:1}
+.kpi-footer{display:flex;align-items:center;gap:5px;margin-top:6px;font-size:11.5px;color:var(--t3)}
+.trend{display:inline-flex;align-items:center;gap:2px;font-size:11px;font-weight:600;padding:1px 6px;border-radius:20px}
+.trend.up{color:var(--green);background:var(--green-bg)}
+.trend.down{color:var(--red);background:var(--red-bg)}
+
+/* ── Badges / Status ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.b-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.b-green{color:var(--green);background:var(--green-bg)}
+.b-red{color:var(--red);background:var(--red-bg)}
+.b-amber{color:var(--amber);background:var(--amber-bg)}
+.b-gray{color:var(--t3);background:var(--border2)}
+.b-dark{color:var(--t2);background:var(--border2)}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .12s;white-space:nowrap;text-decoration:none}
+.btn-primary{background:var(--navy);color:#fff}.btn-primary:hover{background:var(--navy2)}
+.btn-secondary{background:var(--white);color:var(--t2);border:1px solid var(--border)}.btn-secondary:hover{border-color:var(--t3);color:var(--t1)}
+.btn-danger{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}.btn-danger:hover{background:var(--red);color:#fff}
+.btn-success{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}.btn-success:hover{background:var(--green);color:#fff}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn-xs{padding:3px 8px;font-size:11px}
+.btn-icon{width:28px;height:28px;padding:0;justify-content:center;border-radius:var(--r-sm)}
+
+/* ── Tables ── */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{padding:9px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;background:var(--bg);border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--border2);font-size:13px;color:var(--t2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFAFA}
+.td-main{font-weight:600;color:var(--t1)}
+.td-sub{font-size:11px;color:var(--t4);margin-top:1px}
+.td-link{color:var(--navy);cursor:pointer;font-weight:500}
+.td-link:hover{text-decoration:underline}
+.row-actions{display:flex;gap:5px;opacity:0;transition:opacity .12s}
+tr:hover .row-actions{opacity:1}
+
+/* ── Filter bar ── */
+.filter-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.seg{display:flex;background:var(--white);border:1px solid var(--border);border-radius:var(--r-sm);padding:2px;gap:1px}
+.seg-tab{padding:5px 12px;border-radius:5px;font-size:12.5px;font-weight:500;cursor:pointer;color:var(--t3);transition:all .12s;white-space:nowrap}
+.seg-tab:hover{color:var(--t1)}
+.seg-tab.active{background:var(--navy);color:#fff;font-weight:600}
+.search-box{position:relative;flex:1;min-width:200px;max-width:260px}
+.search-box i{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--t4);font-size:13px}
+.search-box input{width:100%;padding:6px 10px 6px 30px;border:1px solid var(--border);border-radius:var(--r-sm);font-size:13px;color:var(--t1);background:var(--white);outline:none;transition:all .12s}
+.search-box input:focus{border-color:var(--t3)}
+.sel{padding:6px 10px;border:1px solid var(--border);border-radius:var(--r-sm);font-size:13px;color:var(--t2);background:var(--white);outline:none;cursor:pointer}
+
+/* ── Two-col layouts ── */
+.two-col{display:grid;grid-template-columns:1fr 300px;gap:14px}
+.two-col-eq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.col-stack{display:flex;flex-direction:column;gap:14px}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+/* ── Alert cards ── */
+.alert-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.alert-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:box-shadow .12s;border-left-width:3px}
+.alert-card:hover{box-shadow:var(--sh-md)}
+.alert-card.crit{border-left-color:var(--red)}
+.alert-card.warn{border-left-color:var(--amber)}
+.alert-card.info{border-left-color:var(--t3)}
+.ac-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.alert-card.crit .ac-icon{background:var(--red-bg);color:var(--red)}
+.alert-card.warn .ac-icon{background:var(--amber-bg);color:var(--amber)}
+.alert-card.info .ac-icon{background:var(--border2);color:var(--t3)}
+.ac-title{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:2px}
+.ac-desc{font-size:12px;color:var(--t3);line-height:1.4}
+.ac-cta{font-size:12px;color:var(--navy);font-weight:600;margin-top:5px;display:block}
+
+/* ── Deal header ── */
+.deal-hdr{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:14px;overflow:hidden;box-shadow:var(--sh)}
+.deal-hdr-top{padding:16px 20px;display:flex;align-items:center;gap:14px}
+.co-av{width:42px;height:42px;border-radius:9px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:-1px}
+.deal-name{font-size:17px;font-weight:700;color:var(--t1)}
+.deal-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:3px;font-size:12px;color:var(--t3)}
+.deal-value{font-size:20px;font-weight:700;color:var(--t1);margin-left:auto;text-align:right}
+.deal-value-label{font-size:11px;color:var(--t4);text-align:right;margin-top:1px}
+.pipeline-strip{padding:8px 20px;border-top:1px solid var(--border);background:var(--bg);display:flex;align-items:center;overflow-x:auto}
+.ps-step{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:500;color:var(--t4);cursor:pointer;white-space:nowrap;transition:all .12s}
+.ps-step.done{color:var(--green);font-weight:600}
+.ps-step.active{background:var(--navy);color:#fff;font-weight:700}
+.ps-step:hover:not(.active){color:var(--t2)}
+.ps-arrow{color:var(--border);padding:0 2px;font-size:13px}
+
+/* ── Tab bar ── */
+.tab-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:18px;overflow-x:auto}
+.tab{padding:9px 16px;font-size:13px;font-weight:500;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .12s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.tab:hover{color:var(--t1)}
+.tab.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600}
+.tab-badge{font-size:10px;background:var(--amber);color:#fff;padding:1px 5px;border-radius:10px}
+
+/* ── Progress ── */
+.progress{height:4px;border-radius:10px;background:var(--border);overflow:hidden}
+.progress-fill{height:100%;border-radius:10px;background:var(--navy);transition:width .3s}
+.progress-fill.green{background:var(--green)}
+.progress-fill.amber{background:var(--amber)}
+.progress-fill.red{background:var(--red)}
+
+/* ── Score bar ── */
+.score-wrap{display:flex;align-items:center;gap:8px}
+.score-bar{flex:1;height:5px;border-radius:10px;background:var(--border);overflow:hidden}
+.score-fill{height:100%;border-radius:10px}
+
+/* ── Info box ── */
+.info-box{padding:10px 14px;border-radius:var(--r-sm);display:flex;align-items:flex-start;gap:9px;font-size:12.5px;border-width:1px;border-style:solid}
+.info-box.red{background:var(--red-bg);border-color:var(--red-bd);color:var(--red)}
+.info-box.amber{background:var(--amber-bg);border-color:var(--amber-bd);color:var(--amber)}
+.info-box.green{background:var(--green-bg);border-color:var(--green-bd);color:var(--green)}
+.info-box.gray{background:var(--bg);border-color:var(--border);color:var(--t3)}
+
+/* ── Empty state ── */
+.empty{text-align:center;padding:48px 24px}
+.empty i{font-size:36px;color:var(--t4);display:block;margin-bottom:10px}
+.empty-title{font-size:14px;font-weight:600;color:var(--t2);margin-bottom:5px}
+.empty-desc{font-size:12.5px;color:var(--t3);max-width:280px;margin:0 auto 14px}
+
+/* ── Activity list ── */
+.act-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border2)}
+.act-item:last-child{border-bottom:none}
+.act-dot{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--bg);color:var(--t3)}
+.act-body{flex:1}
+.act-title{font-size:13px;font-weight:500;color:var(--t1)}
+.act-time{font-size:11.5px;color:var(--t4)}
+
+/* ── Backoffice side nav ── */
+.back-layout{display:grid;grid-template-columns:160px 1fr;gap:14px}
+.back-nav{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:8px;height:fit-content;box-shadow:var(--sh)}
+.back-nav-label{font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.8px;padding:6px 8px 4px;display:block}
+.back-nav-item{padding:7px 10px;border-radius:var(--r-sm);font-size:13px;color:var(--t3);cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:7px;margin-bottom:1px;font-weight:500}
+.back-nav-item:hover{background:var(--bg);color:var(--t1)}
+.back-nav-item.active{background:var(--navy);color:#fff;font-weight:600}
+
+/* ── Form elements ── */
+.form-group{margin-bottom:14px}
+.form-label{font-size:12px;font-weight:600;color:var(--t2);margin-bottom:5px;display:block}
+.form-input{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:var(--r-sm);font-size:13px;color:var(--t1);background:var(--white);outline:none;transition:border .12s}
+.form-input:focus{border-color:var(--t3)}
+textarea.form-input{resize:none;min-height:80px;font-family:inherit}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* ── Modal ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:1000;display:none}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:var(--r-lg);width:480px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-size:15px;font-weight:700;color:var(--t1)}
+.modal-body{padding:20px}
+.modal-footer{padding:14px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.modal-close{background:none;border:none;font-size:18px;color:var(--t4);cursor:pointer;line-height:1}
+.modal-close:hover{color:var(--t1)}
+
+/* ── Provider card ── */
+.prov-card{border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;background:var(--white);display:flex;align-items:flex-start;gap:12px}
+.prov-icon{width:36px;height:36px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.prov-name{font-size:13.5px;font-weight:600;color:var(--t1)}
+.prov-desc{font-size:12px;color:var(--t3);margin-top:1px}
+.prov-actions{display:flex;align-items:center;gap:6px;margin-top:8px}
+
+/* ── Section header ── */
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sh-title{font-size:13.5px;font-weight:600;color:var(--t1)}
+.sh-link{font-size:12.5px;color:var(--navy);font-weight:500;cursor:pointer}
+
+/* ── Checkbox ── */
+.cb{width:15px;height:15px;border:1.5px solid var(--border);border-radius:3px;cursor:pointer;flex-shrink:0;transition:all .12s;display:inline-flex;align-items:center;justify-content:center}
+.cb.checked{background:var(--navy);border-color:var(--navy)}
+.cb.checked::after{content:"✓";color:#fff;font-size:9px;font-weight:700}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+/* ── Qual row ── */
+.qual-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border2)}
+.qual-row:last-child{border-bottom:none}
+.qr-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.qr-icon.done{background:var(--green-bg);color:var(--green)}
+.qr-icon.wip{background:var(--amber-bg);color:var(--amber)}
+.qr-icon.todo{background:var(--border2);color:var(--t4)}
+.qr-label{font-size:13px;font-weight:600;color:var(--t1)}
+.qr-sub{font-size:11px;color:var(--t4);margin-top:1px}
+
+/* ── Mini avatar ── */
+.mini-av{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:var(--navy);color:#fff;flex-shrink:0}
+
+/* ── Divider ── */
+.divider{height:1px;background:var(--border2);margin:14px 0}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <img src="aioologo.png" alt="AiOO">
+    <span class="sb-logo-label">Center</span>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-label">Sales</div>
+    <div class="nav-item active" onclick="showPage('dashboard')"><i class="ti ti-layout-dashboard nav-icon"></i>Dashboard</div>
+    <div class="nav-item" onclick="showPage('deals')"><i class="ti ti-briefcase nav-icon"></i>My Deals<span class="nav-badge nb-amber">66</span></div>
+    <div class="nav-item" onclick="showPage('assessments')"><i class="ti ti-clipboard-check nav-icon"></i>Assessments<span class="nav-badge nb-amber">8</span></div>
+    <div class="nav-item" onclick="showPage('approvals')"><i class="ti ti-circle-check nav-icon"></i>Approvals<span class="nav-badge nb-red">12</span></div>
+    <div class="nav-item" onclick="showPage('documents')"><i class="ti ti-files nav-icon"></i>Documents</div>
+    <div class="nav-item" onclick="showPage('history')"><i class="ti ti-history nav-icon"></i>History</div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-label">Backoffice</div>
+    <div class="nav-item" onclick="showPage('analytics')"><i class="ti ti-chart-bar nav-icon"></i>Analytics</div>
+    <div class="nav-item" onclick="showPage('team')"><i class="ti ti-users nav-icon"></i>Team</div>
+    <div class="nav-item" onclick="showPage('ai-config')"><i class="ti ti-cpu nav-icon"></i>AI & Scoring</div>
+    <div class="nav-item" onclick="showPage('integrations')"><i class="ti ti-plug nav-icon"></i>Integrations</div>
+    <div class="nav-item" onclick="showPage('settings')"><i class="ti ti-settings nav-icon"></i>Settings</div>
+    <div class="nav-item" onclick="showPage('admin')"><i class="ti ti-shield-check nav-icon"></i>Admin Panel</div>
+  </div>
+
+  <div class="sb-bottom">
+    <div class="user-row">
+      <div class="avatar">FH</div>
+      <div><div class="uname">Fadoua Hajji</div><div class="urole">Sales Admin</div></div>
+      <div class="online-dot"></div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="breadcrumb" id="breadcrumb"><span class="bc-item cur">Dashboard</span></div>
+    <div class="topbar-right">
+      <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--green);background:var(--green-bg);border:1px solid var(--green-bd);padding:3px 9px;border-radius:20px"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>Live</div>
+      <div class="icon-btn"><i class="ti ti-bell"></i><div class="notif-dot"></div></div>
+      <div class="icon-btn"><i class="ti ti-help-circle"></i></div>
+    </div>
+  </div>
+
+  <!-- GLOBAL ALERT -->
+  <div class="alert-banner red" id="global-alert">
+    <i class="ti ti-alert-circle" style="font-size:15px;flex-shrink:0"></i>
+    <span class="ab-text"><strong>Action requise —</strong> Votre compte Google est déconnecté. Les propositions ne peuvent pas être générées.</span>
+    <button class="ab-btn" onclick="showPage('integrations')">Reconnecter →</button>
+  </div>
+
+
+  <!-- ══════════ DASHBOARD ══════════ -->
+  <div class="page active" id="page-dashboard">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+      <div>
+        <div class="page-title" style="margin-bottom:0">Bonjour, Fadoua 👋</div>
+        <div style="font-size:12.5px;color:var(--t3);margin-top:2px">Voici votre résumé pour aujourd'hui — 19 mai 2026</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <select class="sel" style="font-size:12px">
+          <option>Fadoua H. (vous)</option><option>Ahmed B.</option><option>Rania K.</option><option>Toute l'équipe</option>
+        </select>
+        <select class="sel" style="font-size:12px"><option>Ce mois</option><option>Ce trimestre</option><option>Cette année</option></select>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row kpi-4">
+      <div class="kpi-card">
+        <div class="kpi-label">Pipeline actif</div>
+        <div class="kpi-value">€4.2M</div>
+        <div class="kpi-footer"><span class="trend up"><i class="ti ti-trending-up"></i>+18%</span> vs mois dernier</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Deals actifs</div>
+        <div class="kpi-value">66</div>
+        <div class="kpi-footer"><span class="trend up">+5</span> cette semaine</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Taux de conversion</div>
+        <div class="kpi-value">24%</div>
+        <div class="kpi-footer"><span class="trend down"><i class="ti ti-trending-down"></i>-2%</span> vs objectif</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Revenus (mois)</div>
+        <div class="kpi-value">€890K</div>
+        <div class="kpi-footer"><span class="trend up">+12%</span> vs mois dernier</div>
+      </div>
+    </div>
+
+
+    <!-- Alerts & Upcoming Events -->
+    <div class="two-col-eq" style="margin-bottom:20px">
+
+      <!-- SLA Alerts -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title" style="display:flex;align-items:center;gap:7px">
+              <i class="ti ti-alarm" style="color:var(--red);font-size:15px"></i>
+              SLA Alerts
+            </div>
+            <div class="card-sub">Response time commitments at risk</div>
+          </div>
+          <div style="display:flex;gap:5px">
+            <span class="badge b-red">1 breached</span>
+            <span class="badge b-amber">2 at risk</span>
+          </div>
+        </div>
+        <div class="card-body" style="padding:0">
+          <div style="display:flex;flex-direction:column">
+            <!-- Breached -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2);border-left:3px solid var(--red);cursor:pointer" onclick="showPage('approvals')" onmouseover="this.style.background='#FAFAFA'" onmouseout="this.style.background=''">
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+                  <span class="badge b-red" style="font-size:10px">Breached</span>
+                  <span style="font-size:12px;font-weight:600;color:var(--t1)">BNP Paribas — Approval</span>
+                </div>
+                <div style="font-size:12px;color:var(--t3)">Discount approval pending <strong style="color:var(--red)">+24h over SLA (48h)</strong></div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-size:13px;font-weight:700;color:var(--red)">72h</div>
+                <div style="font-size:10px;color:var(--t4)">elapsed</div>
+              </div>
+            </div>
+            <!-- At risk 1 -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2);border-left:3px solid var(--amber);cursor:pointer" onclick="showPage('approvals')" onmouseover="this.style.background='#FAFAFA'" onmouseout="this.style.background=''">
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+                  <span class="badge b-amber" style="font-size:10px">At risk</span>
+                  <span style="font-size:12px;font-weight:600;color:var(--t1)">Société Générale — Approval</span>
+                </div>
+                <div style="font-size:12px;color:var(--t3)">Proposal approval — <strong style="color:var(--amber)">2h left before SLA breach</strong></div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-size:13px;font-weight:700;color:var(--amber)">46h</div>
+                <div style="font-size:10px;color:var(--t4)">elapsed</div>
+              </div>
+            </div>
+            <!-- At risk 2 -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2);border-left:3px solid var(--amber);cursor:pointer" onclick="showPage('deals')" onmouseover="this.style.background='#FAFAFA'" onmouseout="this.style.background=''">
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+                  <span class="badge b-amber" style="font-size:10px">At risk</span>
+                  <span style="font-size:12px;font-weight:600;color:var(--t1)">HighCo — Proposal not sent</span>
+                </div>
+                <div style="font-size:12px;color:var(--t3)">No proposal sent — <strong style="color:var(--amber)">client waiting 3 days (SLA: 72h)</strong></div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-size:13px;font-weight:700;color:var(--amber)">68h</div>
+                <div style="font-size:10px;color:var(--t4)">elapsed</div>
+              </div>
+            </div>
+            <!-- OK -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-left:3px solid var(--green)">
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+                  <span class="badge b-green" style="font-size:10px">On time</span>
+                  <span style="font-size:12px;font-weight:600;color:var(--t1)">62 deals within SLA</span>
+                </div>
+                <div style="font-size:12px;color:var(--t3)">All other deals are within response time commitments</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-size:13px;font-weight:700;color:var(--green)">OK</div>
+                <div style="font-size:10px;color:var(--t4)">status</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title" style="display:flex;align-items:center;gap:7px">
+              <i class="ti ti-calendar-event" style="color:var(--navy);font-size:15px"></i>
+              Upcoming Events
+            </div>
+            <div class="card-sub">Next 48 hours</div>
+          </div>
+          <button class="btn btn-secondary btn-xs"><i class="ti ti-plus"></i>Add</button>
+        </div>
+        <div class="card-body" style="padding:0">
+          <div style="display:flex;flex-direction:column">
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2)">
+              <div style="text-align:center;flex-shrink:0;width:36px">
+                <div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase">Today</div>
+                <div style="font-size:15px;font-weight:700;color:var(--t1)">14h</div>
+              </div>
+              <div style="width:3px;border-radius:10px;background:var(--amber);align-self:stretch;flex-shrink:0"></div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:600;color:var(--t1)">HighCo — Demo</div>
+                <div style="font-size:12px;color:var(--t3);margin-top:1px">Sophie Martin · Video call · 45 min</div>
+              </div>
+              <span class="badge b-amber" style="font-size:10px">Demo</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2)">
+              <div style="text-align:center;flex-shrink:0;width:36px">
+                <div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase">Today</div>
+                <div style="font-size:15px;font-weight:700;color:var(--t1)">16h</div>
+              </div>
+              <div style="width:3px;border-radius:10px;background:var(--green);align-self:stretch;flex-shrink:0"></div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:600;color:var(--t1)">BNP Paribas — Follow-up</div>
+                <div style="font-size:12px;color:var(--t3);margin-top:1px">Marc Dubois · Phone call · 30 min</div>
+              </div>
+              <span class="badge b-green" style="font-size:10px">Call</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2)">
+              <div style="text-align:center;flex-shrink:0;width:36px">
+                <div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase">Today</div>
+                <div style="font-size:15px;font-weight:700;color:var(--t1)">17h30</div>
+              </div>
+              <div style="width:3px;border-radius:10px;background:var(--navy);align-self:stretch;flex-shrink:0"></div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:600;color:var(--t1)">Team pipeline review</div>
+                <div style="font-size:12px;color:var(--t3);margin-top:1px">Internal · 8 deals to discuss</div>
+              </div>
+              <span class="badge b-gray" style="font-size:10px">Internal</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 16px">
+              <div style="text-align:center;flex-shrink:0;width:36px">
+                <div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase">Tmrw</div>
+                <div style="font-size:15px;font-weight:700;color:var(--t1)">10h</div>
+              </div>
+              <div style="width:3px;border-radius:10px;background:var(--green);align-self:stretch;flex-shrink:0"></div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:600;color:var(--t1)">Société Générale — Signing</div>
+                <div style="font-size:12px;color:var(--t3);margin-top:1px">Pierre Laurent · Contract signature</div>
+              </div>
+              <span class="badge b-green" style="font-size:10px">Signing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alertes prioritaires -->
+    <div class="alert-cards">
+      <div class="alert-card crit" onclick="showPage('approvals')">
+        <div class="ac-icon"><i class="ti ti-clock-exclamation"></i></div>
+        <div>
+          <div class="ac-title">12 approbations en attente</div>
+          <div class="ac-desc">Dont 3 qui bloquent une signature client depuis plus de 48h</div>
+          <span class="ac-cta">Traiter maintenant →</span>
+        </div>
+      </div>
+      <div class="alert-card warn" onclick="showPage('assessments')">
+        <div class="ac-icon"><i class="ti ti-clipboard-x"></i></div>
+        <div>
+          <div class="ac-title">8 assessments incomplets</div>
+          <div class="ac-desc">Ces deals manquent d'un assessment de qualification validé</div>
+          <span class="ac-cta">Voir les assessments →</span>
+        </div>
+      </div>
+      <div class="alert-card warn" onclick="showPage('documents')">
+        <div class="ac-icon"><i class="ti ti-file-alert"></i></div>
+        <div>
+          <div class="ac-title">18 deals sans proposition</div>
+          <div class="ac-desc">Ces deals sont en phase Proposal sans document généré</div>
+          <span class="ac-cta">Voir les documents →</span>
+        </div>
+      </div>
+      <div class="alert-card info">
+        <div class="ac-icon"><i class="ti ti-calendar-event"></i></div>
+        <div>
+          <div class="ac-title">3 événements aujourd'hui</div>
+          <div class="ac-desc">Demo HighCo 14h · Suivi BNP 16h · Revue pipeline 17h30</div>
+          <span class="ac-cta">Voir le calendrier →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table + sidebar -->
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <div><div class="card-title">Deals actifs</div><div class="card-sub">Triés par valeur décroissante</div></div>
+          <button class="btn btn-secondary btn-sm" onclick="showPage('deals')">Voir tous <i class="ti ti-arrow-right"></i></button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Entreprise</th><th>Étape</th><th>Valeur</th><th>Score</th><th>Propriétaire</th></tr></thead>
+            <tbody id="dash-deals-tbody">
+            <tr onclick="showPage('deal-detail')" style="cursor:pointer">
+              <td><div class="td-main">HighCo</div><div class="td-sub">Sophie Martin · CDO</div></td>
+              <td><span class="badge b-amber"><span class="b-dot"></span>Proposal</span></td>
+              <td class="td-main">€280K</td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill green" style="width:82%;background:var(--green)"></div></div><span style="font-size:11px;color:var(--t3);width:28px;text-align:right">82</span></div></td>
+              <td><span class="mini-av" style="background:#7C3AED">FH</span></td>
+            </tr>
+            <tr onclick="showPage('deal-detail')" style="cursor:pointer">
+              <td><div class="td-main">BNP Paribas</div><div class="td-sub">Marc Dubois · CTO</div></td>
+              <td><span class="badge b-dark"><span class="b-dot"></span>Negotiation</span></td>
+              <td class="td-main">€420K</td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:91%;background:var(--green)"></div></div><span style="font-size:11px;color:var(--t3);width:28px;text-align:right">91</span></div></td>
+              <td><span class="mini-av">AB</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">Carrefour Group</div><div class="td-sub">Isabelle Roy · VP Sales</div></td>
+              <td><span class="badge b-gray"><span class="b-dot"></span>Discovery</span></td>
+              <td class="td-main">€195K</td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:58%;background:var(--amber)"></div></div><span style="font-size:11px;color:var(--t3);width:28px;text-align:right">58</span></div></td>
+              <td><span class="mini-av" style="background:#059669">RK</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">Société Générale</div><div class="td-sub">Pierre Laurent · CFO</div></td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Closing</span></td>
+              <td class="td-main">€340K</td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:95%;background:var(--green)"></div></div><span style="font-size:11px;color:var(--t3);width:28px;text-align:right">95</span></div></td>
+              <td><span class="mini-av">LM</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">L'Oréal</div><div class="td-sub">Anna Petit · Digital Dir.</div></td>
+              <td><span class="badge b-gray"><span class="b-dot"></span>Qualification</span></td>
+              <td class="td-main">€120K</td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:43%;background:var(--amber)"></div></div><span style="font-size:11px;color:var(--t3);width:28px;text-align:right">43</span></div></td>
+              <td><span class="mini-av" style="background:#B45309">OF</span></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-stack">
+
+
+        <!-- Revenue Forecast -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Revenue Forecast</div>
+              <div class="card-sub">AI-weighted · May 2026</div>
+            </div>
+            <span style="font-size:11px;color:var(--t3)">Target: €1M</span>
+          </div>
+          <div class="card-body" style="padding:16px 18px">
+
+            <!-- Target progress -->
+            <div style="margin-bottom:16px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+                <span style="font-size:12px;color:var(--t3)">Weighted forecast</span>
+                <span style="font-size:18px;font-weight:700;color:var(--t1)">€890K</span>
+              </div>
+              <div class="progress" style="height:8px;border-radius:6px">
+                <div class="progress-fill amber" style="width:89%;background:var(--amber)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:11px;color:var(--t4)">
+                <span>89% of target</span>
+                <span>€110K gap</span>
+              </div>
+            </div>
+
+            <!-- Three buckets -->
+            <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:1px solid var(--border2)">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--t1)">Committed</div>
+                  <div style="font-size:11px;color:var(--t4)">Score ≥ 80 · Closing soon</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:14px;font-weight:700;color:var(--green)">€520K</div>
+                  <div style="font-size:10px;color:var(--t4)">4 deals</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:1px solid var(--border2)">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--t1)">Upside</div>
+                  <div style="font-size:11px;color:var(--t4)">Score 50–79 · In progress</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:14px;font-weight:700;color:var(--amber)">€370K</div>
+                  <div style="font-size:10px;color:var(--t4)">8 deals</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--t1)">Pipeline</div>
+                  <div style="font-size:11px;color:var(--t4)">Score &lt; 50 · Early stage</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:14px;font-weight:700;color:var(--t3)">€3.3M</div>
+                  <div style="font-size:10px;color:var(--t4)">54 deals</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI note -->
+            <div style="margin-top:12px;padding:8px 10px;background:var(--bg);border-radius:var(--r-sm);font-size:11.5px;color:var(--t3);display:flex;gap:6px;align-items:flex-start">
+              <i class="ti ti-cpu" style="font-size:13px;margin-top:1px;flex-shrink:0"></i>
+              <span>Forecast calculated from AI qualification scores, not Pipedrive probability.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ MY DEALS ══════════ -->
+  <div class="page" id="page-deals">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div><div class="page-title">My Deals</div><div style="font-size:12.5px;color:var(--t3)">66 deals actifs · €4.2M pipeline</div></div>
+      <button class="btn btn-primary" onclick="openModal('modal-new-deal')"><i class="ti ti-plus"></i>Nouveau deal</button>
+    </div>
+    <div class="filter-bar">
+      <div class="seg">
+        <div class="seg-tab active" onclick="filterDealsTab(this,'all')">Tous <span style="font-size:10px;opacity:.6">66</span></div>
+        <div class="seg-tab" onclick="filterDealsTab(this,'mine')">Les miens <span style="font-size:10px;opacity:.6">28</span></div>
+        <div class="seg-tab" onclick="filterDealsTab(this,'team')">Équipe <span style="font-size:10px;opacity:.6">38</span></div>
+      </div>
+      <select class="sel" onchange="renderDeals()">
+        <option value="">Toutes étapes</option>
+        <option>Discovery</option><option>Qualification</option><option>Proposal</option><option>Negotiation</option><option>Closing</option>
+      </select>
+      <select class="sel">
+        <option value="">Tous les responsables</option>
+        <option>Fadoua H.</option><option>Ahmed B.</option><option>Rania K.</option><option>Layla M.</option><option>Omar F.</option>
+      </select>
+      <div class="search-box"><i class="ti ti-search"></i><input type="text" placeholder="Rechercher un deal..." oninput="renderDeals(this.value)"></div>
+      <button class="btn btn-secondary btn-sm"><i class="ti ti-filter"></i>Filtres</button>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th><div class="cb" id="cb-all" onclick="toggleAllDeals(this)"></div></th>
+            <th>Entreprise</th><th>Étape</th><th>Valeur</th><th>Score</th><th>Assessment</th><th>Propriétaire</th><th>Dernière activité</th><th></th>
+          </tr></thead>
+          <tbody id="deals-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ DEAL DETAIL ══════════ -->
+  <div class="page" id="page-deal-detail">
+    <!-- Deal header -->
+    <div class="deal-hdr">
+      <div class="deal-hdr-top">
+        <div class="co-av">HC</div>
+        <div style="flex:1">
+          <div class="deal-name">HighCo</div>
+          <div class="deal-meta">
+            <span>Sophie Martin</span><span style="color:var(--border)">·</span>
+            <span>CDO</span><span style="color:var(--border)">·</span>
+            <span>sophie.martin@highco.com</span><span style="color:var(--border)">·</span>
+            <span class="badge b-amber"><span class="b-dot"></span>Proposal</span>
+          </div>
+        </div>
+        <div>
+          <div class="deal-value">€280 000</div>
+          <div class="deal-value-label">Valeur estimée</div>
+        </div>
+        <div style="display:flex;gap:6px;margin-left:10px">
+          <button class="btn btn-secondary btn-sm"><i class="ti ti-edit"></i>Modifier</button>
+          <button class="btn btn-primary btn-sm"><i class="ti ti-send"></i>Envoyer propale</button>
+        </div>
+      </div>
+      <div class="pipeline-strip">
+        <div class="ps-step done"><i class="ti ti-check" style="font-size:11px"></i>Discovery</div>
+        <div class="ps-arrow">›</div>
+        <div class="ps-step done"><i class="ti ti-check" style="font-size:11px"></i>Qualification</div>
+        <div class="ps-arrow">›</div>
+        <div class="ps-step active">Proposal</div>
+        <div class="ps-arrow">›</div>
+        <div class="ps-step">Negotiation</div>
+        <div class="ps-arrow">›</div>
+        <div class="ps-step">Closing</div>
+      </div>
+    </div>
+
+    <!-- Deal tabs -->
+    <div class="tab-bar" id="deal-tabs">
+      <div class="tab active" onclick="switchDealTab('overview')">Vue d'ensemble</div>
+      <div class="tab" onclick="switchDealTab('assessments')">Assessments <span class="tab-badge">1</span></div>
+      <div class="tab" onclick="switchDealTab('documents')">Documents</div>
+      <div class="tab" onclick="switchDealTab('activity')">Activité</div>
+    </div>
+
+    <!-- Overview tab -->
+    <div id="dtab-overview">
+      <div class="two-col">
+        <div class="col-stack">
+          <!-- Next action -->
+          <div style="background:var(--amber-bg);border:1px solid var(--amber-bd);border-radius:var(--r);padding:14px 18px;display:flex;gap:12px;align-items:flex-start">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0"><i class="ti ti-bolt"></i></div>
+            <div>
+              <div style="font-size:13.5px;font-weight:700;color:var(--t1);margin-bottom:3px">Prochaine action recommandée</div>
+              <div style="font-size:12.5px;color:var(--t2)">Envoyer la proposition commerciale — Sophie attend une réponse depuis 3 jours. Le deal risque de se refroidir.</div>
+              <button class="btn btn-primary btn-sm" style="margin-top:8px"><i class="ti ti-send"></i>Générer & envoyer la propale</button>
+            </div>
+          </div>
+
+          <!-- Qualification summary -->
+          <div class="card">
+            <div class="card-header"><div class="card-title">Qualification</div><span class="badge b-green"><span class="b-dot"></span>Qualifié — 82/100</span></div>
+            <div class="card-body" style="padding:12px 18px">
+              <div class="qual-row">
+                <div class="qr-icon done"><i class="ti ti-check"></i></div>
+                <div style="flex:1"><div class="qr-label">Discovery validée</div><div class="qr-sub">Score 82 · Complété le 14 mai</div></div>
+                <span class="badge b-green">Pass</span>
+              </div>
+              <div class="qual-row">
+                <div class="qr-icon wip"><i class="ti ti-clock"></i></div>
+                <div style="flex:1"><div class="qr-label">Technical Assessment</div><div class="qr-sub">Questionnaire envoyé, en attente</div></div>
+                <span class="badge b-amber">Pending</span>
+              </div>
+              <div class="qual-row">
+                <div class="qr-icon todo"><i class="ti ti-circle"></i></div>
+                <div style="flex:1"><div class="qr-label">Validation manageur</div><div class="qr-sub">Requiert approbation avant signature</div></div>
+                <span class="badge b-gray">À faire</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="card">
+            <div class="card-header"><div class="card-title">Notes</div><button class="btn btn-secondary btn-xs"><i class="ti ti-plus"></i>Ajouter</button></div>
+            <div class="card-body" style="padding:12px 18px">
+              <div class="act-item">
+                <div class="act-dot"><i class="ti ti-note"></i></div>
+                <div><div class="act-title">Sophie très intéressée par le module Analytics. Prioriser dans la démo.</div><div class="act-time">Fadoua H. · 15 mai 2026</div></div>
+              </div>
+              <div class="act-item">
+                <div class="act-dot"><i class="ti ti-note"></i></div>
+                <div><div class="act-title">Budget confirmé : €280K validé par le CFO. Décision finale en juin.</div><div class="act-time">Fadoua H. · 12 mai 2026</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-stack">
+          <!-- Deal info -->
+          <div class="card">
+            <div class="card-header"><div class="card-title">Informations</div><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div>
+            <div class="card-body" style="padding:0">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+                <div style="padding:10px 16px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Valeur</div><div style="font-size:14px;font-weight:700">€280 000</div></div>
+                <div style="padding:10px 16px;border-bottom:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Probabilité</div><div style="font-size:14px;font-weight:700">72%</div></div>
+                <div style="padding:10px 16px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Closing estimé</div><div style="font-size:14px;font-weight:700">30 juin 2026</div></div>
+                <div style="padding:10px 16px;border-bottom:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Source</div><div style="font-size:14px;font-weight:700">Inbound</div></div>
+                <div style="padding:10px 16px;border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Propriétaire</div><div style="font-size:13px;font-weight:600">Fadoua H.</div></div>
+                <div style="padding:10px 16px"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">CRM ID</div><div style="font-size:13px;color:var(--t3)">#PD-4821</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div class="card">
+            <div class="card-header"><div class="card-title">Contact principal</div></div>
+            <div class="card-body" style="padding:14px 18px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                <div style="width:38px;height:38px;border-radius:50%;background:#7C3AED;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff">SM</div>
+                <div><div style="font-size:13.5px;font-weight:600">Sophie Martin</div><div style="font-size:12px;color:var(--t3)">CDO · HighCo</div></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-mail" style="color:var(--t4)"></i>sophie.martin@highco.com</div>
+                <div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-phone" style="color:var(--t4)"></i>+33 6 12 34 56 78</div>
+                <div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-map-pin" style="color:var(--t4)"></i>Paris, France</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessments tab -->
+    <div id="dtab-assessments" style="display:none">
+      <div class="two-col">
+        <div class="col-stack">
+          <div class="card">
+            <div class="card-header">
+              <div><div class="card-title">Discovery Assessment</div><div class="card-sub">Complété le 14 mai 2026</div></div>
+              <span class="badge b-green"><span class="b-dot"></span>Pass — 82/100</span>
+            </div>
+            <div class="card-body">
+              <div style="margin-bottom:16px">
+                <div style="font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Contexte métier</div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Problème principal identifié</span><span class="badge b-green">✓ Oui</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">ROI estimé documenté</span><span class="badge b-green">✓ Oui</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Urgence du projet</span><span class="badge b-amber">Moyenne</span></div>
+                </div>
+              </div>
+              <div style="margin-bottom:16px">
+                <div style="font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Décideurs</div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Champion identifié</span><span class="badge b-green">✓ Sophie M.</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Accès au décideur final</span><span class="badge b-green">✓ Oui</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Comité d'achat mappé</span><span class="badge b-amber">Partiel</span></div>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Budget & Timing</div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Budget confirmé</span><span class="badge b-green">✓ €280K</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Deadline client</span><span class="badge b-green">✓ 30 juin</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div><div class="card-title">Technical Assessment</div><div class="card-sub">Questionnaire envoyé le 16 mai</div></div>
+              <span class="badge b-amber"><span class="b-dot"></span>En attente</span>
+            </div>
+            <div class="card-body">
+              <div class="info-box amber"><i class="ti ti-clock"></i><span>En attente de réponse de Sophie Martin. Relance recommandée si pas de réponse dans 24h.</span></div>
+              <div style="margin-top:12px;display:flex;gap:8px">
+                <button class="btn btn-secondary btn-sm"><i class="ti ti-send"></i>Relancer</button>
+                <button class="btn btn-secondary btn-sm"><i class="ti ti-eye"></i>Voir le questionnaire</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-stack">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Qualification score</div><div class="card-sub">Discovery Assessment</div></div>
+            <div class="card-body" style="padding:20px 18px">
+
+              <!-- Big score -->
+              <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border2)">
+                <div style="width:64px;height:64px;border-radius:50%;border:4px solid var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                  <span style="font-size:22px;font-weight:700;color:var(--green)">82</span>
+                </div>
+                <div>
+                  <div style="font-size:15px;font-weight:700;color:var(--green);margin-bottom:2px">Qualified ✓</div>
+                  <div style="font-size:12px;color:var(--t3)">Score above threshold (70/100)</div>
+                  <div style="font-size:11px;color:var(--t4);margin-top:2px">Completed May 14 by Fadoua H.</div>
+                </div>
+              </div>
+
+              <!-- Criteria — simple status per area -->
+              <div style="display:flex;flex-direction:column;gap:10px">
+
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-bg);border-radius:var(--r-sm)">
+                  <i class="ti ti-circle-check" style="color:var(--green);font-size:18px;flex-shrink:0"></i>
+                  <div style="flex:1">
+                    <div style="font-size:13px;font-weight:600;color:var(--t1)">Business context</div>
+                    <div style="font-size:11.5px;color:var(--t3);margin-top:1px">Budget confirmed · Problem clear · ROI documented</div>
+                  </div>
+                  <span style="font-size:12px;font-weight:700;color:var(--green);white-space:nowrap">Strong</span>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--amber-bg);border-radius:var(--r-sm)">
+                  <i class="ti ti-alert-triangle" style="color:var(--amber);font-size:18px;flex-shrink:0"></i>
+                  <div style="flex:1">
+                    <div style="font-size:13px;font-weight:600;color:var(--t1)">Decision makers</div>
+                    <div style="font-size:11.5px;color:var(--t3);margin-top:1px">Champion identified · Buying committee incomplete</div>
+                  </div>
+                  <span style="font-size:12px;font-weight:700;color:var(--amber);white-space:nowrap">Partial</span>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-bg);border-radius:var(--r-sm)">
+                  <i class="ti ti-circle-check" style="color:var(--green);font-size:18px;flex-shrink:0"></i>
+                  <div style="flex:1">
+                    <div style="font-size:13px;font-weight:600;color:var(--t1)">Budget & Timing</div>
+                    <div style="font-size:11.5px;color:var(--t3);margin-top:1px">€280K approved · Deadline June 30</div>
+                  </div>
+                  <span style="font-size:12px;font-weight:700;color:var(--green);white-space:nowrap">Strong</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">IA recommande</div></div>
+            <div class="card-body" style="padding:14px 18px">
+              <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:12px">Ce deal est bien qualifié. Le principal risque est le <strong>comité d'achat</strong> non cartographié. Recommandation : organiser un call avec le DSI avant d'envoyer la proposition.</div>
+              <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center"><i class="ti ti-cpu"></i>Pré-remplir Technical Assessment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documents tab -->
+    <div id="dtab-documents" style="display:none">
+      <div class="info-box red" style="margin-bottom:16px"><i class="ti ti-cloud-off"></i><span><strong>Google Drive déconnecté</strong> — Vous ne pouvez pas générer de propositions. <a style="color:var(--red);font-weight:600;cursor:pointer" onclick="showPage('integrations')">Reconnecter →</a></span></div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Documents du deal</div>
+          <button class="btn btn-secondary btn-sm" disabled><i class="ti ti-sparkles"></i>Générer une proposition</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nom</th><th>Type</th><th>Statut</th><th>Date</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3)"></i><span class="td-main">Cahier_des_charges_HighCo.pdf</span></div></td><td><span class="badge b-gray">Brief client</span></td><td><span class="badge b-green"><span class="b-dot"></span>Reçu</span></td><td style="color:var(--t3)">12 mai 2026</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-spreadsheet" style="color:var(--t3)"></i><span class="td-main">Discovery_Notes_HighCo.docx</span></div></td><td><span class="badge b-gray">Notes</span></td><td><span class="badge b-green"><span class="b-dot"></span>Finalisé</span></td><td style="color:var(--t3)">14 mai 2026</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity tab -->
+    <div id="dtab-activity" style="display:none">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Historique du deal</div>
+          <button class="btn btn-secondary btn-sm"><i class="ti ti-plus"></i>Ajouter une note</button>
+        </div>
+        <div class="card-body" style="padding:12px 18px">
+          <div class="act-item"><div class="act-dot" style="background:var(--amber-bg);color:var(--amber)"><i class="ti ti-file"></i></div><div><div class="act-title">Discovery Assessment complété — Score 82/100</div><div class="act-time">Fadoua H. · 14 mai 2026 · 14:32</div></div></div>
+          <div class="act-item"><div class="act-dot" style="background:var(--green-bg);color:var(--green)"><i class="ti ti-phone"></i></div><div><div class="act-title">Appel de découverte — 45 min · Sophie Martin</div><div class="act-time">Fadoua H. · 12 mai 2026 · 10:00</div></div></div>
+          <div class="act-item"><div class="act-dot"><i class="ti ti-mail"></i></div><div><div class="act-title">Email envoyé — Confirmation RDV demo</div><div class="act-time">Fadoua H. · 10 mai 2026 · 09:15</div></div></div>
+          <div class="act-item"><div class="act-dot"><i class="ti ti-plus"></i></div><div><div class="act-title">Deal créé depuis Pipedrive</div><div class="act-time">Système · 8 mai 2026</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ ASSESSMENTS ══════════ -->
+  <div class="page" id="page-assessments">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div><div class="page-title">Assessments</div><div style="font-size:12.5px;color:var(--t3)">Qualification des leads — Discovery & Technical</div></div>
+      <button class="btn btn-primary" onclick="openModal('modal-new-assessment')"><i class="ti ti-plus"></i>Nouvel assessment</button>
+    </div>
+    <div class="kpi-row kpi-4" style="margin-bottom:16px">
+      <div class="kpi-card"><div class="kpi-label">Total en cours</div><div class="kpi-value">34</div><div class="kpi-footer">assessments actifs</div></div>
+      <div class="kpi-card"><div class="kpi-label">Pass (≥ 70)</div><div class="kpi-value" style="color:var(--green)">18</div><div class="kpi-footer">leads qualifiés</div></div>
+      <div class="kpi-card"><div class="kpi-label">En attente</div><div class="kpi-value" style="color:var(--amber)">8</div><div class="kpi-footer">à compléter</div></div>
+      <div class="kpi-card"><div class="kpi-label">Bloquants</div><div class="kpi-value" style="color:var(--red)">3</div><div class="kpi-footer">score &lt; 40</div></div>
+    </div>
+    <div class="filter-bar">
+      <div class="seg">
+        <div class="seg-tab active">Tous <span style="font-size:10px;opacity:.6">34</span></div>
+        <div class="seg-tab">Discovery <span style="font-size:10px;opacity:.6">20</span></div>
+        <div class="seg-tab">Technical <span style="font-size:10px;opacity:.6">14</span></div>
+      </div>
+      <select class="sel"><option>Tous statuts</option><option>Pass</option><option>En attente</option><option>Bloquant</option></select>
+      <select class="sel"><option>Tous les responsables</option><option>Fadoua H.</option><option>Ahmed B.</option><option>Rania K.</option></select>
+      <div class="search-box"><i class="ti ti-search"></i><input type="text" placeholder="Rechercher..."></div>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Entreprise</th><th>Type</th><th>Score</th><th>Statut</th><th>Responsable</th><th>Dernière MAJ</th><th></th></tr></thead>
+          <tbody>
+            <tr onclick="showPage('deal-detail');switchDealTab('assessments')" style="cursor:pointer">
+              <td><div class="td-main">HighCo</div><div class="td-sub">Sophie Martin</div></td>
+              <td><span class="badge b-gray">Discovery</span></td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:82%;background:var(--green)"></div></div><span style="font-size:11.5px;font-weight:600;width:28px;text-align:right;color:var(--green)">82</span></div></td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Pass</span></td>
+              <td><span class="mini-av" style="background:#7C3AED">FH</span></td>
+              <td style="color:var(--t4)">14 mai</td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs">Voir</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">BNP Paribas</div><div class="td-sub">Marc Dubois</div></td>
+              <td><span class="badge b-gray">Technical</span></td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:91%;background:var(--green)"></div></div><span style="font-size:11.5px;font-weight:600;width:28px;text-align:right;color:var(--green)">91</span></div></td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Pass</span></td>
+              <td><span class="mini-av">AB</span></td>
+              <td style="color:var(--t4)">17 mai</td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs">Voir</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">Carrefour Group</div><div class="td-sub">Isabelle Roy</div></td>
+              <td><span class="badge b-gray">Discovery</span></td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:58%;background:var(--amber)"></div></div><span style="font-size:11.5px;font-weight:600;width:28px;text-align:right;color:var(--amber)">58</span></div></td>
+              <td><span class="badge b-amber"><span class="b-dot"></span>À revoir</span></td>
+              <td><span class="mini-av" style="background:#059669">RK</span></td>
+              <td style="color:var(--t4)">13 mai</td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs">Voir</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">Renault Digital</div><div class="td-sub">Thomas Blanc</div></td>
+              <td><span class="badge b-gray">Discovery</span></td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:34%;background:var(--red)"></div></div><span style="font-size:11.5px;font-weight:600;width:28px;text-align:right;color:var(--red)">34</span></div></td>
+              <td><span class="badge b-red"><span class="b-dot"></span>Bloquant</span></td>
+              <td><span class="mini-av" style="background:#B45309">OF</span></td>
+              <td style="color:var(--t4)">11 mai</td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs">Voir</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">Société Générale</div><div class="td-sub">Pierre Laurent</div></td>
+              <td><span class="badge b-gray">Technical</span></td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:95%;background:var(--green)"></div></div><span style="font-size:11.5px;font-weight:600;width:28px;text-align:right;color:var(--green)">95</span></div></td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Pass</span></td>
+              <td><span class="mini-av">LM</span></td>
+              <td style="color:var(--t4)">18 mai</td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs">Voir</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">L'Oréal</div><div class="td-sub">Anna Petit</div></td>
+              <td><span class="badge b-gray">Discovery</span></td>
+              <td><div class="score-wrap"><div class="score-bar" style="width:100%"><div class="score-fill" style="width:0%"></div></div><span style="font-size:11.5px;color:var(--t4);width:28px;text-align:right">—</span></div></td>
+              <td><span class="badge b-amber"><span class="b-dot"></span>En attente</span></td>
+              <td><span class="mini-av" style="background:#B45309">OF</span></td>
+              <td style="color:var(--t4)">16 mai</td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs">Compléter</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-main">Air France</div><div class="td-sub">Céline Moreau</div></td>
+              <td><span class="badge b-gray">Discovery</span></td>
+              <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:76%;background:var(--green)"></div></div><span style="font-size:11.5px;font-weight:600;width:28px;text-align:right;color:var(--green)">76</span></div></td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Pass</span></td>
+              <td><span class="mini-av">AB</span></td>
+              <td style="color:var(--t4)">15 mai</td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs">Voir</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ APPROVALS ══════════ -->
+  <div class="page" id="page-approvals">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div><div class="page-title">Approbations</div><div style="font-size:12.5px;color:var(--t3)">12 en attente · dont 3 urgentes</div></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-success btn-sm" id="btn-approve-all" onclick="bulkApprove()"><i class="ti ti-check"></i>Approuver la sélection</button>
+        <button class="btn btn-danger btn-sm" id="btn-reject-all" onclick="bulkReject()"><i class="ti ti-x"></i>Refuser la sélection</button>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <div class="seg">
+        <div class="seg-tab active" onclick="filterApprovals(this,'all')">Toutes <span style="font-size:10px;opacity:.6">12</span></div>
+        <div class="seg-tab" onclick="filterApprovals(this,'urgent')">Urgentes <span style="font-size:10px;opacity:.6">3</span></div>
+        <div class="seg-tab" onclick="filterApprovals(this,'standard')">Standard <span style="font-size:10px;opacity:.6">9</span></div>
+      </div>
+      <select class="sel"><option>Tous types</option><option>Proposition commerciale</option><option>Remise exceptionnelle</option><option>Extension de contrat</option></select>
+      <div class="search-box"><i class="ti ti-search"></i><input type="text" placeholder="Rechercher..."></div>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th><div class="cb" onclick="toggleAllApprovals(this)"></div></th>
+            <th>Deal</th><th>Type de demande</th><th>Montant</th><th>Demandeur</th><th>Priorité</th><th>En attente depuis</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="approvals-tbody">
+            <tr>
+              <td><div class="cb" onclick="this.classList.toggle('checked')"></div></td>
+              <td><div class="td-main">BNP Paribas</div><div class="td-sub">Remise demandée : -15%</div></td>
+              <td>Remise exceptionnelle</td>
+              <td class="td-main">€63K</td>
+              <td><span class="mini-av">AB</span></td>
+              <td><span class="badge b-red"><span class="b-dot"></span>Urgente</span></td>
+              <td style="color:var(--red)">3 jours</td>
+              <td><div style="display:flex;gap:5px"><button class="btn btn-success btn-xs" onclick="approveRow(this)"><i class="ti ti-check"></i>Approuver</button><button class="btn btn-danger btn-xs" onclick="rejectRow(this)"><i class="ti ti-x"></i>Refuser</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="cb" onclick="this.classList.toggle('checked')"></div></td>
+              <td><div class="td-main">Société Générale</div><div class="td-sub">Proposition finale — €340K</div></td>
+              <td>Proposition commerciale</td>
+              <td class="td-main">€340K</td>
+              <td><span class="mini-av">LM</span></td>
+              <td><span class="badge b-red"><span class="b-dot"></span>Urgente</span></td>
+              <td style="color:var(--red)">2 jours</td>
+              <td><div style="display:flex;gap:5px"><button class="btn btn-success btn-xs" onclick="approveRow(this)"><i class="ti ti-check"></i>Approuver</button><button class="btn btn-danger btn-xs" onclick="rejectRow(this)"><i class="ti ti-x"></i>Refuser</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="cb" onclick="this.classList.toggle('checked')"></div></td>
+              <td><div class="td-main">HighCo</div><div class="td-sub">Extension délai paiement 60j</div></td>
+              <td>Extension de contrat</td>
+              <td class="td-main">€280K</td>
+              <td><span class="mini-av" style="background:#7C3AED">FH</span></td>
+              <td><span class="badge b-red"><span class="b-dot"></span>Urgente</span></td>
+              <td style="color:var(--red)">2 jours</td>
+              <td><div style="display:flex;gap:5px"><button class="btn btn-success btn-xs" onclick="approveRow(this)"><i class="ti ti-check"></i>Approuver</button><button class="btn btn-danger btn-xs" onclick="rejectRow(this)"><i class="ti ti-x"></i>Refuser</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="cb" onclick="this.classList.toggle('checked')"></div></td>
+              <td><div class="td-main">Carrefour Group</div><div class="td-sub">Proposition initiale</div></td>
+              <td>Proposition commerciale</td>
+              <td class="td-main">€195K</td>
+              <td><span class="mini-av" style="background:#059669">RK</span></td>
+              <td><span class="badge b-amber"><span class="b-dot"></span>Standard</span></td>
+              <td style="color:var(--t3)">5 heures</td>
+              <td><div style="display:flex;gap:5px"><button class="btn btn-success btn-xs" onclick="approveRow(this)"><i class="ti ti-check"></i>Approuver</button><button class="btn btn-danger btn-xs" onclick="rejectRow(this)"><i class="ti ti-x"></i>Refuser</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="cb" onclick="this.classList.toggle('checked')"></div></td>
+              <td><div class="td-main">Air France</div><div class="td-sub">Remise fidélité -8%</div></td>
+              <td>Remise exceptionnelle</td>
+              <td class="td-main">€28K</td>
+              <td><span class="mini-av">AB</span></td>
+              <td><span class="badge b-amber"><span class="b-dot"></span>Standard</span></td>
+              <td style="color:var(--t3)">3 heures</td>
+              <td><div style="display:flex;gap:5px"><button class="btn btn-success btn-xs" onclick="approveRow(this)"><i class="ti ti-check"></i>Approuver</button><button class="btn btn-danger btn-xs" onclick="rejectRow(this)"><i class="ti ti-x"></i>Refuser</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ DOCUMENTS ══════════ -->
+  <div class="page" id="page-documents">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div><div class="page-title">Documents</div><div style="font-size:12.5px;color:var(--t3)">Propositions commerciales et pièces jointes</div></div>
+      <button class="btn btn-primary" disabled><i class="ti ti-sparkles"></i>Générer une proposition</button>
+    </div>
+    <div class="info-box red" style="margin-bottom:16px">
+      <i class="ti ti-cloud-off" style="font-size:16px;flex-shrink:0;margin-top:1px"></i>
+      <div><strong>Google Drive déconnecté</strong> — La génération de propositions est bloquée pour 18 deals. <a style="color:var(--red);font-weight:600;cursor:pointer" onclick="showPage('integrations')">Reconnecter maintenant →</a></div>
+    </div>
+    <div class="filter-bar">
+      <div class="seg">
+        <div class="seg-tab active">Tous</div><div class="seg-tab">Propositions</div><div class="seg-tab">Contrats</div><div class="seg-tab">Briefs client</div>
+      </div>
+      <select class="sel"><option>Tous les deals</option><option>HighCo</option><option>BNP Paribas</option><option>Carrefour</option></select>
+      <div class="search-box"><i class="ti ti-search"></i><input type="text" placeholder="Rechercher un document..."></div>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom du document</th><th>Deal</th><th>Type</th><th>Statut</th><th>Créé par</th><th>Date</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3);font-size:16px"></i><span class="td-main">Cahier_des_charges_HighCo.pdf</span></div></td><td>HighCo</td><td><span class="badge b-gray">Brief client</span></td><td><span class="badge b-green"><span class="b-dot"></span>Reçu</span></td><td>Fadoua H.</td><td style="color:var(--t4)">12 mai</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-description" style="color:var(--t3);font-size:16px"></i><span class="td-main">Discovery_Notes_BNP.docx</span></div></td><td>BNP Paribas</td><td><span class="badge b-gray">Notes</span></td><td><span class="badge b-green"><span class="b-dot"></span>Finalisé</span></td><td>Ahmed B.</td><td style="color:var(--t4)">17 mai</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-invoice" style="color:var(--t3);font-size:16px"></i><span class="td-main">Contrat_SocieteGenerale_v2.pdf</span></div></td><td>Soc. Générale</td><td><span class="badge b-gray">Contrat</span></td><td><span class="badge b-amber"><span class="b-dot"></span>En révision</span></td><td>Layla M.</td><td style="color:var(--t4)">18 mai</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ HISTORY ══════════ -->
+  <div class="page" id="page-history">
+    <div style="margin-bottom:16px"><div class="page-title">Historique</div><div style="font-size:12.5px;color:var(--t3)">Journal complet des actions et événements</div></div>
+    <div class="filter-bar">
+      <div class="seg">
+        <div class="seg-tab active">Tous</div><div class="seg-tab">Actions</div><div class="seg-tab">Alertes</div><div class="seg-tab">Système</div>
+      </div>
+      <select class="sel"><option>Tous les deals</option></select>
+      <select class="sel"><option>Tous les utilisateurs</option><option>Fadoua H.</option><option>Ahmed B.</option></select>
+      <div class="search-box"><i class="ti ti-search"></i><input type="text" placeholder="Rechercher..."></div>
+    </div>
+    <div class="card">
+      <div class="card-body" style="padding:8px 18px">
+        <div class="act-item"><div class="act-dot" style="background:var(--green-bg);color:var(--green)"><i class="ti ti-check"></i></div><div style="flex:1"><div class="act-title">Assessment Discovery complété — HighCo · Score 82/100</div><div class="act-time">Fadoua H. · Aujourd'hui 14:32</div></div><span class="badge b-green">Pass</span></div>
+        <div class="act-item"><div class="act-dot" style="background:var(--amber-bg);color:var(--amber)"><i class="ti ti-clock"></i></div><div style="flex:1"><div class="act-title">Approbation urgente — Remise BNP Paribas -15% en attente depuis 3 jours</div><div class="act-time">Système · Aujourd'hui 09:00</div></div><span class="badge b-amber">Rappel</span></div>
+        <div class="act-item"><div class="act-dot"><i class="ti ti-phone"></i></div><div style="flex:1"><div class="act-title">Appel enregistré — BNP Paribas · Marc Dubois · 32 min</div><div class="act-time">Ahmed B. · Hier 16:00</div></div></div>
+        <div class="act-item"><div class="act-dot"><i class="ti ti-file"></i></div><div style="flex:1"><div class="act-title">Document reçu — Cahier des charges Carrefour Group</div><div class="act-time">Rania K. · Hier 14:22</div></div></div>
+        <div class="act-item"><div class="act-dot" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-alert-circle"></i></div><div style="flex:1"><div class="act-title">Erreur de synchronisation — 3 deals Pipedrive non mis à jour</div><div class="act-time">Système · Hier 08:15</div></div><span class="badge b-red">Erreur</span></div>
+        <div class="act-item"><div class="act-dot" style="background:var(--green-bg);color:var(--green)"><i class="ti ti-circle-check"></i></div><div style="flex:1"><div class="act-title">Deal gagné — Renault Digital · €142K · Signé</div><div class="act-time">Omar F. · 17 mai</div></div><span class="badge b-green">Won</span></div>
+        <div class="act-item"><div class="act-dot"><i class="ti ti-mail"></i></div><div style="flex:1"><div class="act-title">Email envoyé — Technical Assessment · L'Oréal · Anna Petit</div><div class="act-time">Omar F. · 16 mai</div></div></div>
+        <div class="act-item"><div class="act-dot"><i class="ti ti-users"></i></div><div style="flex:1"><div class="act-title">Revue pipeline équipe — 8 deals discutés</div><div class="act-time">Fadoua H. · 15 mai</div></div></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ ANALYTICS ══════════ -->
+  <div class="page" id="page-analytics">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div><div class="page-title">Analytics</div><div style="font-size:12.5px;color:var(--t3)">Performance commerciale — Mai 2026</div></div>
+      <div style="display:flex;gap:8px">
+        <select class="sel"><option>Ce mois</option><option>Ce trimestre</option><option>Cette année</option></select>
+        <button class="btn btn-secondary btn-sm"><i class="ti ti-download"></i>Exporter</button>
+      </div>
+    </div>
+    <div class="kpi-row kpi-4" style="margin-bottom:20px">
+      <div class="kpi-card"><div class="kpi-label">Revenus générés</div><div class="kpi-value">€890K</div><div class="kpi-footer"><span class="trend up">+12%</span> vs mois dernier</div></div>
+      <div class="kpi-card"><div class="kpi-label">Deals gagnés</div><div class="kpi-value">14</div><div class="kpi-footer"><span class="trend up">+3</span> vs objectif</div></div>
+      <div class="kpi-card"><div class="kpi-label">Taux de conversion</div><div class="kpi-value">24%</div><div class="kpi-footer"><span class="trend down">-2%</span> vs objectif 26%</div></div>
+      <div class="kpi-card"><div class="kpi-label">Durée cycle moyen</div><div class="kpi-value">47j</div><div class="kpi-footer"><span class="trend up">-5j</span> vs trimestre préc.</div></div>
+    </div>
+    <div class="two-col-eq" style="margin-bottom:14px">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Revenus mensuels</div></div>
+        <div class="card-body"><canvas id="revenueChart" height="200"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Funnel de conversion</div></div>
+        <div class="card-body"><canvas id="funnelChart" height="200"></canvas></div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Classement des commerciaux</div><div class="card-sub">Par revenus · Mai 2026</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Commercial</th><th>Deals gagnés</th><th>Revenus</th><th>Conv. rate</th><th>Score moy.</th></tr></thead>
+            <tbody>
+              <tr><td style="font-weight:700;color:var(--amber)">1</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av">AB</span><span class="td-main">Ahmed B.</span></div></td><td>5</td><td style="font-weight:600">€312K</td><td><span class="badge b-green">31%</span></td><td>87</td></tr>
+              <tr><td style="font-weight:700;color:var(--t3)">2</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#7C3AED">FH</span><span class="td-main">Fadoua H.</span></div></td><td>4</td><td style="font-weight:600">€280K</td><td><span class="badge b-green">28%</span></td><td>82</td></tr>
+              <tr><td style="font-weight:700;color:var(--t3)">3</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av">LM</span><span class="td-main">Layla M.</span></div></td><td>3</td><td style="font-weight:600">€196K</td><td><span class="badge b-amber">22%</span></td><td>79</td></tr>
+              <tr><td>4</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#059669">RK</span><span class="td-main">Rania K.</span></div></td><td>2</td><td style="font-weight:600">€102K</td><td><span class="badge b-amber">18%</span></td><td>74</td></tr>
+              <tr><td>5</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#B45309">OF</span><span class="td-main">Omar F.</span></div></td><td>0</td><td style="font-weight:600">€0</td><td><span class="badge b-red">0%</span></td><td>61</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-stack">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Win/Loss par étape</div></div>
+          <div class="card-body" style="padding:14px 18px">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Discovery → Qualification</span><span style="font-weight:600;color:var(--green)">78%</span></div><div class="progress"><div class="progress-fill green" style="width:78%"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Qualification → Proposal</span><span style="font-weight:600;color:var(--green)">64%</span></div><div class="progress"><div class="progress-fill green" style="width:64%"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Proposal → Negotiation</span><span style="font-weight:600;color:var(--amber)">41%</span></div><div class="progress"><div class="progress-fill amber" style="width:41%"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Negotiation → Closing</span><span style="font-weight:600;color:var(--amber)">58%</span></div><div class="progress"><div class="progress-fill amber" style="width:58%"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Closing → Signé</span><span style="font-weight:600;color:var(--green)">87%</span></div><div class="progress"><div class="progress-fill green" style="width:87%"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TEAM ══════════ -->
+  <div class="page" id="page-team">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div><div class="page-title">Équipe</div><div style="font-size:12.5px;color:var(--t3)">5 commerciaux · 2 managers · 1 admin</div></div>
+      <button class="btn btn-primary" onclick="openModal('modal-new-user')"><i class="ti ti-user-plus"></i>Ajouter un membre</button>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Membre</th><th>Rôle</th><th>Équipe</th><th>Deals actifs</th><th>Statut</th><th>Accès</th><th></th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:10px"><span class="mini-av" style="width:32px;height:32px;font-size:11px;background:#7C3AED">FH</span><div><div class="td-main">Fadoua Hajji</div><div class="td-sub">hajjifadouapro@gmail.com</div></div></div></td>
+              <td><span class="badge b-dark">Admin</span></td>
+              <td>Management</td>
+              <td>28</td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Actif</span></td>
+              <td><span class="badge b-dark">Full access</span></td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button><button class="btn btn-danger btn-xs"><i class="ti ti-trash"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:10px"><span class="mini-av" style="width:32px;height:32px;font-size:11px">AB</span><div><div class="td-main">Ahmed Benali</div><div class="td-sub">ahmed.b@aioo.com</div></div></div></td>
+              <td><span class="badge b-gray">Commercial</span></td>
+              <td>Sales FR</td>
+              <td>14</td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Actif</span></td>
+              <td><span class="badge b-gray">Sales only</span></td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button><button class="btn btn-danger btn-xs"><i class="ti ti-trash"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:10px"><span class="mini-av" style="width:32px;height:32px;font-size:11px;background:#059669">RK</span><div><div class="td-main">Rania Khoury</div><div class="td-sub">rania.k@aioo.com</div></div></div></td>
+              <td><span class="badge b-gray">Commercial</span></td>
+              <td>Sales MA</td>
+              <td>10</td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Actif</span></td>
+              <td><span class="badge b-gray">Sales only</span></td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button><button class="btn btn-danger btn-xs"><i class="ti ti-trash"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:10px"><span class="mini-av" style="width:32px;height:32px;font-size:11px">LM</span><div><div class="td-main">Layla Mansour</div><div class="td-sub">layla.m@aioo.com</div></div></div></td>
+              <td><span class="badge b-gray">Commercial</span></td>
+              <td>Sales FR</td>
+              <td>8</td>
+              <td><span class="badge b-green"><span class="b-dot"></span>Actif</span></td>
+              <td><span class="badge b-gray">Sales only</span></td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button><button class="btn btn-danger btn-xs"><i class="ti ti-trash"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:10px"><span class="mini-av" style="width:32px;height:32px;font-size:11px;background:#B45309">OF</span><div><div class="td-main">Omar Farsi</div><div class="td-sub">omar.f@aioo.com</div></div></div></td>
+              <td><span class="badge b-gray">Commercial</span></td>
+              <td>Sales MA</td>
+              <td>6</td>
+              <td><span class="badge b-amber"><span class="b-dot"></span>Inactif</span></td>
+              <td><span class="badge b-gray">Sales only</span></td>
+              <td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button><button class="btn btn-danger btn-xs"><i class="ti ti-trash"></i></button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ AI CONFIG ══════════ -->
+  <div class="page" id="page-ai-config">
+    <div style="margin-bottom:16px"><div class="page-title">IA & Scoring</div><div style="font-size:12.5px;color:var(--t3)">Configuration des modèles IA et critères de qualification</div></div>
+    <div class="back-layout">
+      <div class="back-nav">
+        <span class="back-nav-label">Configuration</span>
+        <div class="back-nav-item active" onclick="switchAITab(this,'scoring')"><i class="ti ti-adjustments"></i>Scoring</div>
+        <div class="back-nav-item" onclick="switchAITab(this,'discovery')"><i class="ti ti-clipboard-list"></i>Discovery</div>
+        <div class="back-nav-item" onclick="switchAITab(this,'technical')"><i class="ti ti-cpu"></i>Technical</div>
+        <div class="back-nav-item" onclick="switchAITab(this,'models')"><i class="ti ti-brain"></i>Modèles IA</div>
+        <div class="back-nav-item" onclick="switchAITab(this,'prompts')"><i class="ti ti-message-2"></i>Prompts</div>
+      </div>
+      <div>
+        <!-- Scoring tab -->
+        <div id="aitab-scoring">
+          <div class="card" style="margin-bottom:14px">
+            <div class="card-header"><div class="card-title">Pondération du score de qualification</div><div class="card-sub">Total doit être égal à 100%</div></div>
+            <div class="card-body">
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:6px"><label class="form-label" style="margin:0">Contexte métier (Budget, Problème, ROI)</label><span style="font-weight:700;font-size:14px">35%</span></div><input type="range" min="0" max="100" value="35" style="width:100%;accent-color:var(--navy)"></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:6px"><label class="form-label" style="margin:0">Décideurs et organisation</label><span style="font-weight:700;font-size:14px">30%</span></div><input type="range" min="0" max="100" value="30" style="width:100%;accent-color:var(--navy)"></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:6px"><label class="form-label" style="margin:0">Timing et urgence</label><span style="font-weight:700;font-size:14px">20%</span></div><input type="range" min="0" max="100" value="20" style="width:100%;accent-color:var(--navy)"></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:6px"><label class="form-label" style="margin:0">Adéquation solution</label><span style="font-weight:700;font-size:14px">15%</span></div><input type="range" min="0" max="100" value="15" style="width:100%;accent-color:var(--navy)"></div>
+              </div>
+              <div class="divider"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div><div style="font-size:13px;font-weight:600">Seuil de qualification : <span style="color:var(--green)">70/100</span></div><div style="font-size:12px;color:var(--t3)">En dessous → deal marqué "À revoir"</div></div>
+                <input type="number" value="70" min="0" max="100" style="width:70px;padding:6px 10px;border:1px solid var(--border);border-radius:var(--r-sm);font-size:14px;font-weight:600;text-align:center;outline:none">
+              </div>
+              <div style="margin-top:14px;display:flex;gap:8px">
+                <button class="btn btn-primary btn-sm">Sauvegarder</button>
+                <button class="btn btn-secondary btn-sm">Réinitialiser</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Discovery tab -->
+        <div id="aitab-discovery" style="display:none">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Questions Discovery Assessment</div><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i>Ajouter</button></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>#</th><th>Question</th><th>Catégorie</th><th>Poids</th><th>Requis</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td style="color:var(--t4)">1</td><td class="td-main">Quel est votre principal défi business actuel ?</td><td><span class="badge b-gray">Contexte</span></td><td>15 pts</td><td><span class="badge b-green">Oui</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">2</td><td class="td-main">Quel est le budget alloué à ce projet ?</td><td><span class="badge b-gray">Budget</span></td><td>20 pts</td><td><span class="badge b-green">Oui</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">3</td><td class="td-main">Qui prend la décision finale ?</td><td><span class="badge b-gray">Décideurs</span></td><td>15 pts</td><td><span class="badge b-green">Oui</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">4</td><td class="td-main">Quelle est votre deadline pour ce projet ?</td><td><span class="badge b-gray">Timing</span></td><td>10 pts</td><td><span class="badge b-amber">Non</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Technical tab -->
+        <div id="aitab-technical" style="display:none">
+          <div class="card"><div class="card-header"><div class="card-title">Questions Technical Assessment</div><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i>Ajouter</button></div><div class="empty"><i class="ti ti-clipboard-list"></i><div class="empty-title">Configurez votre Technical Assessment</div><div class="empty-desc">Ajoutez des questions techniques pour qualifier les aspects IT, infrastructure et intégration.</div><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i>Première question</button></div></div>
+        </div>
+        <!-- Models tab -->
+        <div id="aitab-models" style="display:none">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Modèles IA actifs</div></div>
+            <div class="card-body">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div class="prov-card"><div class="prov-icon"><i class="ti ti-brain" style="color:var(--navy)"></i></div><div style="flex:1"><div class="prov-name">Scoring & Qualification — GPT-4o</div><div class="prov-desc">Analyse les réponses et calcule le score de qualification</div><div class="prov-actions"><span class="badge b-green"><span class="b-dot"></span>Actif · v2</span><button class="btn btn-secondary btn-xs">Configurer</button></div></div></div>
+                <div class="prov-card"><div class="prov-icon"><i class="ti ti-file-text" style="color:var(--navy)"></i></div><div style="flex:1"><div class="prov-name">Génération de propositions — GPT-4o</div><div class="prov-desc">Génère des propositions commerciales personnalisées</div><div class="prov-actions"><span class="badge b-amber"><span class="b-dot"></span>Google requis</span><button class="btn btn-secondary btn-xs">Configurer</button></div></div></div>
+                <div class="prov-card"><div class="prov-icon"><i class="ti ti-message-2" style="color:var(--t4)"></i></div><div style="flex:1"><div class="prov-name">Transcription appels — Fireflies</div><div class="prov-desc">Transcription et résumé automatique des appels</div><div class="prov-actions"><span class="badge b-gray"><span class="b-dot"></span>Non configuré</span><button class="btn btn-secondary btn-xs">Configurer</button></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Prompts tab -->
+        <div id="aitab-prompts" style="display:none">
+          <div class="card"><div class="card-header"><div class="card-title">Prompts système</div><button class="btn btn-secondary btn-sm"><i class="ti ti-plus"></i>Nouveau</button></div><div class="card-body">
+            <div class="form-group"><label class="form-label">Prompt de scoring Discovery</label><textarea class="form-input" style="min-height:100px">Tu es un expert en qualification commerciale. Analyse les réponses du commercial et génère un score de 0 à 100 basé sur les critères BANT (Budget, Authority, Need, Timeline). Sois strict mais juste.</textarea></div>
+            <div class="form-group"><label class="form-label">Prompt de génération de proposition</label><textarea class="form-input" style="min-height:80px">Génère une proposition commerciale professionnelle en français, personnalisée pour le client, en utilisant les informations du deal et de la discovery.</textarea></div>
+            <button class="btn btn-primary btn-sm">Sauvegarder</button>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ INTEGRATIONS ══════════ -->
+  <div class="page" id="page-integrations">
+    <div style="margin-bottom:16px"><div class="page-title">Intégrations</div><div style="font-size:12.5px;color:var(--t3)">Gérez vos connexions à des services externes</div></div>
+    <div class="info-box red" style="margin-bottom:20px"><i class="ti ti-alert-circle" style="flex-shrink:0"></i><span><strong>1 intégration déconnectée</strong> — Google Drive doit être reconnecté pour débloquer la génération de propositions.</span></div>
+
+    <div style="font-size:13px;font-weight:600;color:var(--t2);margin-bottom:10px">CRM</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div class="prov-card">
+        <div class="prov-icon"><i class="ti ti-brand-pipedrive" style="color:#22D3C8;font-size:20px"></i></div>
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="prov-name">Pipedrive</div>
+            <span class="badge b-green"><span class="b-dot"></span>Connecté</span>
+          </div>
+          <div class="prov-desc">Synchronisation bidirectionnelle · Dernière sync il y a 4 min · 66 deals importés</div>
+          <div class="prov-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-refresh"></i>Synchroniser</button><button class="btn btn-secondary btn-xs"><i class="ti ti-settings"></i>Configurer</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:600;color:var(--t2);margin-bottom:10px">Stockage & Documents</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div class="prov-card" style="border-color:var(--red-bd)">
+        <div class="prov-icon" style="background:var(--red-bg)"><i class="ti ti-brand-google-drive" style="color:var(--red);font-size:20px"></i></div>
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="prov-name">Google Drive</div>
+            <span class="badge b-red"><span class="b-dot"></span>Déconnecté</span>
+          </div>
+          <div class="prov-desc" style="color:var(--red)">Reconnexion requise — La génération de propositions est bloquée pour 18 deals</div>
+          <div class="prov-actions"><button class="btn btn-danger btn-xs"><i class="ti ti-plug"></i>Reconnecter mon compte Google</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:600;color:var(--t2);margin-bottom:10px">Communication</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div class="prov-card">
+        <div class="prov-icon"><i class="ti ti-brand-slack" style="color:#4A154B;font-size:20px"></i></div>
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="prov-name">Slack</div>
+            <span class="badge b-green"><span class="b-dot"></span>Connecté</span>
+          </div>
+          <div class="prov-desc">Canal #sales-alerts · Notifications d'approbations et d'alertes</div>
+          <div class="prov-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-settings"></i>Configurer</button><button class="btn btn-danger btn-xs"><i class="ti ti-plug-x"></i>Déconnecter</button></div>
+        </div>
+      </div>
+      <div class="prov-card">
+        <div class="prov-icon"><i class="ti ti-headphones" style="color:var(--t3);font-size:20px"></i></div>
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="prov-name">Fireflies.ai</div>
+            <span class="badge b-gray"><span class="b-dot"></span>Non configuré</span>
+          </div>
+          <div class="prov-desc">Transcription automatique des appels de vente</div>
+          <div class="prov-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-plug"></i>Connecter</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:600;color:var(--t2);margin-bottom:10px">API & Webhooks</div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">Clé API</div><div class="card-sub">Utilisée pour les intégrations personnalisées</div></div>
+      <div class="card-body" style="padding:14px 18px">
+        <div style="display:flex;gap:8px;align-items:center">
+          <input class="form-input" value="sk-aioo-••••••••••••••••••••••••••••••" readonly style="font-family:monospace;background:var(--bg);flex:1">
+          <button class="btn btn-secondary btn-sm"><i class="ti ti-copy"></i>Copier</button>
+          <button class="btn btn-danger btn-sm"><i class="ti ti-refresh"></i>Régénérer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SETTINGS ══════════ -->
+  <div class="page" id="page-settings">
+    <div style="margin-bottom:16px"><div class="page-title">Paramètres</div><div style="font-size:12.5px;color:var(--t3)">Mon compte et mes préférences</div></div>
+    <div class="back-layout">
+      <div class="back-nav">
+        <span class="back-nav-label">Paramètres</span>
+        <div class="back-nav-item active" onclick="switchSettingsTab(this,'profile')"><i class="ti ti-user"></i>Profil</div>
+        <div class="back-nav-item" onclick="switchSettingsTab(this,'notifs')"><i class="ti ti-bell"></i>Notifications</div>
+        <div class="back-nav-item" onclick="switchSettingsTab(this,'security')"><i class="ti ti-lock"></i>Sécurité</div>
+        <div class="back-nav-item" onclick="switchSettingsTab(this,'display')"><i class="ti ti-palette"></i>Affichage</div>
+      </div>
+      <div>
+        <div id="stab-profile">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Mon profil</div></div>
+            <div class="card-body">
+              <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+                <div style="width:64px;height:64px;border-radius:50%;background:#7C3AED;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff">FH</div>
+                <button class="btn btn-secondary btn-sm"><i class="ti ti-camera"></i>Changer la photo</button>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Prénom</label><input class="form-input" value="Fadoua"></div>
+                <div class="form-group"><label class="form-label">Nom</label><input class="form-input" value="Hajji"></div>
+              </div>
+              <div class="form-group"><label class="form-label">Email</label><input class="form-input" value="hajjifadouapro@gmail.com"></div>
+              <div class="form-group"><label class="form-label">Rôle</label><input class="form-input" value="Sales Admin" readonly style="background:var(--bg);color:var(--t3)"></div>
+              <div class="form-group"><label class="form-label">Téléphone</label><input class="form-input" value="+33 6 __ __ __ __" placeholder="+33 6 __ __ __ __"></div>
+              <button class="btn btn-primary btn-sm">Sauvegarder</button>
+            </div>
+          </div>
+        </div>
+        <div id="stab-notifs" style="display:none">
+          <div class="card"><div class="card-header"><div class="card-title">Notifications</div></div><div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Nouvelles approbations</div><div style="font-size:12px;color:var(--t3)">Email + Slack</div></div><input type="checkbox" checked style="width:16px;height:16px;accent-color:var(--navy)"></div>
+              <div class="divider" style="margin:0"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Deals bloqués &gt; 48h</div><div style="font-size:12px;color:var(--t3)">Email quotidien</div></div><input type="checkbox" checked style="width:16px;height:16px;accent-color:var(--navy)"></div>
+              <div class="divider" style="margin:0"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Assessments en attente</div><div style="font-size:12px;color:var(--t3)">Rappel hebdomadaire</div></div><input type="checkbox" style="width:16px;height:16px;accent-color:var(--navy)"></div>
+              <div class="divider" style="margin:0"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Rapport analytics hebdo</div><div style="font-size:12px;color:var(--t3)">Email le lundi matin</div></div><input type="checkbox" checked style="width:16px;height:16px;accent-color:var(--navy)"></div>
+            </div>
+            <div style="margin-top:16px"><button class="btn btn-primary btn-sm">Sauvegarder</button></div>
+          </div></div>
+        </div>
+        <div id="stab-security" style="display:none">
+          <div class="card"><div class="card-header"><div class="card-title">Sécurité</div></div><div class="card-body">
+            <div class="form-group"><label class="form-label">Mot de passe actuel</label><input class="form-input" type="password" placeholder="••••••••"></div>
+            <div class="form-group"><label class="form-label">Nouveau mot de passe</label><input class="form-input" type="password" placeholder="••••••••"></div>
+            <div class="form-group"><label class="form-label">Confirmer</label><input class="form-input" type="password" placeholder="••••••••"></div>
+            <button class="btn btn-primary btn-sm">Changer le mot de passe</button>
+          </div></div>
+        </div>
+        <div id="stab-display" style="display:none">
+          <div class="card"><div class="card-header"><div class="card-title">Affichage</div></div><div class="card-body">
+            <div class="form-group"><label class="form-label">Langue</label><select class="form-input"><option>Français</option><option>English</option><option>العربية</option></select></div>
+            <div class="form-group"><label class="form-label">Fuseau horaire</label><select class="form-input"><option>Europe/Paris (UTC+2)</option><option>Africa/Casablanca (UTC+1)</option></select></div>
+            <div class="form-group"><label class="form-label">Format de date</label><select class="form-input"><option>DD/MM/YYYY</option><option>MM/DD/YYYY</option><option>YYYY-MM-DD</option></select></div>
+            <button class="btn btn-primary btn-sm">Sauvegarder</button>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ ADMIN PANEL ══════════ -->
+  <div class="page" id="page-admin">
+    <div style="margin-bottom:16px"><div class="page-title">Admin Panel</div><div style="font-size:12.5px;color:var(--t3)">Supervision technique et opérations système</div></div>
+    <div class="back-layout">
+      <div class="back-nav">
+        <span class="back-nav-label">Ops</span>
+        <div class="back-nav-item active" onclick="switchAdminTab(this,'overview')"><i class="ti ti-dashboard"></i>Vue générale</div>
+        <div class="back-nav-item" onclick="switchAdminTab(this,'sla')"><i class="ti ti-alarm"></i>SLA Alerts</div>
+        <div class="back-nav-item" onclick="switchAdminTab(this,'webhooks')"><i class="ti ti-webhook"></i>Webhooks</div>
+        <div class="back-nav-item" onclick="switchAdminTab(this,'agents')"><i class="ti ti-robot"></i>Agents IA</div>
+        <div class="back-nav-item" onclick="switchAdminTab(this,'scheduler')"><i class="ti ti-clock-play"></i>Scheduler</div>
+        <div class="back-nav-item" onclick="switchAdminTab(this,'audit')"><i class="ti ti-list-check"></i>Audit log</div>
+      </div>
+      <div>
+        <div id="admintab-overview">
+          <div class="kpi-row kpi-3" style="margin-bottom:14px">
+            <div class="kpi-card"><div class="kpi-label">Uptime système</div><div class="kpi-value" style="color:var(--green)">99.9%</div><div class="kpi-footer">Derniers 30 jours</div></div>
+            <div class="kpi-card"><div class="kpi-label">Événements CRM (mois)</div><div class="kpi-value">1 248</div><div class="kpi-footer"><span class="badge b-red">1 erreur</span></div></div>
+            <div class="kpi-card"><div class="kpi-label">Agents actifs</div><div class="kpi-value">14</div><div class="kpi-footer">sur 15 configurés</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">État des intégrations</div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Service</th><th>Statut</th><th>Dernière sync</th><th>Événements</th><th>Erreurs</th></tr></thead>
+                <tbody>
+                  <tr><td class="td-main">Pipedrive CRM</td><td><span class="badge b-green"><span class="b-dot"></span>Actif</span></td><td style="color:var(--t3)">Il y a 4 min</td><td>1 248</td><td style="color:var(--green)">0</td></tr>
+                  <tr><td class="td-main">Google Drive</td><td><span class="badge b-red"><span class="b-dot"></span>Déconnecté</span></td><td style="color:var(--red)">Il y a 2 jours</td><td>0</td><td style="color:var(--red)">1</td></tr>
+                  <tr><td class="td-main">Slack</td><td><span class="badge b-green"><span class="b-dot"></span>Actif</span></td><td style="color:var(--t3)">Il y a 12 min</td><td>47</td><td style="color:var(--green)">0</td></tr>
+                  <tr><td class="td-main">Fireflies.ai</td><td><span class="badge b-gray"><span class="b-dot"></span>Non configuré</span></td><td style="color:var(--t4)">—</td><td>0</td><td style="color:var(--t4)">—</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="admintab-sla" style="display:none">
+          <div class="kpi-row kpi-3" style="margin-bottom:14px">
+            <div class="kpi-card"><div class="kpi-label">En risque</div><div class="kpi-value" style="color:var(--amber)">3</div><div class="kpi-footer">Approbations &gt; 48h</div></div>
+            <div class="kpi-card"><div class="kpi-label">Violées</div><div class="kpi-value" style="color:var(--red)">1</div><div class="kpi-footer">Deal bloqué 5 jours</div></div>
+            <div class="kpi-card"><div class="kpi-label">Dans les délais</div><div class="kpi-value" style="color:var(--green)">62</div><div class="kpi-footer">Deals en bonne santé</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">SLA Alerts actives</div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Deal</th><th>Type d'alerte</th><th>Délai SLA</th><th>Dépassement</th><th>Responsable</th></tr></thead>
+                <tbody>
+                  <tr><td class="td-main">BNP Paribas</td><td>Approbation en attente</td><td>48h</td><td style="color:var(--red);font-weight:600">+24h</td><td><span class="mini-av">AB</span></td></tr>
+                  <tr><td class="td-main">Société Générale</td><td>Approbation en attente</td><td>48h</td><td style="color:var(--amber);font-weight:600">+2h</td><td><span class="mini-av">LM</span></td></tr>
+                  <tr><td class="td-main">HighCo</td><td>Proposition non générée</td><td>72h</td><td style="color:var(--amber);font-weight:600">En risque</td><td><span class="mini-av" style="background:#7C3AED">FH</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="admintab-webhooks" style="display:none">
+          <div class="card"><div class="card-header"><div class="card-title">Événements entrants — Pipedrive</div><span class="badge b-amber">1 erreur</span></div><div class="table-wrap"><table><thead><tr><th>Source</th><th>Événement</th><th>Statut</th><th>Reçu</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>Pipedrive</td><td>deal.updated <span class="badge b-gray" style="font-size:10px">×107</span></td><td><span class="badge b-green">Traité</span></td><td style="color:var(--t4)">Aujourd'hui 14:54</td><td style="color:var(--t4)">—</td></tr>
+          <tr><td>Pipedrive</td><td>deal.updated</td><td><span class="badge b-red">Erreur</span></td><td style="color:var(--t4)">11 mai 16:11</td><td style="font-size:12px;color:var(--red)">ID du deal manquant dans le payload</td></tr>
+          </tbody></table></div></div>
+        </div>
+        <div id="admintab-agents" style="display:none">
+          <div class="card"><div class="card-header"><div><div class="card-title">Agents IA</div><div class="card-sub">14 actifs · 15 configurés · 21 versions</div></div></div><div class="table-wrap"><table><thead><tr><th>Agent</th><th>Version</th><th>Modèle</th><th>Statut</th><th>Activations</th></tr></thead><tbody>
+          <tr><td class="td-main">Discovery Scorecard</td><td>v2</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-green"><span class="b-dot"></span>Actif</span></td><td>14</td></tr>
+          <tr><td class="td-main">Proposal Generator</td><td>v1</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-amber"><span class="b-dot"></span>Google requis</span></td><td>0</td></tr>
+          <tr><td class="td-main">Deal Summarizer</td><td>v1</td><td><span class="badge b-gray">GPT-4o mini</span></td><td><span class="badge b-green"><span class="b-dot"></span>Actif</span></td><td>89</td></tr>
+          </tbody></table></div></div>
+        </div>
+        <div id="admintab-scheduler" style="display:none">
+          <div class="empty"><i class="ti ti-clock-play"></i><div class="empty-title">Scheduler</div><div class="empty-desc">50 exécutions ce mois · 0 erreur · Dernière exécution aujourd'hui à 15:34</div></div>
+        </div>
+        <div id="admintab-audit" style="display:none">
+          <div class="card"><div class="card-header"><div class="card-title">Journal d'audit</div></div><div class="table-wrap"><table><thead><tr><th>Utilisateur</th><th>Action</th><th>Ressource</th><th>Date</th><th>IP</th></tr></thead><tbody>
+          <tr><td><span class="mini-av" style="background:#7C3AED">FH</span></td><td>Mise à jour deal</td><td>HighCo #4821</td><td style="color:var(--t4)">Aujourd'hui 14:35</td><td style="color:var(--t4)">82.64.xx.xx</td></tr>
+          <tr><td><span class="mini-av">AB</span></td><td>Assessment créé</td><td>BNP Paribas</td><td style="color:var(--t4)">Aujourd'hui 10:12</td><td style="color:var(--t4)">90.12.xx.xx</td></tr>
+          <tr><td><span class="mini-av" style="background:#7C3AED">FH</span></td><td>Connexion</td><td>—</td><td style="color:var(--t4)">Aujourd'hui 09:00</td><td style="color:var(--t4)">82.64.xx.xx</td></tr>
+          </tbody></table></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+
+<!-- ══════════ MODALS ══════════ -->
+<div class="modal-overlay" id="modal-new-deal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Nouveau deal</div><button class="modal-close" onclick="closeModal('modal-new-deal')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Entreprise *</label><input class="form-input" placeholder="Nom de l'entreprise"></div>
+      <div class="form-group"><label class="form-label">Contact principal *</label><input class="form-input" placeholder="Prénom Nom"></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="email@client.com"></div>
+        <div class="form-group"><label class="form-label">Téléphone</label><input class="form-input" placeholder="+33 6..."></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Valeur estimée (€) *</label><input class="form-input" type="number" placeholder="0"></div>
+        <div class="form-group"><label class="form-label">Étape *</label><select class="form-input"><option>Discovery</option><option>Qualification</option><option>Proposal</option><option>Negotiation</option><option>Closing</option></select></div>
+      </div>
+      <div class="form-group"><label class="form-label">Propriétaire</label><select class="form-input"><option>Fadoua H.</option><option>Ahmed B.</option><option>Rania K.</option><option>Layla M.</option><option>Omar F.</option></select></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('modal-new-deal')">Annuler</button><button class="btn btn-primary">Créer le deal</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-new-user">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Ajouter un membre</div><button class="modal-close" onclick="closeModal('modal-new-user')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Prénom *</label><input class="form-input" placeholder="Prénom"></div>
+        <div class="form-group"><label class="form-label">Nom *</label><input class="form-input" placeholder="Nom"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" placeholder="email@aioo.com"></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Rôle *</label><select class="form-input"><option>Commercial</option><option>Manager</option><option>Admin</option></select></div>
+        <div class="form-group"><label class="form-label">Équipe</label><select class="form-input"><option>Sales FR</option><option>Sales MA</option><option>Management</option></select></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('modal-new-user')">Annuler</button><button class="btn btn-primary">Inviter</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-new-assessment">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Nouvel assessment</div><button class="modal-close" onclick="closeModal('modal-new-assessment')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Deal associé *</label><select class="form-input"><option>HighCo</option><option>BNP Paribas</option><option>Carrefour Group</option><option>L'Oréal</option></select></div>
+      <div class="form-group"><label class="form-label">Type *</label><select class="form-input"><option>Discovery Assessment</option><option>Technical Assessment</option></select></div>
+      <div class="form-group"><label class="form-label">Notes initiales</label><textarea class="form-input" placeholder="Contexte, observations préliminaires..."></textarea></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('modal-new-assessment')">Annuler</button><button class="btn btn-primary">Créer</button></div>
+  </div>
+</div>
+
+<script>
+// ─── Data Store ───────────────────────────────────────────────────────────────
+const DEALS = [
+  {id:1,co:'HighCo',contact:'Sophie Martin',role:'CDO',stage:'Proposal',value:280000,score:82,owner:'FH',ownerColor:'#7C3AED',date:'14 mai'},
+  {id:2,co:'BNP Paribas',contact:'Marc Dubois',role:'CTO',stage:'Negotiation',value:420000,score:91,owner:'AB',ownerColor:'#1A1F2E',date:'17 mai'},
+  {id:3,co:'Carrefour Group',contact:'Isabelle Roy',role:'VP Sales',stage:'Discovery',value:195000,score:58,owner:'RK',ownerColor:'#059669',date:'13 mai'},
+  {id:4,co:'Société Générale',contact:'Pierre Laurent',role:'CFO',stage:'Closing',value:340000,score:95,owner:'LM',ownerColor:'#1A1F2E',date:'18 mai'},
+  {id:5,co:"L'Oréal",contact:'Anna Petit',role:'Digital Dir.',stage:'Qualification',value:120000,score:43,owner:'OF',ownerColor:'#B45309',date:'16 mai'},
+  {id:6,co:'Air France',contact:'Céline Moreau',role:'DSI',stage:'Proposal',value:165000,score:76,owner:'AB',ownerColor:'#1A1F2E',date:'15 mai'},
+  {id:7,co:'Renault Digital',contact:'Thomas Blanc',role:'DG',stage:'Discovery',value:88000,score:34,owner:'OF',ownerColor:'#B45309',date:'11 mai'},
+  {id:8,co:'AXA France',contact:'Julie Petit',role:'CMO',stage:'Qualification',value:210000,score:67,owner:'RK',ownerColor:'#059669',date:'10 mai'},
+];
+
+const STAGE_BADGE = {
+  'Discovery':'b-gray','Qualification':'b-gray','Proposal':'b-amber',
+  'Negotiation':'b-dark','Closing':'b-green'
+};
+
+// ─── Navigation ───────────────────────────────────────────────────────────────
+const PAGES = {
+  dashboard:{crumb:[{text:'Dashboard',cur:true}]},
+  deals:{crumb:[{text:'Deals',cur:true}]},
+  'deal-detail':{crumb:[{text:'Deals',page:'deals'},{text:'HighCo',cur:true}]},
+  assessments:{crumb:[{text:'Assessments',cur:true}]},
+  approvals:{crumb:[{text:'Approbations',cur:true}]},
+  documents:{crumb:[{text:'Documents',cur:true}]},
+  history:{crumb:[{text:'Historique',cur:true}]},
+  analytics:{crumb:[{text:'Analytics',cur:true}]},
+  team:{crumb:[{text:'Équipe',cur:true}]},
+  'ai-config':{crumb:[{text:'IA & Scoring',cur:true}]},
+  integrations:{crumb:[{text:'Intégrations',cur:true}]},
+  settings:{crumb:[{text:'Paramètres',cur:true}]},
+  admin:{crumb:[{text:'Admin Panel',cur:true}]},
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const p = document.getElementById('page-'+id);
+  if(p) p.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const key = id==='deal-detail'?'deals':id;
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if((n.getAttribute('onclick')||'').includes("'"+key+"'")) n.classList.add('active');
+  });
+  const def = PAGES[id]||PAGES.dashboard;
+  document.getElementById('breadcrumb').innerHTML = def.crumb.map(c=>{
+    if(c.cur) return `<span class="bc-item cur">${c.text}</span>`;
+    return `<span class="bc-item" onclick="showPage('${c.page}')">${c.text}</span><span class="bc-sep">/</span>`;
+  }).join('');
+  if(id==='deals') renderDeals();
+  if(id==='analytics') setTimeout(renderCharts,100);
+}
+
+// ─── Deal tabs ────────────────────────────────────────────────────────────────
+const DEAL_TABS = ['overview','assessments','documents','activity'];
+function switchDealTab(tab) {
+  DEAL_TABS.forEach(t=>{
+    const el=document.getElementById('dtab-'+t);
+    if(el) el.style.display=t===tab?'block':'none';
+  });
+  document.querySelectorAll('#deal-tabs .tab').forEach((el,i)=>{
+    el.classList.toggle('active',DEAL_TABS[i]===tab);
+  });
+}
+
+// ─── Deals table ─────────────────────────────────────────────────────────────
+function scoreColor(s){return s>=70?'var(--green)':s>=50?'var(--amber)':'var(--red)'}
+function scoreFill(s){return s>=70?'green':s>=50?'amber':'red'}
+
+function renderDeals(q='') {
+  const tbody=document.getElementById('deals-tbody');
+  const filtered=DEALS.filter(d=>!q||d.co.toLowerCase().includes(q.toLowerCase())||d.contact.toLowerCase().includes(q.toLowerCase()));
+  tbody.innerHTML=filtered.map(d=>`
+    <tr style="cursor:pointer" onclick="showPage('deal-detail')">
+      <td><div class="cb" onclick="event.stopPropagation();this.classList.toggle('checked')"></div></td>
+      <td><div class="td-main">${d.co}</div><div class="td-sub">${d.contact} · ${d.role}</div></td>
+      <td><span class="badge ${STAGE_BADGE[d.stage]||'b-gray'}"><span class="b-dot"></span>${d.stage}</span></td>
+      <td class="td-main">€${(d.value/1000).toFixed(0)}K</td>
+      <td><div class="score-wrap"><div class="score-bar"><div class="score-fill ${scoreFill(d.score)}" style="width:${d.score}%;background:${scoreColor(d.score)}"></div></div><span style="font-size:11px;font-weight:600;width:28px;text-align:right;color:${scoreColor(d.score)}">${d.score}</span></div></td>
+      <td><span class="badge ${d.score>=70?'b-green':d.score>=50?'b-amber':'b-red'}"><span class="b-dot"></span>${d.score>=70?'Pass':d.score>=50?'À revoir':'Bloquant'}</span></td>
+      <td><span class="mini-av" style="background:${d.ownerColor}">${d.owner}</span></td>
+      <td style="color:var(--t4)">${d.date}</td>
+      <td><div class="row-actions"><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation()"><i class="ti ti-edit"></i></button><button class="btn btn-danger btn-xs" onclick="event.stopPropagation()"><i class="ti ti-trash"></i></button></div></td>
+    </tr>
+  `).join('');
+}
+
+function filterDealsTab(el,type){
+  el.closest('.seg').querySelectorAll('.seg-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderDeals();
+}
+
+function toggleAllDeals(cb){
+  cb.classList.toggle('checked');
+  document.querySelectorAll('#deals-tbody .cb').forEach(c=>c.className=cb.className);
+}
+
+// ─── Approvals ────────────────────────────────────────────────────────────────
+function approveRow(btn) {
+  const row=btn.closest('tr');
+  row.style.opacity='0.4';
+  row.style.transition='opacity .3s';
+  btn.closest('td').innerHTML='<span class="badge b-green"><span class="b-dot"></span>Approuvé</span>';
+}
+function rejectRow(btn) {
+  const row=btn.closest('tr');
+  row.style.opacity='0.4';
+  row.style.transition='opacity .3s';
+  btn.closest('td').innerHTML='<span class="badge b-red"><span class="b-dot"></span>Refusé</span>';
+}
+function bulkApprove() {
+  document.querySelectorAll('#approvals-tbody .cb.checked').forEach(cb=>{
+    const td=cb.closest('tr').querySelector('td:last-child');
+    td.innerHTML='<span class="badge b-green"><span class="b-dot"></span>Approuvé</span>';
+    cb.closest('tr').style.opacity='0.4';
+  });
+}
+function bulkReject() {
+  document.querySelectorAll('#approvals-tbody .cb.checked').forEach(cb=>{
+    const td=cb.closest('tr').querySelector('td:last-child');
+    td.innerHTML='<span class="badge b-red"><span class="b-dot"></span>Refusé</span>';
+    cb.closest('tr').style.opacity='0.4';
+  });
+}
+function filterApprovals(el,type){
+  el.closest('.seg').querySelectorAll('.seg-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function toggleAllApprovals(cb){
+  cb.classList.toggle('checked');
+  document.querySelectorAll('#approvals-tbody .cb').forEach(c=>c.className=cb.className);
+}
+
+// ─── Backoffice tab switches ──────────────────────────────────────────────────
+function switchAITab(el,tab) {
+  document.querySelectorAll('[id^=aitab-]').forEach(d=>d.style.display='none');
+  document.getElementById('aitab-'+tab).style.display='block';
+  document.querySelectorAll('.back-nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+function switchSettingsTab(el,tab) {
+  document.querySelectorAll('[id^=stab-]').forEach(d=>d.style.display='none');
+  document.getElementById('stab-'+tab).style.display='block';
+  el.closest('.back-nav').querySelectorAll('.back-nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+function switchAdminTab(el,tab) {
+  document.querySelectorAll('[id^=admintab-]').forEach(d=>d.style.display='none');
+  document.getElementById('admintab-'+tab).style.display='block';
+  el.closest('.back-nav').querySelectorAll('.back-nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ─── Modals ───────────────────────────────────────────────────────────────────
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')});
+});
+
+// ─── Charts ───────────────────────────────────────────────────────────────────
+let chartsRendered=false;
+function renderCharts(){
+  if(chartsRendered)return;
+  chartsRendered=true;
+  const months=['Jan','Fév','Mar','Avr','Mai'];
+  new Chart(document.getElementById('revenueChart'),{
+    type:'bar',
+    data:{
+      labels:months,
+      datasets:[{
+        label:'Revenus (€K)',
+        data:[620,710,580,780,890],
+        backgroundColor:'#1A1F2E',
+        borderRadius:4,
+        borderSkipped:false
+      }]
+    },
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>v+'K'},grid:{color:'#F0F0F0'}},x:{grid:{display:false}}}}
+  });
+  new Chart(document.getElementById('funnelChart'),{
+    type:'bar',
+    data:{
+      labels:['Discovery','Qualif.','Proposal','Négoc.','Closing'],
+      datasets:[{
+        label:'Deals',
+        data:[66,44,24,12,4],
+        backgroundColor:['#374151','#374151','#D97706','#D97706','#16A34A'],
+        borderRadius:4,
+        borderSkipped:false
+      }]
+    },
+    options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#F0F0F0'}},y:{grid:{display:false}}}}
+  });
+}
+
+// ─── Filter tabs (generic) ────────────────────────────────────────────────────
+document.querySelectorAll('.seg-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const seg=tab.closest('.seg');
+    if(seg&&!tab.getAttribute('onclick')){
+      seg.querySelectorAll('.seg-tab').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+    }
+  });
+});
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+renderDeals();
+</script>
+</body>
+</html>
