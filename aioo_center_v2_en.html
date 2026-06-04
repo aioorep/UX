@@ -60,6 +60,82 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .icon-btn:hover{border-color:var(--t3);color:var(--t1)}
 .notif-dot{position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--red);border:1.5px solid var(--white)}
 
+/* ── Analytics filter bar ── */
+.an-filter-bar{display:flex;align-items:center;gap:0;background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:0 4px;margin-bottom:16px;flex-wrap:wrap;gap:2px}
+.an-filter-group{display:flex;align-items:center;gap:6px;padding:8px 12px}
+.an-filter-label{font-size:11px;font-weight:600;color:var(--t3);display:flex;align-items:center;gap:4px;white-space:nowrap}
+.an-filter-label i{font-size:12px}
+.an-sel{border:none;background:none;font-size:12.5px;font-weight:500;color:var(--t1);cursor:pointer;outline:none;padding:2px 4px;border-radius:4px}
+.an-sel:hover{background:var(--bg)}
+.an-filter-sep{width:1px;height:28px;background:var(--border);margin:0 2px;flex-shrink:0}
+.an-reset-btn{margin-left:auto;margin-right:8px;display:flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--red);background:none;border:none;cursor:pointer;padding:5px 8px;border-radius:6px;transition:.12s}
+.an-reset-btn:hover{background:var(--red-bg)}
+.an-chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;padding:4px 10px;border-radius:20px;background:rgba(34,211,200,.1);color:var(--navy);border:1px solid rgba(34,211,200,.3)}
+/* ── Analytics extras ── */
+.an-section-header{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.an-section-header i{font-size:15px;color:var(--teal)}
+.risk-row{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-bottom:1px solid var(--border);gap:12px}
+.risk-row:last-child{border-bottom:none}
+.risk-row{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-bottom:1px solid var(--border);gap:12px}
+.risk-row:last-child{border-bottom:none}
+
+/* ── Approval cards ── */
+/* ── Scorecard gate accordion ── */
+.sc-gate-body{display:none}.sc-gate-body.open{display:block}
+
+/* ── Evidence collapsible sections ── */
+/* ── Technical Assessment badges ── */
+.ta-badge{display:inline-flex;align-items:center;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:20px;flex-shrink:0;white-space:nowrap;letter-spacing:.2px}
+.ta-row:hover td{background:var(--bg)}
+.ta-badge.pass{background:var(--green-bg);color:var(--green)}
+.ta-badge.needs-work{background:#FEF3C7;color:var(--amber)}
+.ta-badge.blocker{background:var(--red-bg);color:var(--red)}
+.ta-badge.pending{background:#F3F4F6;color:var(--t3)}
+
+.ev-section{margin-bottom:0}
+.ev-header{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:#fff;border:none;border-radius:0;cursor:pointer;user-select:none;transition:background .15s}
+.ev-header:hover{background:var(--bg)}
+.ev-label{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.7px;text-transform:uppercase}
+.ev-label i{font-size:14px;color:var(--t3)}
+.ev-count{font-size:11px;color:var(--t4);font-weight:500}
+.ev-chevron{font-size:14px;color:var(--t3);transition:transform .22s}
+.ev-section.collapsed .ev-chevron{transform:rotate(-90deg)}
+.ev-body{margin-top:10px;overflow:hidden;transition:opacity .15s}
+.ev-section.collapsed .ev-body{display:none}
+[onclick*="sc-gate-body"] .ti-chevron-down{transition:transform .2s}
+.card:has(.sc-gate-body.open) .ti-chevron-down{transform:rotate(180deg)}
+
+.apv-card{background:#fff;border-radius:var(--r);border:1px solid var(--border);margin-bottom:12px;overflow:hidden;transition:box-shadow .15s}
+.apv-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.apv-card[data-priority="urgent"]{border-left:4px solid var(--red)}
+.apv-card[data-priority="standard"]{border-left:4px solid var(--amber)}
+.apv-body{display:flex;gap:16px;padding:18px 20px 14px}
+.apv-left{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:52px}
+.apv-meta{text-align:center}
+.apv-who{font-size:11px;font-weight:600;color:var(--t2);white-space:nowrap}
+.apv-when{font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;justify-content:center;margin-top:2px}
+.apv-center{flex:1;min-width:0}
+.apv-tags{display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.apv-title{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px;line-height:1.3}
+.apv-desc{font-size:12.5px;color:var(--t3);line-height:1.5;margin-bottom:12px}
+.apv-kpis{display:flex;align-items:center;gap:0;margin-bottom:12px;background:var(--bg);border-radius:var(--r-sm);padding:10px 16px;gap:0}
+.apv-kpi{flex:1;text-align:center}
+.apv-kpi-label{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.apv-kpi-val{font-size:14px;font-weight:700;color:var(--t1)}
+.apv-kpi-sep{width:1px;background:var(--border);align-self:stretch;margin:0 4px}
+.apv-docs{display:flex;gap:8px;flex-wrap:wrap}
+.apv-doc-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:5px 10px;border-radius:var(--r-sm);border:1px solid var(--teal);color:var(--teal);text-decoration:none;background:rgba(34,211,200,.07);transition:all .12s;cursor:pointer}
+.apv-doc-btn:hover{background:var(--teal);color:#fff}
+.apv-doc-btn.apv-doc-ghost{border-color:var(--border);color:var(--t3);background:none}
+.apv-doc-btn.apv-doc-ghost:hover{background:var(--bg);color:var(--t2)}
+.apv-footer{border-top:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--bg)}
+.apv-ai-rec{font-size:12px;font-weight:500;display:flex;align-items:center;gap:6px}
+.apv-rec-approve{color:var(--green)}
+.apv-rec-approve i{font-size:14px}
+.apv-rec-caution{color:var(--amber)}
+.apv-rec-caution i{font-size:14px}
+.apv-actions{display:flex;align-items:center;gap:6px}
+
 /* ── Alert banner ── */
 .alert-banner{padding:9px 24px;display:flex;align-items:center;gap:10px;flex-shrink:0;font-size:13px;border-bottom:1px solid}
 .alert-banner.red{background:var(--red-bg);border-color:var(--red-bd);color:var(--red)}
@@ -282,6 +358,29 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
 
 /* ── Divider ── */
 .divider{height:1px;background:var(--border2);margin:14px 0}
+
+/* ── Conversational Agent ── */
+.ag-header{padding:14px 18px 12px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px;flex-shrink:0}
+.ag-header-av{width:34px;height:34px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:16px;flex-shrink:0}
+.ag-header-title{font-size:13.5px;font-weight:700;color:var(--t1)}
+.ag-header-sub{font-size:11.5px;color:var(--green);font-weight:500;display:flex;align-items:center;gap:4px}
+.ag-feed{flex:1;overflow-y:auto;padding:14px 14px 8px;display:flex;flex-direction:column;gap:10px;min-height:0}
+.ag-msg{display:flex;align-items:flex-end;gap:8px}
+.ag-agent{flex-direction:row}
+.ag-user{flex-direction:row-reverse}
+.ag-avatar{width:28px;height:28px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:13px;flex-shrink:0}
+.ag-bubble{max-width:260px;padding:9px 12px;border-radius:14px;font-size:12.5px;line-height:1.5;color:var(--t1);background:var(--bg)}
+.ag-user-bubble{background:var(--navy);color:#fff}
+.ag-time{font-size:10px;color:var(--t4);margin-top:4px;text-align:right}
+.ag-user-bubble .ag-time{color:rgba(255,255,255,.5)}
+.ag-quick{display:flex;gap:6px;flex-wrap:wrap;padding:8px 14px 0}
+.ag-quick button{font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:#fff;cursor:pointer;color:var(--t2);white-space:nowrap;transition:all .12s}
+.ag-quick button:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.ag-compose{display:flex;align-items:center;gap:8px;padding:10px 14px 14px;flex-shrink:0}
+.ag-compose input{flex:1;border:1px solid var(--border2);border-radius:20px;padding:8px 14px;font-size:12.5px;outline:none;background:var(--bg);color:var(--t1)}
+.ag-compose input:focus{border-color:var(--teal)}
+.ag-compose button{width:34px;height:34px;border-radius:50%;background:var(--navy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:15px;flex-shrink:0;transition:background .12s}
+.ag-compose button:hover{background:var(--teal);color:#fff}
 </style>
 </head>
 <body>
@@ -307,10 +406,31 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
     <div class="sb-label">Backoffice</div>
     <div class="nav-item" onclick="showPage('analytics')"><i class="ti ti-chart-bar nav-icon"></i>Analytics</div>
     <div class="nav-item" onclick="showPage('team')"><i class="ti ti-users nav-icon"></i>Team</div>
-    <div class="nav-item" onclick="showPage('ai-config')"><i class="ti ti-cpu nav-icon"></i>AI & Scoring</div>
+
     <div class="nav-item" onclick="showPage('integrations')"><i class="ti ti-plug nav-icon"></i>Integrations</div>
     <div class="nav-item" onclick="showPage('settings')"><i class="ti ti-settings nav-icon"></i>Settings</div>
     <div class="nav-item" onclick="showPage('admin')"><i class="ti ti-shield-check nav-icon"></i>Admin Panel</div>
+  </div>
+
+  <!-- AiOO Assistant -->
+  <div id="agent-panel" style="display:none;flex-direction:column;border-top:1px solid rgba(255,255,255,.08);margin-top:auto">
+    <div style="padding:10px 12px 6px;font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.8px;text-transform:uppercase">Assistant</div>
+    <div id="agent-feed" style="flex:1;overflow-y:auto;max-height:200px;padding:8px 10px;display:flex;flex-direction:column;gap:8px"></div>
+    <div style="display:flex;gap:4px;padding:0 10px 6px;flex-wrap:wrap">
+      <button onclick="agentQuick('Pipeline briefing')" style="font-size:10px;padding:3px 8px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:none;cursor:pointer;color:rgba(255,255,255,.6)">📊 Pipeline</button>
+      <button onclick="agentQuick('SLA breaches')" style="font-size:10px;padding:3px 8px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:none;cursor:pointer;color:rgba(255,255,255,.6)">⚠️ SLA</button>
+      <button onclick="agentQuick('Revenue forecast')" style="font-size:10px;padding:3px 8px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:none;cursor:pointer;color:rgba(255,255,255,.6)">💰 Forecast</button>
+    </div>
+    <div style="display:flex;gap:6px;padding:6px 10px 10px">
+      <input id="agent-input" type="text" placeholder="Ask anything…" style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:6px 12px;font-size:12px;color:#fff;outline:none">
+      <button onclick="agentSend()" style="width:30px;height:30px;border-radius:50%;background:var(--teal);border:none;cursor:pointer;color:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-send" style="font-size:13px"></i></button>
+    </div>
+  </div>
+
+  <div id="agent-toggle" onclick="toggleAgent()" style="padding:10px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;border-top:1px solid rgba(255,255,255,.08)" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background=''">
+    <div style="width:28px;height:28px;border-radius:50%;background:rgba(34,211,200,.15);display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:13px;flex-shrink:0"><i class="ti ti-sparkles"></i></div>
+    <div><div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.8)">AiOO Assistant</div><div style="font-size:10.5px;color:rgba(34,211,200,.8);display:flex;align-items:center;gap:3px"><span style="width:5px;height:5px;border-radius:50%;background:#22D3C8;display:inline-block"></span>Online</div></div>
+    <i class="ti ti-chevron-up" id="agent-chevron" style="margin-left:auto;color:rgba(255,255,255,.3);font-size:13px"></i>
   </div>
 
   <div class="sb-bottom">
@@ -321,6 +441,7 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
     </div>
   </div>
 </nav>
+
 
 <!-- ═══════════ MAIN ═══════════ -->
 <div class="main">
@@ -334,6 +455,7 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
       <div class="icon-btn"><i class="ti ti-help-circle"></i></div>
     </div>
   </div>
+
 
 
 
@@ -397,7 +519,6 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
         </div>
         <div class="card-body" style="padding:0">
           <div style="display:flex;flex-direction:column">
-            <!-- Breached -->
             <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2);border-left:3px solid var(--red);cursor:pointer" onclick="showPage('approvals')" onmouseover="this.style.background='#FAFAFA'" onmouseout="this.style.background=''">
               <div style="flex:1">
                 <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
@@ -406,12 +527,8 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
                 </div>
                 <div style="font-size:12px;color:var(--t3)">Discount approval pending <strong style="color:var(--red)">+24h over SLA (48h)</strong></div>
               </div>
-              <div style="text-align:right;flex-shrink:0">
-                <div style="font-size:13px;font-weight:700;color:var(--red)">72h</div>
-                <div style="font-size:10px;color:var(--t4)">elapsed</div>
-              </div>
+              <div style="text-align:right;flex-shrink:0"><div style="font-size:13px;font-weight:700;color:var(--red)">72h</div><div style="font-size:10px;color:var(--t4)">elapsed</div></div>
             </div>
-            <!-- At risk 1 -->
             <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2);border-left:3px solid var(--amber);cursor:pointer" onclick="showPage('approvals')" onmouseover="this.style.background='#FAFAFA'" onmouseout="this.style.background=''">
               <div style="flex:1">
                 <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
@@ -420,12 +537,8 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
                 </div>
                 <div style="font-size:12px;color:var(--t3)">Proposal approval — <strong style="color:var(--amber)">2h left before SLA breach</strong></div>
               </div>
-              <div style="text-align:right;flex-shrink:0">
-                <div style="font-size:13px;font-weight:700;color:var(--amber)">46h</div>
-                <div style="font-size:10px;color:var(--t4)">elapsed</div>
-              </div>
+              <div style="text-align:right;flex-shrink:0"><div style="font-size:13px;font-weight:700;color:var(--amber)">46h</div><div style="font-size:10px;color:var(--t4)">elapsed</div></div>
             </div>
-            <!-- At risk 2 -->
             <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border2);border-left:3px solid var(--amber);cursor:pointer" onclick="showPage('deals')" onmouseover="this.style.background='#FAFAFA'" onmouseout="this.style.background=''">
               <div style="flex:1">
                 <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
@@ -434,12 +547,8 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
                 </div>
                 <div style="font-size:12px;color:var(--t3)">No proposal sent — <strong style="color:var(--amber)">client waiting 3 days (SLA: 72h)</strong></div>
               </div>
-              <div style="text-align:right;flex-shrink:0">
-                <div style="font-size:13px;font-weight:700;color:var(--amber)">68h</div>
-                <div style="font-size:10px;color:var(--t4)">elapsed</div>
-              </div>
+              <div style="text-align:right;flex-shrink:0"><div style="font-size:13px;font-weight:700;color:var(--amber)">68h</div><div style="font-size:10px;color:var(--t4)">elapsed</div></div>
             </div>
-            <!-- OK -->
             <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-left:3px solid var(--green)">
               <div style="flex:1">
                 <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
@@ -448,10 +557,7 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
                 </div>
                 <div style="font-size:12px;color:var(--t3)">All other deals are within response time commitments</div>
               </div>
-              <div style="text-align:right;flex-shrink:0">
-                <div style="font-size:13px;font-weight:700;color:var(--green)">OK</div>
-                <div style="font-size:10px;color:var(--t4)">status</div>
-              </div>
+              <div style="text-align:right;flex-shrink:0"><div style="font-size:13px;font-weight:700;color:var(--green)">OK</div><div style="font-size:10px;color:var(--t4)">status</div></div>
             </div>
           </div>
         </div>
@@ -542,11 +648,11 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
           <span class="ac-cta">View assessments →</span>
         </div>
       </div>
-      <div class="alert-card warn" onclick="showPage('documents')">
-        <div class="ac-icon"><i class="ti ti-file-alert"></i></div>
+      <div class="alert-card info" onclick="showPage('documents')">
+        <div class="ac-icon"><i class="ti ti-files"></i></div>
         <div>
-          <div class="ac-title">18 deals without a proposal</div>
-          <div class="ac-desc">These deals are in Proposal stage with no document generated</div>
+          <div class="ac-title">18 proposals ready to send</div>
+          <div class="ac-desc">Google Drive is connected — generate and sync proposals in one click</div>
           <span class="ac-cta">View documents →</span>
         </div>
       </div>
@@ -571,14 +677,14 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
           <table>
             <thead><tr><th>Company</th><th>Stage</th><th>Value</th><th>Score</th><th>Owner</th></tr></thead>
             <tbody id="dash-deals-tbody">
-            <tr onclick="showPage('deal-detail')" style="cursor:pointer">
+            <tr onclick="openDeal(4)" style="cursor:pointer">
               <td><div class="td-main">HighCo</div><div class="td-sub">Sophie Martin · CDO</div></td>
               <td><span class="badge b-amber"><span class="b-dot"></span>Proposal</span></td>
               <td class="td-main">€280K</td>
               <td><div class="score-wrap"><div class="score-bar"><div class="score-fill green" style="width:82%;background:var(--green)"></div></div><span style="font-size:11px;color:var(--t3);width:28px;text-align:right">82</span></div></td>
               <td><span class="mini-av" style="background:#7C3AED">FH</span></td>
             </tr>
-            <tr onclick="showPage('deal-detail')" style="cursor:pointer">
+            <tr onclick="openDeal(4)" style="cursor:pointer">
               <td><div class="td-main">BNP Paribas</div><div class="td-sub">Marc Dubois · CTO</div></td>
               <td><span class="badge b-dark"><span class="b-dot"></span>Negotiation</span></td>
               <td class="td-main">€420K</td>
@@ -718,7 +824,7 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
       </div>
       <select class="sel" onchange="renderDeals()">
         <option value="">All stages</option>
-        <option>Discovery</option><option>Qualification</option><option>Proposal</option><option>Negotiation</option><option>Closing</option>
+        <option>Prospecting</option><option>Discovery</option><option>Qualification</option><option>Proposal</option><option>Negotiation</option><option>Closing</option>
       </select>
       <select class="sel">
         <option value="">All les responsables</option>
@@ -763,7 +869,7 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
           <table>
             <thead><tr><th>Company</th><th>Type</th><th>Score</th><th>Status</th><th>Owner</th><th>Last update</th><th></th></tr></thead>
             <tbody>
-              <tr onclick="showPage('deal-detail');switchDealTab('assessments')" style="cursor:pointer">
+              <tr onclick="openDeal(4);switchDealTab('assessments')" style="cursor:pointer">
                 <td><div class="td-main">HighCo</div><div class="td-sub">Sophie Martin</div></td>
                 <td><span class="badge b-gray">Discovery</span></td>
                 <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:82%;background:var(--green)"></div></div><span style="font-size:11.5px;font-weight:600;width:28px;text-align:right;color:var(--green)">82</span></div></td>
@@ -827,281 +933,22 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
 
   <!-- ══════════ DEAL DETAIL ══════════ -->
   <div class="page" id="page-deal-detail">
-    <!-- Deal header -->
-    <div class="deal-hdr">
-      <div class="deal-hdr-top">
-        <div class="co-av">HC</div>
-        <div style="flex:1">
-          <div class="deal-name">HighCo</div>
-          <div class="deal-meta">
-            <span>Sophie Martin</span><span style="color:var(--border)">·</span>
-            <span>CDO</span><span style="color:var(--border)">·</span>
-            <span>sophie.martin@highco.com</span><span style="color:var(--border)">·</span>
-            <span class="badge b-amber"><span class="b-dot"></span>Proposal</span>
-          </div>
-        </div>
-        <div>
-          <div class="deal-value">€280 000</div>
-          <div class="deal-value-label">Value estimée</div>
-        </div>
-        <div style="display:flex;gap:6px;margin-left:10px">
-          <button class="btn btn-secondary btn-sm"><i class="ti ti-edit"></i>Edit</button>
-          <button class="btn btn-primary btn-sm"><i class="ti ti-send"></i>Send proposal</button>
-        </div>
-      </div>
-      <div class="pipeline-strip">
-        <div class="ps-step done"><i class="ti ti-check" style="font-size:11px"></i>Discovery</div>
-        <div class="ps-arrow">›</div>
-        <div class="ps-step done"><i class="ti ti-check" style="font-size:11px"></i>Qualification</div>
-        <div class="ps-arrow">›</div>
-        <div class="ps-step active">Proposal</div>
-        <div class="ps-arrow">›</div>
-        <div class="ps-step">Negotiation</div>
-        <div class="ps-arrow">›</div>
-        <div class="ps-step">Closing</div>
-      </div>
-    </div>
+    <!-- Deal header — rendered dynamically -->
+    <div id="deal-hdr-wrap" class="deal-hdr" style="padding:0"></div>
 
     <!-- Deal tabs -->
     <div class="tab-bar" id="deal-tabs">
       <div class="tab active" onclick="switchDealTab('overview')">Overview</div>
-      <div class="tab" onclick="switchDealTab('assessments')">Assessments <span class="tab-badge">1</span></div>
+      <div class="tab" onclick="switchDealTab('assessments')">Assessments <span class="tab-badge" id="assess-badge">2</span></div>
       <div class="tab" onclick="switchDealTab('documents')">Documents</div>
       <div class="tab" onclick="switchDealTab('activity')">Activity</div>
     </div>
 
-    <!-- Overview tab -->
-    <div id="dtab-overview">
-      <div class="two-col">
-        <div class="col-stack">
-          <!-- Next action -->
-          <div style="background:var(--amber-bg);border:1px solid var(--amber-bd);border-radius:var(--r);padding:14px 18px;display:flex;gap:12px;align-items:flex-start">
-            <div style="width:36px;height:36px;border-radius:8px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0"><i class="ti ti-bolt"></i></div>
-            <div>
-              <div style="font-size:13.5px;font-weight:700;color:var(--t1);margin-bottom:3px">Recommended next action</div>
-              <div style="font-size:12.5px;color:var(--t2)">Send the commercial proposal — Sophie has been waiting 3 days. The deal risks going cold.</div>
-              <button class="btn btn-primary btn-sm" style="margin-top:8px"><i class="ti ti-send"></i>Generate & send proposal</button>
-            </div>
-          </div>
-
-          <!-- Qualification summary -->
-          <div class="card">
-            <div class="card-header"><div class="card-title">Qualification</div><span class="badge b-green"><span class="b-dot"></span>Qualified — 82/100</span></div>
-            <div class="card-body" style="padding:12px 18px">
-              <div class="qual-row">
-                <div class="qr-icon done"><i class="ti ti-check"></i></div>
-                <div style="flex:1"><div class="qr-label">Discovery validated</div><div class="qr-sub">Score 82 · Completed May 14</div></div>
-                <span class="badge b-green">Pass</span>
-              </div>
-              <div class="qual-row">
-                <div class="qr-icon wip"><i class="ti ti-clock"></i></div>
-                <div style="flex:1"><div class="qr-label">Technical Assessment</div><div class="qr-sub">Questionnaire sent, awaiting response</div></div>
-                <span class="badge b-amber">Pending</span>
-              </div>
-              <div class="qual-row">
-                <div class="qr-icon todo"><i class="ti ti-circle"></i></div>
-                <div style="flex:1"><div class="qr-label">Manager validation</div><div class="qr-sub">Requires approval before signing</div></div>
-                <span class="badge b-gray">To do</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Notes -->
-          <div class="card">
-            <div class="card-header"><div class="card-title">Notes</div><button class="btn btn-secondary btn-xs"><i class="ti ti-plus"></i>Add</button></div>
-            <div class="card-body" style="padding:12px 18px">
-              <div class="act-item">
-                <div class="act-dot"><i class="ti ti-note"></i></div>
-                <div><div class="act-title">Sophie very interested in the Analytics module. Prioritize in demo.</div><div class="act-time">Fadoua H. · May 15 2026</div></div>
-              </div>
-              <div class="act-item">
-                <div class="act-dot"><i class="ti ti-note"></i></div>
-                <div><div class="act-title">Budget confirmed: €280K approved by CFO. Final decision in June.</div><div class="act-time">Fadoua H. · 12 mai 2026</div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-stack">
-          <!-- Deal info -->
-          <div class="card">
-            <div class="card-header"><div class="card-title">Information</div><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div>
-            <div class="card-body" style="padding:0">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
-                <div style="padding:10px 16px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Value</div><div style="font-size:14px;font-weight:700">€280 000</div></div>
-                <div style="padding:10px 16px;border-bottom:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Probability</div><div style="font-size:14px;font-weight:700">72%</div></div>
-                <div style="padding:10px 16px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Expected close</div><div style="font-size:14px;font-weight:700">30 juin 2026</div></div>
-                <div style="padding:10px 16px;border-bottom:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Source</div><div style="font-size:14px;font-weight:700">Inbound</div></div>
-                <div style="padding:10px 16px;border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Owner</div><div style="font-size:13px;font-weight:600">Fadoua H.</div></div>
-                <div style="padding:10px 16px"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">CRM ID</div><div style="font-size:13px;color:var(--t3)">#PD-4821</div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Contact -->
-          <div class="card">
-            <div class="card-header"><div class="card-title">Main contact</div></div>
-            <div class="card-body" style="padding:14px 18px">
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-                <div style="width:38px;height:38px;border-radius:50%;background:#7C3AED;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff">SM</div>
-                <div><div style="font-size:13.5px;font-weight:600">Sophie Martin</div><div style="font-size:12px;color:var(--t3)">CDO · HighCo</div></div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-mail" style="color:var(--t4)"></i>sophie.martin@highco.com</div>
-                <div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-phone" style="color:var(--t4)"></i>+33 6 12 34 56 78</div>
-                <div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-map-pin" style="color:var(--t4)"></i>Paris, France</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Assessments tab -->
-    <div id="dtab-assessments" style="display:none">
-      <div class="two-col">
-        <div class="col-stack">
-          <div class="card">
-            <div class="card-header">
-              <div><div class="card-title">Discovery Assessment</div><div class="card-sub">Completed May 14, 2026</div></div>
-              <span class="badge b-green"><span class="b-dot"></span>Pass — 82/100</span>
-            </div>
-            <div class="card-body">
-              <div style="margin-bottom:16px">
-                <div style="font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Business context</div>
-                <div style="display:flex;flex-direction:column;gap:6px">
-                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Main problem identified</span><span class="badge b-green">✓ Oui</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Estimated ROI documented</span><span class="badge b-green">✓ Oui</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Project urgency</span><span class="badge b-amber">Moyenne</span></div>
-                </div>
-              </div>
-              <div style="margin-bottom:16px">
-                <div style="font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Decision makers</div>
-                <div style="display:flex;flex-direction:column;gap:6px">
-                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Champion identified</span><span class="badge b-green">✓ Sophie M.</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Access to final decision maker</span><span class="badge b-green">✓ Oui</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Buying committee mapped</span><span class="badge b-amber">Partiel</span></div>
-                </div>
-              </div>
-              <div>
-                <div style="font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Budget & Timing</div>
-                <div style="display:flex;flex-direction:column;gap:6px">
-                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Budget confirmed</span><span class="badge b-green">✓ €280K</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--t2)">Client deadline</span><span class="badge b-green">✓ 30 juin</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <div><div class="card-title">Technical Assessment</div><div class="card-sub">Questionnaire sent May 16</div></div>
-              <span class="badge b-amber"><span class="b-dot"></span>Pending</span>
-            </div>
-            <div class="card-body">
-              <div class="info-box amber"><i class="ti ti-clock"></i><span>Awaiting response from Sophie Martin. Follow-up recommended if no response within 24h.</span></div>
-              <div style="margin-top:12px;display:flex;gap:8px">
-                <button class="btn btn-secondary btn-sm"><i class="ti ti-send"></i>Follow up</button>
-                <button class="btn btn-secondary btn-sm"><i class="ti ti-eye"></i>View questionnaire</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-stack">
-          <div class="card">
-            <div class="card-header"><div class="card-title">Qualification score</div><div class="card-sub">Discovery Assessment</div></div>
-            <div class="card-body" style="padding:20px 18px">
-
-              <!-- Big score -->
-              <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border2)">
-                <div style="width:64px;height:64px;border-radius:50%;border:4px solid var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                  <span style="font-size:22px;font-weight:700;color:var(--green)">82</span>
-                </div>
-                <div>
-                  <div style="font-size:15px;font-weight:700;color:var(--green);margin-bottom:2px">Qualified ✓</div>
-                  <div style="font-size:12px;color:var(--t3)">Score above threshold (70/100)</div>
-                  <div style="font-size:11px;color:var(--t4);margin-top:2px">Completed May 14 by Fadoua H.</div>
-                </div>
-              </div>
-
-              <!-- Criteria — simple status per area -->
-              <div style="display:flex;flex-direction:column;gap:10px">
-
-                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-bg);border-radius:var(--r-sm)">
-                  <i class="ti ti-circle-check" style="color:var(--green);font-size:18px;flex-shrink:0"></i>
-                  <div style="flex:1">
-                    <div style="font-size:13px;font-weight:600;color:var(--t1)">Business context</div>
-                    <div style="font-size:11.5px;color:var(--t3);margin-top:1px">Budget confirmed · Problem clear · ROI documented</div>
-                  </div>
-                  <span style="font-size:12px;font-weight:700;color:var(--green);white-space:nowrap">Strong</span>
-                </div>
-
-                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--amber-bg);border-radius:var(--r-sm)">
-                  <i class="ti ti-alert-triangle" style="color:var(--amber);font-size:18px;flex-shrink:0"></i>
-                  <div style="flex:1">
-                    <div style="font-size:13px;font-weight:600;color:var(--t1)">Decision makers</div>
-                    <div style="font-size:11.5px;color:var(--t3);margin-top:1px">Champion identified · Buying committee incomplete</div>
-                  </div>
-                  <span style="font-size:12px;font-weight:700;color:var(--amber);white-space:nowrap">Partial</span>
-                </div>
-
-                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-bg);border-radius:var(--r-sm)">
-                  <i class="ti ti-circle-check" style="color:var(--green);font-size:18px;flex-shrink:0"></i>
-                  <div style="flex:1">
-                    <div style="font-size:13px;font-weight:600;color:var(--t1)">Budget & Timing</div>
-                    <div style="font-size:11.5px;color:var(--t3);margin-top:1px">€280K approved · Deadline June 30</div>
-                  </div>
-                  <span style="font-size:12px;font-weight:700;color:var(--green);white-space:nowrap">Strong</span>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header"><div class="card-title">AI recommends</div></div>
-            <div class="card-body" style="padding:14px 18px">
-              <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:12px">This deal is well qualified. The main risk is the unmapped <strong>buying committee</strong>. Recommendation: organize a call with the CTO before sending the proposal.</div>
-              <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center"><i class="ti ti-cpu"></i>Pre-fill Technical Assessment</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Documents tab -->
-    <div id="dtab-documents" style="display:none">
-      <div class="info-box red" style="margin-bottom:16px"><i class="ti ti-cloud-off"></i><span><strong>Google Drive déconnecté</strong> — Vous ne pouvez pas générer de propositions. <a style="color:var(--red);font-weight:600;cursor:pointer" onclick="showPage('integrations')">Reconnect →</a></span></div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Deal documents</div>
-          <button class="btn btn-secondary btn-sm" disabled><i class="ti ti-sparkles"></i>Generate a proposal</button>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Last name</th><th>Type</th><th>Status</th><th>Date</th><th></th></tr></thead>
-            <tbody>
-              <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3)"></i><span class="td-main">Cahier_des_charges_HighCo.pdf</span></div></td><td><span class="badge b-gray">Client brief</span></td><td><span class="badge b-green"><span class="b-dot"></span>Received</span></td><td style="color:var(--t3)">12 mai 2026</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
-              <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-spreadsheet" style="color:var(--t3)"></i><span class="td-main">Discovery_Notes_HighCo.docx</span></div></td><td><span class="badge b-gray">Notes</span></td><td><span class="badge b-green"><span class="b-dot"></span>Finalized</span></td><td style="color:var(--t3)">May 14 2026</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- Activity tab -->
-    <div id="dtab-activity" style="display:none">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Deal history</div>
-          <button class="btn btn-secondary btn-sm"><i class="ti ti-plus"></i>Add une note</button>
-        </div>
-        <div class="card-body" style="padding:12px 18px">
-          <div class="act-item"><div class="act-dot" style="background:var(--amber-bg);color:var(--amber)"><i class="ti ti-file"></i></div><div><div class="act-title">Discovery Assessment completed — Score 82/100</div><div class="act-time">Fadoua H. · May 14 2026 · 14:32</div></div></div>
-          <div class="act-item"><div class="act-dot" style="background:var(--green-bg);color:var(--green)"><i class="ti ti-phone"></i></div><div><div class="act-title">Discovery call — 45 min · Sophie Martin</div><div class="act-time">Fadoua H. · 12 mai 2026 · 10:00</div></div></div>
-          <div class="act-item"><div class="act-dot"><i class="ti ti-mail"></i></div><div><div class="act-title">Email sent — Demo appointment confirmation</div><div class="act-time">Fadoua H. · May 10 2026 · 09:15</div></div></div>
-          <div class="act-item"><div class="act-dot"><i class="ti ti-plus"></i></div><div><div class="act-title">Deal created from Pipedrive</div><div class="act-time">Système · 8 mai 2026</div></div></div>
-        </div>
-      </div>
-    </div>
+    <!-- Tab content — rendered dynamically by renderDealDetail() -->
+    <div id="dtab-overview"></div>
+    <div id="dtab-assessments" style="display:none"></div>
+    <div id="dtab-documents" style="display:none"></div>
+    <div id="dtab-activity" style="display:none"></div>
   </div>
 
   <!-- ══════════ APPROVALS ══════════ -->
@@ -1332,11 +1179,11 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
   <div class="page" id="page-documents">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
       <div><div class="page-title">Documents</div><div style="font-size:12.5px;color:var(--t3)">Sales rep proposals and attachments</div></div>
-      <button class="btn btn-primary" disabled><i class="ti ti-sparkles"></i>Generate a proposal</button>
+      <button class="btn btn-primary"><i class="ti ti-sparkles"></i>Generate a proposal</button>
     </div>
-    <div class="info-box red" style="margin-bottom:16px">
-      <i class="ti ti-cloud-off" style="font-size:16px;flex-shrink:0;margin-top:1px"></i>
-      <div><strong>Google Drive disconnected</strong> — Proposal generation is blocked for 18 deals. <a style="color:var(--red);font-weight:600;cursor:pointer" onclick="showPage('integrations')">Reconnect now →</a></div>
+    <div class="info-box green" style="margin-bottom:16px">
+      <i class="ti ti-cloud-check" style="font-size:16px;flex-shrink:0;margin-top:1px"></i>
+      <div><strong>Google Drive connected</strong> — Proposals can be generated and synced to your Drive automatically.</div>
     </div>
     <div class="filter-bar">
       <div class="seg">
@@ -1350,9 +1197,16 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
         <table>
           <thead><tr><th>Document name</th><th>Deal</th><th>Type</th><th>Status</th><th>Created by</th><th>Date</th><th></th></tr></thead>
           <tbody>
-            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3);font-size:16px"></i><span class="td-main">Cahier_des_charges_HighCo.pdf</span></div></td><td>HighCo</td><td><span class="badge b-gray">Client brief</span></td><td><span class="badge b-green"><span class="b-dot"></span>Received</span></td><td>Fadoua H.</td><td style="color:var(--t4)">12 mai</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-description" style="color:var(--t3);font-size:16px"></i><span class="td-main">Contract_SocieteGenerale_v3.pdf</span></div></td><td>Soc. Générale</td><td><span class="badge b-gray">Contract</span></td><td><span class="badge b-amber"><span class="b-dot"></span>In review</span></td><td>Layla M.</td><td style="color:var(--t4)">May 18</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3);font-size:16px"></i><span class="td-main">Proposal_BNP_Paribas_v2.pdf</span></div></td><td>BNP Paribas</td><td><span class="badge b-gray">Proposal</span></td><td><span class="badge b-amber"><span class="b-dot"></span>Pending approval</span></td><td>Ahmed B.</td><td style="color:var(--t4)">May 17</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3);font-size:16px"></i><span class="td-main">Proposal_HighCo_v1.pdf</span></div></td><td>HighCo</td><td><span class="badge b-gray">Proposal</span></td><td><span class="badge b-amber"><span class="b-dot"></span>Pending approval</span></td><td>Fadoua H.</td><td style="color:var(--t4)">May 16</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3);font-size:16px"></i><span class="td-main">Specs_HighCo.pdf</span></div></td><td>HighCo</td><td><span class="badge b-gray">Client brief</span></td><td><span class="badge b-green"><span class="b-dot"></span>Received</span></td><td>Fadoua H.</td><td style="color:var(--t4)">May 12</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
             <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-description" style="color:var(--t3);font-size:16px"></i><span class="td-main">Discovery_Notes_BNP.docx</span></div></td><td>BNP Paribas</td><td><span class="badge b-gray">Notes</span></td><td><span class="badge b-green"><span class="b-dot"></span>Finalized</span></td><td>Ahmed B.</td><td style="color:var(--t4)">May 17</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
-            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-invoice" style="color:var(--t3);font-size:16px"></i><span class="td-main">Contrat_SocieteGenerale_v2.pdf</span></div></td><td>Soc. Générale</td><td><span class="badge b-gray">Contrat</span></td><td><span class="badge b-amber"><span class="b-dot"></span>In review</span></td><td>Layla M.</td><td style="color:var(--t4)">May 18</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3);font-size:16px"></i><span class="td-main">Proposal_Carrefour_v1.pdf</span></div></td><td>Carrefour Group</td><td><span class="badge b-gray">Proposal</span></td><td><span class="badge b-green"><span class="b-dot"></span>Sent</span></td><td>Rania K.</td><td style="color:var(--t4)">May 15</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-description" style="color:var(--t3);font-size:16px"></i><span class="td-main">Contract_AirFrance_renewal.pdf</span></div></td><td>Air France</td><td><span class="badge b-gray">Contract</span></td><td><span class="badge b-green"><span class="b-dot"></span>Signed</span></td><td>Ahmed B.</td><td style="color:var(--t4)">May 10</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3);font-size:16px"></i><span class="td-main">Assessment_TotalEnergies.pdf</span></div></td><td>TotalEnergies</td><td><span class="badge b-gray">Assessment</span></td><td><span class="badge b-green"><span class="b-dot"></span>Completed</span></td><td>Fadoua H.</td><td style="color:var(--t4)">May 8</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-description" style="color:var(--t3);font-size:16px"></i><span class="td-main">Discovery_Veolia_v2.docx</span></div></td><td>Veolia</td><td><span class="badge b-gray">Notes</span></td><td><span class="badge b-gray"><span class="b-dot"></span>Draft</span></td><td>Rania K.</td><td style="color:var(--t4)">May 6</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
+            <tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti ti-file-text" style="color:var(--t3);font-size:16px"></i><span class="td-main">Proposal_Michelin_v1.pdf</span></div></td><td>Michelin</td><td><span class="badge b-gray">Proposal</span></td><td><span class="badge b-gray"><span class="b-dot"></span>Draft</span></td><td>Ahmed B.</td><td style="color:var(--t4)">May 5</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-eye"></i></button><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>
           </tbody>
         </table>
       </div>
@@ -1379,71 +1233,260 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
         <div class="act-item"><div class="act-dot" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-alert-circle"></i></div><div style="flex:1"><div class="act-title">Sync error — 3 Pipedrive deals not updated</div><div class="act-time">Système · Yesterday 8:15 AM</div></div><span class="badge b-red">Error</span></div>
         <div class="act-item"><div class="act-dot" style="background:var(--green-bg);color:var(--green)"><i class="ti ti-circle-check"></i></div><div style="flex:1"><div class="act-title">Deal won — Renault Digital · €142K · Signed</div><div class="act-time">Omar F. · May 17</div></div><span class="badge b-green">Won</span></div>
         <div class="act-item"><div class="act-dot"><i class="ti ti-mail"></i></div><div style="flex:1"><div class="act-title">Email sent — Technical Assessment · L'Oréal · Anna Petit</div><div class="act-time">Omar F. · May 16</div></div></div>
-        <div class="act-item"><div class="act-dot"><i class="ti ti-users"></i></div><div style="flex:1"><div class="act-title">Team pipeline review — 8 deals discutés</div><div class="act-time">Fadoua H. · May 15</div></div></div>
+        <div class="act-item"><div class="act-dot"><i class="ti ti-users"></i></div><div style="flex:1"><div class="act-title">Team pipeline review — 8 deals discussed</div><div class="act-time">Fadoua H. · May 15</div></div></div>
+        <div class="act-item"><div class="act-dot" style="background:var(--green-bg);color:var(--green)"><i class="ti ti-file-check"></i></div><div style="flex:1"><div class="act-title">Proposal approved — Carrefour Group · €195K · Rania K.</div><div class="act-time">Fadoua H. · May 15</div></div><span class="badge b-green">Approved</span></div>
+        <div class="act-item"><div class="act-dot"><i class="ti ti-phone"></i></div><div style="flex:1"><div class="act-title">Call recorded — Société Générale · Julie Martin · 48 min · 3 action items extracted</div><div class="act-time">Layla M. · May 14</div></div></div>
+        <div class="act-item"><div class="act-dot" style="background:var(--amber-bg);color:var(--amber)"><i class="ti ti-alert-triangle"></i></div><div style="flex:1"><div class="act-title">Deal at risk — HighCo AI score dropped from 88 to 62 in 7 days</div><div class="act-time">System · May 14</div></div><span class="badge b-amber">At risk</span></div>
+        <div class="act-item"><div class="act-dot"><i class="ti ti-file"></i></div><div style="flex:1"><div class="act-title">Technical Assessment completed — TotalEnergies · Score 91/100 · Strong fit</div><div class="act-time">Fadoua H. · May 13</div></div><span class="badge b-green">Pass</span></div>
+        <div class="act-item"><div class="act-dot"><i class="ti ti-mail"></i></div><div style="flex:1"><div class="act-title">Email sent — Follow-up after demo · Veolia · Karim Benali</div><div class="act-time">Rania K. · May 12</div></div></div>
+        <div class="act-item"><div class="act-dot" style="background:var(--green-bg);color:var(--green)"><i class="ti ti-circle-check"></i></div><div style="flex:1"><div class="act-title">Deal won — Air France renewal · €28K · Signed</div><div class="act-time">Ahmed B. · May 11</div></div><span class="badge b-green">Won</span></div>
+        <div class="act-item"><div class="act-dot" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-circle-x"></i></div><div style="flex:1"><div class="act-title">Deal lost — L'Oréal · €180K · Chose Salesforce</div><div class="act-time">Omar F. · May 10</div></div><span class="badge b-red">Lost</span></div>
       </div>
     </div>
   </div>
+
 
 
   <!-- ══════════ ANALYTICS ══════════ -->
   <div class="page" id="page-analytics">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-      <div><div class="page-title">Analytics</div><div style="font-size:12.5px;color:var(--t3)">Sales performance — May 2026</div></div>
-      <div style="display:flex;gap:8px">
-        <select class="sel"><option>This month</option><option>This quarter</option><option>This year</option></select>
-        <button class="btn btn-secondary btn-sm"><i class="ti ti-download"></i>Export</button>
+      <div><div class="page-title">Analytics</div><div style="font-size:12.5px;color:var(--t3)">Deals & client insights — May 2026</div></div>
+      <button class="btn btn-secondary btn-sm"><i class="ti ti-download"></i>Export</button>
+    </div>
+
+    <!-- ── Filter bar ── -->
+    <div class="an-filter-bar">
+      <div class="an-filter-group">
+        <span class="an-filter-label"><i class="ti ti-calendar"></i>Period</span>
+        <select class="an-sel" id="af-period" onchange="applyAnalyticsFilters()">
+          <option value="month">This month</option>
+          <option value="quarter">This quarter</option>
+          <option value="year">This year</option>
+        </select>
       </div>
+      <div class="an-filter-sep"></div>
+      <div class="an-filter-group">
+        <span class="an-filter-label"><i class="ti ti-user"></i>Sales rep</span>
+        <select class="an-sel" id="af-rep" onchange="applyAnalyticsFilters()">
+          <option value="all">All reps</option>
+          <option value="AB">Ahmed B.</option>
+          <option value="FH">Fadoua H.</option>
+          <option value="LM">Layla M.</option>
+          <option value="RK">Rania K.</option>
+          <option value="OF">Omar F.</option>
+        </select>
+      </div>
+      <div class="an-filter-group">
+        <span class="an-filter-label"><i class="ti ti-users"></i>Team</span>
+        <select class="an-sel" id="af-team" onchange="applyAnalyticsFilters()">
+          <option value="all">All teams</option>
+          <option value="FR">Sales FR</option>
+          <option value="MA">Sales MA</option>
+        </select>
+      </div>
+      <div class="an-filter-group">
+        <span class="an-filter-label"><i class="ti ti-building"></i>Client</span>
+        <select class="an-sel" id="af-client" onchange="applyAnalyticsFilters()">
+          <option value="all">All clients</option>
+          <option value="SG">Société Générale</option>
+          <option value="BNP">BNP Paribas</option>
+          <option value="HC">HighCo</option>
+          <option value="CA">Carrefour Group</option>
+          <option value="AF">Air France</option>
+          <option value="TE">TotalEnergies</option>
+          <option value="VE">Veolia</option>
+          <option value="RG">Renault Group</option>
+        </select>
+      </div>
+      <div class="an-filter-group">
+        <span class="an-filter-label"><i class="ti ti-tag"></i>Deal type</span>
+        <select class="an-sel" id="af-type" onchange="applyAnalyticsFilters()">
+          <option value="all">All types</option>
+          <option value="new">New business</option>
+          <option value="renewal">Renewal</option>
+          <option value="upsell">Upsell</option>
+        </select>
+      </div>
+      <div class="an-filter-group">
+        <span class="an-filter-label"><i class="ti ti-filter"></i>Stage</span>
+        <select class="an-sel" id="af-stage" onchange="applyAnalyticsFilters()">
+          <option value="all">All stages</option>
+          <option value="discovery">Discovery</option>
+          <option value="qualification">Qualification</option>
+          <option value="proposal">Proposal</option>
+          <option value="negotiation">Negotiation</option>
+          <option value="closing">Closing</option>
+        </select>
+      </div>
+      <button class="an-reset-btn" onclick="resetAnalyticsFilters()" id="af-reset" style="display:none"><i class="ti ti-x"></i>Reset</button>
     </div>
-    <div class="kpi-row kpi-4" style="margin-bottom:20px">
-      <div class="kpi-card"><div class="kpi-label">Revenue generated</div><div class="kpi-value">€890K</div><div class="kpi-footer"><span class="trend up">+12%</span> vs last month</div></div>
-      <div class="kpi-card"><div class="kpi-label">Deals won</div><div class="kpi-value">14</div><div class="kpi-footer"><span class="trend up">+3</span> vs target</div></div>
-      <div class="kpi-card"><div class="kpi-label">Conversion rate</div><div class="kpi-value">24%</div><div class="kpi-footer"><span class="trend down">-2%</span> vs target 26%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Avg. cycle length</div><div class="kpi-value">47j</div><div class="kpi-footer"><span class="trend up">-5j</span> vs trimestre préc.</div></div>
+
+    <!-- Active filter chips -->
+    <div id="af-chips" style="display:none;margin-bottom:16px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+      <span style="font-size:11px;color:var(--t3);font-weight:500">Filtered by:</span>
     </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row" style="grid-template-columns:repeat(6,1fr);margin-bottom:28px" id="an-kpis">
+      <div class="kpi-card"><div class="kpi-label">Revenue</div><div class="kpi-value" id="kpi-revenue">€890K</div><div class="kpi-footer" id="kpi-revenue-foot"><span class="trend up">+12%</span> vs last month</div></div>
+      <div class="kpi-card"><div class="kpi-label">Deals won</div><div class="kpi-value" id="kpi-won" style="color:var(--green)">14</div><div class="kpi-footer" id="kpi-won-foot"><span class="trend up">+3</span> vs target</div></div>
+      <div class="kpi-card"><div class="kpi-label">Deals lost</div><div class="kpi-value" id="kpi-lost" style="color:var(--red)">9</div><div class="kpi-footer" id="kpi-lost-foot"><span class="trend down">+2</span> vs last month</div></div>
+      <div class="kpi-card"><div class="kpi-label">Stalled</div><div class="kpi-value" id="kpi-stalled" style="color:var(--amber)">11</div><div class="kpi-footer">no activity &gt;14 days</div></div>
+      <div class="kpi-card"><div class="kpi-label">Active clients</div><div class="kpi-value" id="kpi-clients">38</div><div class="kpi-footer" id="kpi-clients-foot"><span class="trend up">+4</span> this quarter</div></div>
+      <div class="kpi-card"><div class="kpi-label">Avg. cycle</div><div class="kpi-value" id="kpi-cycle">47d</div><div class="kpi-footer" id="kpi-cycle-foot"><span class="trend up">−5d</span> vs last quarter</div></div>
+    </div>
+
+    <!-- ── SECTION: DEALS ── -->
+    <div class="an-section-header"><i class="ti ti-briefcase"></i>Deals</div>
     <div class="two-col-eq" style="margin-bottom:14px">
       <div class="card">
-        <div class="card-header"><div class="card-title">Monthly revenue</div></div>
-        <div class="card-body"><canvas id="revenueChart" height="200"></canvas></div>
+        <div class="card-header"><div><div class="card-title">Time spent per stage</div><div class="card-sub" id="velocity-sub">Avg. days — won vs lost deals</div></div></div>
+        <div class="card-body" style="position:relative;height:200px"><canvas id="velocityChart"></canvas></div>
       </div>
       <div class="card">
-        <div class="card-header"><div class="card-title">Conversion funnel</div></div>
-        <div class="card-body"><canvas id="funnelChart" height="200"></canvas></div>
+        <div class="card-header"><div><div class="card-title">Deal size distribution</div><div class="card-sub">Won vs lost by deal value bracket</div></div></div>
+        <div class="card-body" style="position:relative;height:200px"><canvas id="sizeChart"></canvas></div>
       </div>
     </div>
-    <div class="two-col">
+    <div class="two-col" style="margin-bottom:28px">
       <div class="card">
-        <div class="card-header"><div class="card-title">Sales rep ranking</div><div class="card-sub">By revenue · May 2026</div></div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>#</th><th>Sales rep</th><th>Deals won</th><th>Revenus</th><th>Conv. rate</th><th>Avg. score</th></tr></thead>
-            <tbody>
-              <tr><td style="font-weight:700;color:var(--amber)">1</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av">AB</span><span class="td-main">Ahmed B.</span></div></td><td>5</td><td style="font-weight:600">€312K</td><td><span class="badge b-green">31%</span></td><td>87</td></tr>
-              <tr><td style="font-weight:700;color:var(--t3)">2</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#7C3AED">FH</span><span class="td-main">Fadoua H.</span></div></td><td>4</td><td style="font-weight:600">€280K</td><td><span class="badge b-green">28%</span></td><td>82</td></tr>
-              <tr><td style="font-weight:700;color:var(--t3)">3</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av">LM</span><span class="td-main">Layla M.</span></div></td><td>3</td><td style="font-weight:600">€196K</td><td><span class="badge b-amber">22%</span></td><td>79</td></tr>
-              <tr><td>4</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#059669">RK</span><span class="td-main">Rania K.</span></div></td><td>2</td><td style="font-weight:600">€102K</td><td><span class="badge b-amber">18%</span></td><td>74</td></tr>
-              <tr><td>5</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#B45309">OF</span><span class="td-main">Omar F.</span></div></td><td>0</td><td style="font-weight:600">€0</td><td><span class="badge b-red">0%</span></td><td>61</td></tr>
-            </tbody>
-          </table>
+        <div class="card-header"><div class="card-title">Why deals are lost</div><div class="card-sub" id="loss-sub">Last 90 days · all reps</div></div>
+        <div class="card-body" style="position:relative;height:190px"><canvas id="lossReasonsChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Stalled deals</div><div class="card-sub">No activity in the last 14+ days</div></div>
+        <div class="card-body" style="padding:0" id="stalled-list">
+          <div class="risk-row an-deal-row" data-rep="OF" data-team="MA" data-client="RG" data-type="new" data-stage="proposal" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="background:#B45309;font-size:11px">OF</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">Renault Group</div><div style="font-size:11px;color:var(--t3)">€145K · New · Omar F. · Proposal sent</div></div>
+            </div>
+            <span class="badge b-red">22 days</span>
+          </div>
+          <div class="risk-row an-deal-row" data-rep="LM" data-team="FR" data-client="BT" data-type="upsell" data-stage="negotiation" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="font-size:11px">LM</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">Bouygues Télécom</div><div style="font-size:11px;color:var(--t3)">€88K · Upsell · Layla M. · Negotiation</div></div>
+            </div>
+            <span class="badge b-red">19 days</span>
+          </div>
+          <div class="risk-row an-deal-row" data-rep="RK" data-team="MA" data-client="VE" data-type="renewal" data-stage="qualification" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="background:#059669;font-size:11px">RK</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">Veolia</div><div style="font-size:11px;color:var(--t3)">€210K · Renewal · Rania K. · Qualification</div></div>
+            </div>
+            <span class="badge b-amber">16 days</span>
+          </div>
+          <div class="risk-row an-deal-row" data-rep="AB" data-team="FR" data-client="MI" data-type="new" data-stage="discovery" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="font-size:11px">AB</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">Michelin</div><div style="font-size:11px;color:var(--t3)">€62K · New · Ahmed B. · Discovery</div></div>
+            </div>
+            <span class="badge b-amber">15 days</span>
+          </div>
+          <div class="risk-row an-deal-row" data-rep="FH" data-team="FR" data-client="TE" data-type="new" data-stage="proposal" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="background:#7C3AED;font-size:11px">FH</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">TotalEnergies</div><div style="font-size:11px;color:var(--t3)">€330K · New · Fadoua H. · Proposal sent</div></div>
+            </div>
+            <span class="badge b-amber">14 days</span>
+          </div>
+          <div id="stalled-empty" style="display:none;padding:24px;text-align:center;color:var(--t3);font-size:13px"><i class="ti ti-mood-happy" style="font-size:22px;display:block;margin-bottom:6px"></i>No stalled deals for this filter</div>
         </div>
       </div>
-      <div class="col-stack">
-        <div class="card">
-          <div class="card-header"><div class="card-title">Win/Loss by stage</div></div>
-          <div class="card-body" style="padding:14px 18px">
-            <div style="display:flex;flex-direction:column;gap:10px">
-              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Discovery → Qualification</span><span style="font-weight:600;color:var(--green)">78%</span></div><div class="progress"><div class="progress-fill green" style="width:78%"></div></div></div>
-              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Qualification → Proposal</span><span style="font-weight:600;color:var(--green)">64%</span></div><div class="progress"><div class="progress-fill green" style="width:64%"></div></div></div>
-              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Proposal → Negotiation</span><span style="font-weight:600;color:var(--amber)">41%</span></div><div class="progress"><div class="progress-fill amber" style="width:41%"></div></div></div>
-              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Negotiation → Closing</span><span style="font-weight:600;color:var(--amber)">58%</span></div><div class="progress"><div class="progress-fill amber" style="width:58%"></div></div></div>
-              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--t2)">Closing → Signé</span><span style="font-weight:600;color:var(--green)">87%</span></div><div class="progress"><div class="progress-fill green" style="width:87%"></div></div></div>
+    </div>
+
+    <!-- ── SECTION: CLIENTS ── -->
+    <div class="an-section-header"><i class="ti ti-building"></i>Clients</div>
+    <div class="two-col-eq" style="margin-bottom:14px">
+      <div class="card">
+        <div class="card-header"><div><div class="card-title">Top clients by revenue</div><div class="card-sub">Cumulative revenue generated</div></div></div>
+        <div class="card-body" style="position:relative;height:200px"><canvas id="clientRevenueChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div><div class="card-title">Revenue by industry</div><div class="card-sub">Distribution of closed deals by sector</div></div></div>
+        <div class="card-body" style="position:relative;height:200px"><canvas id="industryChart"></canvas></div>
+      </div>
+    </div>
+    <div class="two-col" style="margin-bottom:28px">
+      <div class="card">
+        <div class="card-header"><div class="card-title">New vs Renewal vs Upsell</div><div class="card-sub">Revenue split by deal type — monthly trend</div></div>
+        <div class="card-body" style="position:relative;height:190px"><canvas id="dealTypeChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">At-risk clients</div><div class="card-sub">Low engagement + declining AI score</div></div>
+        <div class="card-body" style="padding:0" id="risk-list">
+          <div class="risk-row an-client-row" data-rep="OF" data-team="MA" data-client="RG" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="font-size:11px">RG</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">Renault Group</div><div style="font-size:11px;color:var(--t3)">No reply 8 days · doc not opened · score 51/100</div></div>
             </div>
+            <span class="badge b-red">High risk</span>
           </div>
+          <div class="risk-row an-client-row" data-rep="FH" data-team="FR" data-client="HC" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="font-size:11px">HC</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">HighCo</div><div style="font-size:11px;color:var(--t3)">Missed meeting · restructuring · score 62/100</div></div>
+            </div>
+            <span class="badge b-red">High risk</span>
+          </div>
+          <div class="risk-row an-client-row" data-rep="LM" data-team="FR" data-client="BT" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="font-size:11px">BT</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">Bouygues Télécom</div><div style="font-size:11px;color:var(--t3)">Slow replies · budget review · score 54/100</div></div>
+            </div>
+            <span class="badge b-amber">Medium</span>
+          </div>
+          <div class="risk-row an-client-row" data-rep="RK" data-team="MA" data-client="VE" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="font-size:11px">VE</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">Veolia</div><div style="font-size:11px;color:var(--t3)">Contact changed · decision delayed · score 49/100</div></div>
+            </div>
+            <span class="badge b-amber">Medium</span>
+          </div>
+          <div class="risk-row an-client-row" data-rep="AB" data-team="FR" data-client="MI" style="justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="mini-av" style="font-size:11px">MI</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--t1)">Michelin</div><div style="font-size:11px;color:var(--t3)">Reorganisation · new budget cycle · score 58/100</div></div>
+            </div>
+            <span class="badge b-amber">Medium</span>
+          </div>
+          <div id="risk-empty" style="display:none;padding:24px;text-align:center;color:var(--t3);font-size:13px"><i class="ti ti-mood-happy" style="font-size:22px;display:block;margin-bottom:6px"></i>No at-risk clients for this filter</div>
         </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION: SALES TEAM ── -->
+    <div class="an-section-header"><i class="ti ti-users"></i>Sales team</div>
+    <div class="two-col-eq" style="margin-bottom:14px">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Revenue by rep</div><div class="card-sub">Closed deals · May 2026</div></div>
+        <div class="card-body" style="position:relative;height:200px"><canvas id="repRevenueChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Conversion rate by rep</div><div class="card-sub">% deals won vs target (26%)</div></div>
+        <div class="card-body" style="position:relative;height:200px"><canvas id="repConvChart"></canvas></div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:8px">
+      <div class="card-header"><div class="card-title">Full ranking</div><div class="card-sub" id="team-table-sub">All reps · May 2026</div></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Sales rep</th><th>Team</th><th>Active</th><th>Won</th><th>Revenue</th><th>Conv.</th><th>Avg. cycle</th></tr></thead>
+          <tbody id="team-tbody">
+            <tr class="an-rep-row" data-rep="AB" data-team="FR"><td style="font-weight:700;color:var(--amber)">1</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av">AB</span><span class="td-main">Ahmed B.</span></div></td><td>Sales FR</td><td>14</td><td>5</td><td style="font-weight:600">€312K</td><td><span class="badge b-green">31%</span></td><td>38 days</td></tr>
+            <tr class="an-rep-row" data-rep="FH" data-team="FR"><td style="font-weight:700;color:var(--t3)">2</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#7C3AED">FH</span><span class="td-main">Fadoua H.</span></div></td><td>Sales FR</td><td>28</td><td>4</td><td style="font-weight:600">€280K</td><td><span class="badge b-green">28%</span></td><td>44 days</td></tr>
+            <tr class="an-rep-row" data-rep="LM" data-team="FR"><td style="font-weight:700;color:var(--t3)">3</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av">LM</span><span class="td-main">Layla M.</span></div></td><td>Sales FR</td><td>8</td><td>3</td><td style="font-weight:600">€196K</td><td><span class="badge b-amber">22%</span></td><td>51 days</td></tr>
+            <tr class="an-rep-row" data-rep="RK" data-team="MA"><td>4</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#059669">RK</span><span class="td-main">Rania K.</span></div></td><td>Sales MA</td><td>10</td><td>2</td><td style="font-weight:600">€102K</td><td><span class="badge b-amber">18%</span></td><td>58 days</td></tr>
+            <tr class="an-rep-row" data-rep="OF" data-team="MA"><td>5</td><td><div style="display:flex;align-items:center;gap:8px"><span class="mini-av" style="background:#B45309">OF</span><span class="td-main">Omar F.</span></div></td><td>Sales MA</td><td>6</td><td>0</td><td style="font-weight:600">€0</td><td><span class="badge b-red">0%</span></td><td>—</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-  <!-- ══════════ TEAM ══════════ -->
+    <!-- ══════════ TEAM ══════════ -->
+
   <div class="page" id="page-team">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
       <div><div class="page-title">Team</div><div style="font-size:12.5px;color:var(--t3)">5 sales reps · 2 managers · 1 admin</div></div>
@@ -1561,7 +1604,15 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
         </div>
         <!-- Technical tab -->
         <div id="aitab-technical" style="display:none">
-          <div class="card"><div class="card-header"><div class="card-title">Technical Assessment questions</div><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i>Add</button></div><div class="empty"><i class="ti ti-clipboard-list"></i><div class="empty-title">Configure your Technical Assessment</div><div class="empty-desc">Add technical questions to qualify IT, infrastructure and integration aspects.</div><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i>First question</button></div></div>
+          <div class="card"><div class="card-header"><div class="card-title">Technical Assessment questions</div><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i>Add</button></div><div class="table-wrap"><table><thead><tr><th>#</th><th>Question</th><th>Category</th><th>Weight</th><th>Required</th><th></th></tr></thead><tbody>
+                  <tr><td style="color:var(--t4)">1</td><td class="td-main">What is your current CRM or sales tool stack?</td><td><span class="badge b-gray">Infrastructure</span></td><td>10 pts</td><td><span class="badge b-green">Yes</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">2</td><td class="td-main">How many users will use the platform at launch?</td><td><span class="badge b-gray">Scale</span></td><td>10 pts</td><td><span class="badge b-green">Yes</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">3</td><td class="td-main">Do you have SSO or specific authentication requirements?</td><td><span class="badge b-gray">Security</span></td><td>15 pts</td><td><span class="badge b-green">Yes</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">4</td><td class="td-main">Which external systems must be integrated (ERP, CRM, BI)?</td><td><span class="badge b-gray">Integration</span></td><td>20 pts</td><td><span class="badge b-green">Yes</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">5</td><td class="td-main">What are your data residency or compliance requirements (GDPR, SOC2)?</td><td><span class="badge b-gray">Compliance</span></td><td>20 pts</td><td><span class="badge b-green">Yes</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">6</td><td class="td-main">Do you require on-premise deployment or is SaaS acceptable?</td><td><span class="badge b-gray">Deployment</span></td><td>15 pts</td><td><span class="badge b-amber">No</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                  <tr><td style="color:var(--t4)">7</td><td class="td-main">What is your expected data volume (deals/month, users/day)?</td><td><span class="badge b-gray">Scale</span></td><td>10 pts</td><td><span class="badge b-amber">No</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+                </tbody></table></div></
         </div>
         <!-- Models tab -->
         <div id="aitab-models" style="display:none">
@@ -1592,7 +1643,7 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
   <!-- ══════════ INTEGRATIONS ══════════ -->
   <div class="page" id="page-integrations">
     <div style="margin-bottom:16px"><div class="page-title">Integrations</div><div style="font-size:12.5px;color:var(--t3)">Manage your connections to external services</div></div>
-    <div class="info-box red" style="margin-bottom:20px"><i class="ti ti-alert-circle" style="flex-shrink:0"></i><span><strong>1 integration disconnected</strong> — Google Drive must be reconnected to unblock proposal generation.</span></div>
+    <div class="info-box green" style="margin-bottom:20px"><i class="ti ti-cloud-check" style="flex-shrink:0"></i><span><strong>All integrations connected</strong> — Google Drive, Pipedrive and Slack are all active.</span></div>
 
     <div style="font-size:13px;font-weight:600;color:var(--t2);margin-bottom:10px">CRM</div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
@@ -1611,15 +1662,15 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
 
     <div style="font-size:13px;font-weight:600;color:var(--t2);margin-bottom:10px">Storage & Documents</div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
-      <div class="prov-card" style="border-color:var(--red-bd)">
-        <div class="prov-icon" style="background:var(--red-bg)"><i class="ti ti-brand-google-drive" style="color:var(--red);font-size:20px"></i></div>
+      <div class="prov-card">
+        <div class="prov-icon"><i class="ti ti-brand-google-drive" style="color:var(--green);font-size:20px"></i></div>
         <div style="flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div class="prov-name">Google Drive</div>
-            <span class="badge b-red"><span class="b-dot"></span>Disconnected</span>
+            <span class="badge b-green"><span class="b-dot"></span>Connected</span>
           </div>
-          <div class="prov-desc" style="color:var(--red)">Reconnection required — Proposal generation is blocked for 18 deals</div>
-          <div class="prov-actions"><button class="btn btn-danger btn-xs"><i class="ti ti-plug"></i>Reconnect my Google account</button></div>
+          <div class="prov-desc">Two-way sync · Proposals automatically synced · fadoua@gmail.com</div>
+          <div class="prov-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-settings"></i>Configure</button><button class="btn btn-danger btn-xs"><i class="ti ti-plug-x"></i>Disconnect</button></div>
         </div>
       </div>
     </div>
@@ -1792,19 +1843,43 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
         </div>
         <div id="admintab-agents" style="display:none">
           <div class="card"><div class="card-header"><div><div class="card-title">AI Agents</div><div class="card-sub">14 active · 15 configured · 21 versions</div></div></div><div class="table-wrap"><table><thead><tr><th>Agent</th><th>Version</th><th>Modèle</th><th>Status</th><th>Activations</th></tr></thead><tbody>
-          <tr><td class="td-main">Discovery Scorecard</td><td>v2</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>14</td></tr>
+          <tr><td class="td-main">Discovery Scorecard</td><td>v2</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>214</td></tr>
           <tr><td class="td-main">Proposal Generator</td><td>v1</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-amber"><span class="b-dot"></span>Google required</span></td><td>0</td></tr>
-          <tr><td class="td-main">Deal Summarizer</td><td>v1</td><td><span class="badge b-gray">GPT-4o mini</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>89</td></tr>
+          <tr><td class="td-main">Deal Summarizer</td><td>v1</td><td><span class="badge b-gray">GPT-4o mini</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>489</td></tr>
+          <tr><td class="td-main">Technical Qualifier</td><td>v1</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>67</td></tr>
+          <tr><td class="td-main">SLA Monitor</td><td>v3</td><td><span class="badge b-gray">GPT-4o mini</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>2 100</td></tr>
+          <tr><td class="td-main">Competitive Detector</td><td>v1</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>38</td></tr>
+          <tr><td class="td-main">Risk Scorer</td><td>v2</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>720</td></tr>
+          <tr><td class="td-main">Call Transcriber</td><td>v1</td><td><span class="badge b-gray">Fireflies</span></td><td><span class="badge b-gray"><span class="b-dot"></span>Not configured</span></td><td>0</td></tr>
+          <tr><td class="td-main">Email Classifier</td><td>v1</td><td><span class="badge b-gray">GPT-4o mini</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>1 440</td></tr>
+          <tr><td class="td-main">Approval Recommender</td><td>v2</td><td><span class="badge b-gray">GPT-4o</span></td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>156</td></tr>
           </tbody></table></div></div>
         </div>
         <div id="admintab-scheduler" style="display:none">
-          <div class="empty"><i class="ti ti-clock-play"></i><div class="empty-title">Scheduler</div><div class="empty-desc">50 runs this month · 0 errors · Last run today at 3:34 PM</div></div>
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-header"><div class="card-title">Scheduled tasks</div><div class="card-sub">50 runs this month · 0 errors · Last run today at 3:34 PM</div><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i>New task</button></div>
+            <div class="table-wrap"><table><thead><tr><th>Task</th><th>Trigger</th><th>Last run</th><th>Next run</th><th>Status</th><th>Runs</th><th></th></tr></thead><tbody>
+              <tr><td><div class="td-main">Pipedrive deal sync</div><div class="td-sub">Pull updates from CRM and refresh scores</div></td><td><span class="badge b-gray">Every 15 min</span></td><td style="color:var(--t3)">Today 3:34 PM</td><td style="color:var(--t3)">Today 3:49 PM</td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>2 880</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+              <tr><td><div class="td-main">SLA breach detector</div><div class="td-sub">Scan all open deals and trigger SLA alerts</div></td><td><span class="badge b-gray">Every 1h</span></td><td style="color:var(--t3)">Today 3:00 PM</td><td style="color:var(--t3)">Today 4:00 PM</td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>720</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+              <tr><td><div class="td-main">Weekly analytics report</div><div class="td-sub">Generate and email performance report to managers</div></td><td><span class="badge b-gray">Mon 8:00 AM</span></td><td style="color:var(--t3)">May 19 8:00 AM</td><td style="color:var(--t3)">May 26 8:00 AM</td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>18</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+              <tr><td><div class="td-main">Stalled deal reminder</div><div class="td-sub">Notify rep via Slack if deal has no activity for 14 days</div></td><td><span class="badge b-gray">Daily 9:00 AM</span></td><td style="color:var(--t3)">Today 9:00 AM</td><td style="color:var(--t3)">Tomorrow 9:00 AM</td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>30</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+              <tr><td><div class="td-main">AI score recalculation</div><div class="td-sub">Recompute qualification scores for all active deals</div></td><td><span class="badge b-gray">Daily 2:00 AM</span></td><td style="color:var(--t3)">Today 2:00 AM</td><td style="color:var(--t3)">Tomorrow 2:00 AM</td><td><span class="badge b-green"><span class="b-dot"></span>Active</span></td><td>30</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+              <tr><td><div class="td-main">Approval escalation</div><div class="td-sub">Auto-escalate approvals pending more than 72h to manager</div></td><td><span class="badge b-gray">Every 6h</span></td><td style="color:var(--t3)">Today 12:00 PM</td><td style="color:var(--t3)">Today 6:00 PM</td><td><span class="badge b-amber"><span class="b-dot"></span>Paused</span></td><td>4</td><td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div></td></tr>
+            </tbody></table></div>
+          <
         </div>
         <div id="admintab-audit" style="display:none">
           <div class="card"><div class="card-header"><div class="card-title">Audit log</div></div><div class="table-wrap"><table><thead><tr><th>User</th><th>Action</th><th>Resource</th><th>Date</th><th>IP</th></tr></thead><tbody>
+          <tr><td><span class="mini-av" style="background:#7C3AED">FH</span></td><td>Approval decision</td><td>BNP Paribas · Approved</td><td style="color:var(--t4)">Today 3:41 PM</td><td style="color:var(--t4)">82.64.xx.xx</td></tr>
           <tr><td><span class="mini-av" style="background:#7C3AED">FH</span></td><td>Deal updated</td><td>HighCo #4821</td><td style="color:var(--t4)">Today 2:35 PM</td><td style="color:var(--t4)">82.64.xx.xx</td></tr>
+          <tr><td><span class="mini-av">LM</span></td><td>Document uploaded</td><td>Contract_SocieteGenerale_v3.pdf</td><td style="color:var(--t4)">Today 1:10 PM</td><td style="color:var(--t4)">78.30.xx.xx</td></tr>
           <tr><td><span class="mini-av">AB</span></td><td>Assessment created</td><td>BNP Paribas</td><td style="color:var(--t4)">Today 10:12 AM</td><td style="color:var(--t4)">90.12.xx.xx</td></tr>
           <tr><td><span class="mini-av" style="background:#7C3AED">FH</span></td><td>Login</td><td>—</td><td style="color:var(--t4)">Today 9:00 AM</td><td style="color:var(--t4)">82.64.xx.xx</td></tr>
+          <tr><td><span class="mini-av" style="background:#059669">RK</span></td><td>Deal stage changed</td><td>Carrefour → Proposal</td><td style="color:var(--t4)">Yesterday 5:22 PM</td><td style="color:var(--t4)">41.92.xx.xx</td></tr>
+          <tr><td><span class="mini-av">AB</span></td><td>Approval requested</td><td>Air France · Discount −8%</td><td style="color:var(--t4)">Yesterday 3:15 PM</td><td style="color:var(--t4)">90.12.xx.xx</td></tr>
+          <tr><td><span class="mini-av">LM</span></td><td>Deal created</td><td>Bouygues Télécom #5102</td><td style="color:var(--t4)">Yesterday 11:00 AM</td><td style="color:var(--t4)">78.30.xx.xx</td></tr>
+          <tr><td><span class="mini-av" style="background:#7C3AED">FH</span></td><td>User role changed</td><td>Omar F. → Sales rep</td><td style="color:var(--t4)">May 19 2:00 PM</td><td style="color:var(--t4)">82.64.xx.xx</td></tr>
+          <tr><td><span class="mini-av" style="background:#7C3AED">FH</span></td><td>Integration configured</td><td>Slack · #sales-alerts</td><td style="color:var(--t4)">May 18 9:30 AM</td><td style="color:var(--t4)">82.64.xx.xx</td></tr>
           </tbody></table></div></div>
         </div>
       </div>
@@ -1869,19 +1944,18 @@ textarea.form-input{resize:none;min-height:80px;font-family:inherit}
 <script>
 // ─── Data Store ───────────────────────────────────────────────────────────────
 const DEALS = [
-  {id:1,co:'HighCo',contact:'Sophie Martin',role:'CDO',stage:'Proposal',value:280000,score:82,owner:'FH',ownerColor:'#7C3AED',date:'May 14'},
-  {id:2,co:'BNP Paribas',contact:'Marc Dubois',role:'CTO',stage:'Negotiation',value:420000,score:91,owner:'AB',ownerColor:'#1A1F2E',date:'May 17'},
-  {id:3,co:'Carrefour Group',contact:'Isabelle Roy',role:'VP Sales',stage:'Discovery',value:195000,score:58,owner:'RK',ownerColor:'#059669',date:'May 13'},
-  {id:4,co:'Société Générale',contact:'Pierre Laurent',role:'CFO',stage:'Closing',value:340000,score:95,owner:'LM',ownerColor:'#1A1F2E',date:'May 18'},
-  {id:5,co:"L'Oréal",contact:'Anna Petit',role:'Digital Dir.',stage:'Qualification',value:120000,score:43,owner:'OF',ownerColor:'#B45309',date:'May 16'},
-  {id:6,co:'Air France',contact:'Céline Moreau',role:'DSI',stage:'Proposal',value:165000,score:76,owner:'AB',ownerColor:'#1A1F2E',date:'May 15'},
-  {id:7,co:'Renault Digital',contact:'Thomas Blanc',role:'DG',stage:'Discovery',value:88000,score:34,owner:'OF',ownerColor:'#B45309',date:'May 11'},
-  {id:8,co:'AXA France',contact:'Julie Petit',role:'CMO',stage:'Qualification',value:210000,score:67,owner:'RK',ownerColor:'#059669',date:'May 10'},
+  // 1 deal per stage — showcases the full pipeline progression
+  {id:1,co:'Galeries Lafayette',contact:'Nathalie Caron',role:'Dir. Innovation',stage:'Prospecting',value:95000,score:0,assessment:'none',owner:'OF',ownerColor:'#B45309',date:'Jun 2',note:'First contact via LinkedIn — intro call scheduled Jun 5'},
+  {id:2,co:'Fnac Darty',contact:'Jérôme Blanc',role:'VP Digital',stage:'Discovery',value:145000,score:38,assessment:'in-progress',owner:'RK',ownerColor:'#059669',date:'May 28',note:'Discovery call done — 5-gate scorecard 38/100, Gate 0 pending'},
+  {id:3,co:"L'Oréal Retail",contact:'Anna Petit',role:'Digital Dir.',stage:'Qualification',value:210000,score:64,assessment:'needs-work',owner:'AB',ownerColor:'#1A1F2E',date:'May 22',note:'Discovery passed 3/5 gates — technical assessment sent, awaiting response'},
+  {id:4,co:'HighCo',contact:'Sophie Martin',role:'CDO',stage:'Proposal',value:280000,score:82,assessment:'pass',owner:'FH',ownerColor:'#7C3AED',date:'May 14',note:'Fully qualified — proposal €280K sent May 16, client reviewing'},
+  {id:5,co:'BNP Paribas',contact:'Marc Dubois',role:'CTO',stage:'Negotiation',value:420000,score:91,assessment:'pass',owner:'AB',ownerColor:'#1A1F2E',date:'May 17',note:'Proposal accepted in principle — negotiating data governance annex & pricing'},
+  {id:6,co:'Société Générale',contact:'Pierre Laurent',role:'CFO',stage:'Closing',value:340000,score:95,assessment:'pass',owner:'LM',ownerColor:'#1A1F2E',date:'May 18',note:'Contract sent for final signature — legal review complete'},
 ];
 
 const STAGE_BADGE = {
-  'Discovery':'b-gray','Qualification':'b-gray','Proposal':'b-amber',
-  'Negotiation':'b-dark','Closing':'b-green'
+  'Prospecting':'b-gray','Discovery':'b-gray','Qualification':'b-amber',
+  'Proposal':'b-amber','Negotiation':'b-dark','Closing':'b-green'
 };
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
@@ -1916,7 +1990,7 @@ function showPage(id) {
     return `<span class="bc-item" onclick="showPage('${c.page}')">${c.text}</span><span class="bc-sep">/</span>`;
   }).join('');
   if(id==='deals') renderDeals();
-  if(id==='analytics') setTimeout(renderCharts,100);
+  if(id==='analytics') setTimeout(renderAnalyticsCharts,300);
 }
 
 // ─── Deal tabs ────────────────────────────────────────────────────────────────
@@ -1938,16 +2012,27 @@ function scoreFill(s){return s>=70?'green':s>=50?'amber':'red'}
 function renderDeals(q='') {
   const tbody=document.getElementById('deals-tbody');
   const filtered=DEALS.filter(d=>!q||d.co.toLowerCase().includes(q.toLowerCase())||d.contact.toLowerCase().includes(q.toLowerCase()));
+  function assessBadge(d) {
+    if(d.assessment==='none'||d.score===0) return `<span class="badge b-gray" style="opacity:.6">—</span>`;
+    if(d.assessment==='pass') return `<span class="badge b-green"><span class="b-dot"></span>Pass</span>`;
+    if(d.assessment==='needs-work') return `<span class="badge b-amber"><span class="b-dot"></span>Needs work</span>`;
+    if(d.assessment==='in-progress') return `<span class="badge b-gray"><span class="b-dot"></span>In progress</span>`;
+    return `<span class="badge b-red"><span class="b-dot"></span>Blocker</span>`;
+  }
+  function scoreCell(d) {
+    if(d.score===0) return `<div class="score-wrap"><div class="score-bar"></div><span style="font-size:11px;color:var(--t4);width:28px;text-align:right">—</span></div>`;
+    return `<div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:${d.score}%;background:${scoreColor(d.score)}"></div></div><span style="font-size:11px;font-weight:600;width:28px;text-align:right;color:${scoreColor(d.score)}">${d.score}</span></div>`;
+  }
   tbody.innerHTML=filtered.map(d=>`
-    <tr style="cursor:pointer" onclick="showPage('deal-detail')">
+    <tr style="cursor:pointer" onclick="openDeal(${d.id})">
       <td><div class="cb" onclick="event.stopPropagation();this.classList.toggle('checked')"></div></td>
       <td><div class="td-main">${d.co}</div><div class="td-sub">${d.contact} · ${d.role}</div></td>
       <td><span class="badge ${STAGE_BADGE[d.stage]||'b-gray'}"><span class="b-dot"></span>${d.stage}</span></td>
       <td class="td-main">€${(d.value/1000).toFixed(0)}K</td>
-      <td><div class="score-wrap"><div class="score-bar"><div class="score-fill ${scoreFill(d.score)}" style="width:${d.score}%;background:${scoreColor(d.score)}"></div></div><span style="font-size:11px;font-weight:600;width:28px;text-align:right;color:${scoreColor(d.score)}">${d.score}</span></div></td>
-      <td><span class="badge ${d.score>=70?'b-green':d.score>=50?'b-amber':'b-red'}"><span class="b-dot"></span>${d.score>=70?'Pass':d.score>=50?'Needs work':'Blocker'}</span></td>
+      <td>${scoreCell(d)}</td>
+      <td>${assessBadge(d)}</td>
       <td><span class="mini-av" style="background:${d.ownerColor}">${d.owner}</span></td>
-      <td style="color:var(--t4)">${d.date}</td>
+      <td style="color:var(--t4);max-width:220px"><div style="font-size:11.5px;color:var(--t4)">${d.date}</div><div style="font-size:11px;color:var(--t4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px">${d.note||''}</div></td>
       <td><div class="row-actions"><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation()"><i class="ti ti-edit"></i></button><button class="btn btn-danger btn-xs" onclick="event.stopPropagation()"><i class="ti ti-trash"></i></button></div></td>
     </tr>
   `).join('');
@@ -2039,40 +2124,7 @@ document.querySelectorAll('.modal-overlay').forEach(m=>{
 });
 
 // ─── Charts ───────────────────────────────────────────────────────────────────
-let chartsRendered=false;
-function renderCharts(){
-  if(chartsRendered)return;
-  chartsRendered=true;
-  const months=['Jan','Feb','Mar','Apr','May'];
-  new Chart(document.getElementById('revenueChart'),{
-    type:'bar',
-    data:{
-      labels:months,
-      datasets:[{
-        label:'Revenue (€K)',
-        data:[620,710,580,780,890],
-        backgroundColor:'#1A1F2E',
-        borderRadius:4,
-        borderSkipped:false
-      }]
-    },
-    options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>v+'K'},grid:{color:'#F0F0F0'}},x:{grid:{display:false}}}}
-  });
-  new Chart(document.getElementById('funnelChart'),{
-    type:'bar',
-    data:{
-      labels:['Discovery','Qualif.','Proposal','Négoc.','Closing'],
-      datasets:[{
-        label:'Deals',
-        data:[66,44,24,12,4],
-        backgroundColor:['#374151','#374151','#D97706','#D97706','#16A34A'],
-        borderRadius:4,
-        borderSkipped:false
-      }]
-    },
-    options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#F0F0F0'}},y:{grid:{display:false}}}}
-  });
-}
+// renderCharts() removed — analytics charts handled by renderAnalyticsCharts()
 
 // ─── Filter tabs (generic) ────────────────────────────────────────────────────
 document.querySelectorAll('.seg-tab').forEach(tab=>{
@@ -2087,6 +2139,861 @@ document.querySelectorAll('.seg-tab').forEach(tab=>{
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 renderDeals();
+
+// ─── Analytics data store ─────────────────────────────────────────────────────
+const AN_DATA = {
+  all:  {revenue:'€890K',won:14,lost:9,stalled:11,clients:38,cycle:'47d'},
+  rep: {
+    AB: {revenue:'€312K',won:5,lost:2,stalled:1,clients:8,cycle:'38d'},
+    FH: {revenue:'€280K',won:4,lost:2,stalled:2,clients:10,cycle:'44d'},
+    LM: {revenue:'€196K',won:3,lost:2,stalled:1,clients:6,cycle:'51d'},
+    RK: {revenue:'€102K',won:2,lost:2,stalled:1,clients:5,cycle:'58d'},
+    OF: {revenue:'€0',   won:0,lost:1,stalled:2,clients:4,cycle:'—'},
+  },
+  team: {
+    FR: {revenue:'€788K',won:12,lost:6,stalled:4,clients:24,cycle:'44d'},
+    MA: {revenue:'€102K',won:2, lost:3,stalled:3,clients:9, cycle:'58d'},
+  }
+};
+
+const AN_VELOCITY = {
+  all: {won:[8,12,18,14,6],lost:[14,22,31,9,3]},
+  AB:  {won:[6,10,15,12,5],lost:[10,18,25,7,2]},
+  FH:  {won:[9,13,20,15,6],lost:[15,20,28,8,3]},
+  LM:  {won:[10,14,22,16,7],lost:[18,25,35,10,4]},
+  RK:  {won:[12,16,24,18,8],lost:[20,28,38,12,5]},
+  OF:  {won:[0,0,0,0,0],   lost:[22,32,42,15,6]},
+  FR:  {won:[7,11,17,13,5],lost:[13,20,29,8,3]},
+  MA:  {won:[11,15,23,17,7],lost:[19,27,36,11,4]},
+};
+
+const AN_CHARTS = {};
+
+function mkChart(id, config) {
+  const el = document.getElementById(id);
+  if (!el) return null;
+  const existing = Chart.getChart(el);
+  if (existing) existing.destroy();
+  if (AN_CHARTS[id]) { try { AN_CHARTS[id].destroy(); } catch(e){} }
+  const chart = new Chart(el, config);
+  AN_CHARTS[id] = chart;
+  return chart;
+}
+
+function renderAnalyticsCharts() {
+  velocityChart = mkChart('velocityChart', {
+    type:'bar',
+    data:{labels:['Discovery','Qualification','Proposal','Negotiation','Closing'],
+      datasets:[
+        {label:'Won (avg. days)',data:[8,12,18,14,6],backgroundColor:'rgba(22,163,74,.75)',borderRadius:4},
+        {label:'Lost (avg. days)',data:[14,22,31,9,3],backgroundColor:'rgba(220,38,38,.5)',borderRadius:4}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}}},scales:{y:{grid:{color:'#F0F0F0'}},x:{grid:{display:false}}}}
+  });
+
+  sizeChart = mkChart('sizeChart', {
+    type:'bar',
+    data:{labels:['<€50K','€50–100K','€100–200K','€200–400K','>€400K'],
+      datasets:[
+        {label:'Won',data:[6,4,2,1,1],backgroundColor:'rgba(22,163,74,.75)',borderRadius:4},
+        {label:'Lost',data:[2,3,2,1,1],backgroundColor:'rgba(220,38,38,.5)',borderRadius:4}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}}},scales:{y:{grid:{color:'#F0F0F0'},ticks:{stepSize:1}},x:{grid:{display:false}}}}
+  });
+
+  lossChart = mkChart('lossReasonsChart', {
+    type:'doughnut',
+    data:{labels:['Price too high','Chose competitor','No budget','No decision','Bad timing','Other'],
+      datasets:[{data:[34,28,16,10,8,4],backgroundColor:['#DC2626','#D97706','#1A1F2E','#6B7280','#22D3C8','#E5E7EB'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{boxWidth:10,font:{size:11}}}}}
+  });
+
+  clientRevChart = mkChart('clientRevenueChart', {
+    type:'bar',
+    data:{labels:['Société Gén.','TotalEnergies','BNP Paribas','Carrefour','Air France','Veolia','HighCo','Michelin'],
+      datasets:[{label:'€K',data:[680,510,420,380,310,280,240,190],backgroundColor:['#1A1F2E','#22D3C8','#1A1F2E','#22D3C8','#1A1F2E','#22D3C8','#1A1F2E','#22D3C8'],borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#F0F0F0'},ticks:{callback:v=>'€'+v+'K'}},y:{grid:{display:false}}}}
+  });
+
+  industryChart = mkChart('industryChart', {
+    type:'doughnut',
+    data:{labels:['Banking','Retail','Energy','Telecom','Transport','Industry'],
+      datasets:[{data:[32,21,18,13,10,6],backgroundColor:['#1A1F2E','#22D3C8','#16A34A','#D97706','#7C3AED','#059669'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'right',labels:{boxWidth:10,font:{size:11}}}}}
+  });
+
+  dealTypeChart = mkChart('dealTypeChart', {
+    type:'bar',
+    data:{labels:['Jan','Feb','Mar','Apr','May'],
+      datasets:[
+        {label:'New business',data:[180,210,160,240,280],backgroundColor:'#1A1F2E',borderRadius:4},
+        {label:'Renewal',     data:[120,140,190,160,210],backgroundColor:'#22D3C8',borderRadius:4},
+        {label:'Upsell',      data:[60,80,90,110,140], backgroundColor:'rgba(22,163,74,.7)',borderRadius:4}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'#F0F0F0'},ticks:{callback:v=>'€'+v+'K'}}}}
+  });
+
+  repRevChart = mkChart('repRevenueChart', {
+    type:'bar',
+    data:{labels:['Ahmed B.','Fadoua H.','Layla M.','Rania K.','Omar F.'],
+      datasets:[{label:'Revenue',data:[312,280,196,102,0],backgroundColor:['#16A34A','#7C3AED','#22D3C8','#059669','#DC2626'],borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:'#F0F0F0'},ticks:{callback:v=>'€'+v+'K'}},x:{grid:{display:false}}}}
+  });
+
+  repConvChart = mkChart('repConvChart', {
+    type:'bar',
+    data:{labels:['Ahmed B.','Fadoua H.','Layla M.','Rania K.','Omar F.'],
+      datasets:[
+        {label:'Conversion rate',data:[31,28,22,18,0],backgroundColor:['#16A34A','#7C3AED','#22D3C8','#059669','#DC2626'],borderRadius:4},
+        {label:'Target (26%)',data:[26,26,26,26,26],type:'line',borderColor:'#DC2626',borderDash:[4,3],borderWidth:1.5,pointRadius:0,fill:false}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}}},scales:{y:{max:40,grid:{color:'#F0F0F0'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}}
+  });
+}
+
+// ─── Apply filters ─────────────────────────────────────────────────────────────
+function applyAnalyticsFilters() {
+  const rep    = document.getElementById('af-rep').value;
+  const team   = document.getElementById('af-team').value;
+  const type   = document.getElementById('af-type').value;
+  const stage  = document.getElementById('af-stage').value;
+  const client = document.getElementById('af-client').value;
+  const hasFilter = rep!=='all'||team!=='all'||type!=='all'||stage!=='all'||client!=='all';
+
+  document.getElementById('af-reset').style.display = hasFilter ? '' : 'none';
+
+  // Update chips
+  const chipsEl = document.getElementById('af-chips');
+  const labels = {
+    rep:{AB:'Ahmed B.',FH:'Fadoua H.',LM:'Layla M.',RK:'Rania K.',OF:'Omar F.'},
+    team:{FR:'Sales FR',MA:'Sales MA'},
+    type:{new:'New business',renewal:'Renewal',upsell:'Upsell'},
+    stage:{discovery:'Discovery',qualification:'Qualification',proposal:'Proposal',negotiation:'Negotiation',closing:'Closing'},
+    client:{SG:'Société Gén.',BNP:'BNP Paribas',HC:'HighCo',CA:'Carrefour',AF:'Air France',TE:'TotalEnergies',VE:'Veolia',RG:'Renault'}
+  };
+  chipsEl.innerHTML = hasFilter ? '<span style="font-size:11px;color:var(--t3);font-weight:500">Filtered by:</span>' : '';
+  if(hasFilter) chipsEl.style.display='flex'; else chipsEl.style.display='none';
+  const addChip = (val, label, filterId) => {
+    if(val==='all') return;
+    const chip = document.createElement('span');
+    chip.className='an-chip';
+    chip.innerHTML=`${label} <i class="ti ti-x" style="font-size:10px;cursor:pointer" onclick="document.getElementById('${filterId}').value='all';applyAnalyticsFilters()"></i>`;
+    chipsEl.appendChild(chip);
+  };
+  addChip(rep,   labels.rep[rep],    'af-rep');
+  addChip(team,  labels.team[team],  'af-team');
+  addChip(type,  labels.type[type],  'af-type');
+  addChip(stage, labels.stage[stage],'af-stage');
+  addChip(client,labels.client[client],'af-client');
+
+  // Update KPIs
+  let d = AN_DATA.all;
+  if(rep!=='all') d = AN_DATA.rep[rep];
+  else if(team!=='all') d = AN_DATA.team[team];
+  document.getElementById('kpi-revenue').textContent = d.revenue;
+  document.getElementById('kpi-won').textContent     = d.won;
+  document.getElementById('kpi-lost').textContent    = d.lost;
+  document.getElementById('kpi-stalled').textContent = d.stalled;
+  document.getElementById('kpi-clients').textContent = d.clients;
+  document.getElementById('kpi-cycle').textContent   = d.cycle;
+
+  // Update velocity chart
+  if(velocityChart) {
+    const key = rep!=='all' ? rep : team!=='all' ? team : 'all';
+    const vd = AN_VELOCITY[key] || AN_VELOCITY.all;
+    velocityChart.data.datasets[0].data = vd.won;
+    velocityChart.data.datasets[1].data = vd.lost;
+    velocityChart.update();
+  }
+
+  // Filter list rows
+  filterListRows('.an-deal-row',   'stalled-empty',  {rep,team,type,stage});
+  filterListRows('.an-client-row', 'risk-empty',     {rep,team,client});
+  filterTableRows('.an-rep-row',                     {rep,team});
+}
+
+function filterListRows(selector, emptyId, filters) {
+  const rows = document.querySelectorAll(selector);
+  let visible = 0;
+  rows.forEach(row => {
+    const show = Object.entries(filters).every(([key,val]) =>
+      val==='all' || !row.dataset[key] || row.dataset[key]===val
+    );
+    row.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+  const emptyEl = document.getElementById(emptyId);
+  if(emptyEl) emptyEl.style.display = visible===0 ? '' : 'none';
+}
+
+function filterTableRows(selector, filters) {
+  document.querySelectorAll(selector).forEach(row => {
+    const show = Object.entries(filters).every(([key,val]) =>
+      val==='all' || !row.dataset[key] || row.dataset[key]===val
+    );
+    row.style.display = show ? '' : 'none';
+  });
+}
+
+function resetAnalyticsFilters() {
+  ['af-rep','af-team','af-type','af-stage','af-client'].forEach(id =>
+    document.getElementById(id).value = 'all'
+  );
+  applyAnalyticsFilters();
+}
+
+// ─── Conversational Agent ──────────────────────────────────────────────────────
+const AGENT_RESPONSES = {
+  default: [
+    "I've analysed your pipeline. You have 3 deals that need attention today — BNP Paribas, Société Générale, and HighCo. Want a full breakdown?",
+    "Based on the current pipeline, your Q2 revenue forecast is tracking at €1.2M — 8% above target. The main risk is the HighCo contract extension.",
+    "I can help you draft a proposal, analyse a deal's risk, or generate a call summary. What do you need?",
+    "Société Générale's deal has the highest AI win score in the pipeline (91/100). I'd recommend prioritising its approval today.",
+  ],
+  proposal: "I can generate a personalised proposal for this deal. I'll use the client's industry, company size, and previous interactions to tailor the content. Which deal should I start with?",
+  forecast: "Your current pipeline forecast: Committed €480K · Upside €390K · Pipeline €330K. Compared to last month, committed deals are up 12%. The main risk to Q2 is the HighCo payment term extension (€280K).",
+  deals: "You have 66 active deals. The 3 requiring immediate action: BNP Paribas (discount approval, 3 days overdue), Société Générale (proposal approval, 2 days overdue), and HighCo (contract extension). Want me to draft a summary email to your manager?",
+  sla: "2 SLA breaches detected: BNP Paribas response SLA exceeded by 3 days, HighCo follow-up SLA exceeded by 2 days. I can draft catch-up messages for both — shall I?",
+};
+let agentResponseIndex = 0;
+
+function toggleEvidence(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+function toggleTaDim(id) {
+  const row = document.getElementById(id);
+  const chev = document.getElementById('chev-' + id);
+  const isOpen = row.style.display !== 'none';
+  row.style.display = isOpen ? 'none' : 'table-row';
+  if (chev) chev.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+function toggleAgent() {
+  const panel = document.getElementById('agent-panel');
+  const chev = document.getElementById('agent-chevron');
+  const isOpen = panel.style.display === 'flex';
+  panel.style.display = isOpen ? 'none' : 'flex';
+  if (chev) chev.style.transform = isOpen ? '' : 'rotate(180deg)';
+  if (!isOpen) {
+    if (!panel.dataset.init) {
+      panel.dataset.init = '1';
+      appendAgentMsg('agent', "Hi Fadoua! I've reviewed your pipeline. You have 3 deals needing attention today. Want a briefing?");
+    }
+    setTimeout(() => { const inp = document.getElementById('agent-input'); if(inp) inp.focus(); }, 100);
+  }
+}
+
+function agentSend() {
+  const input = document.getElementById('agent-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  appendAgentMsg('user', text);
+  setTimeout(() => {
+    const lower = text.toLowerCase();
+    let reply;
+    if (lower.includes('proposal') || lower.includes('propose')) reply = AGENT_RESPONSES.proposal;
+    else if (lower.includes('forecast') || lower.includes('revenue')) reply = AGENT_RESPONSES.forecast;
+    else if (lower.includes('deal') || lower.includes('pipeline')) reply = AGENT_RESPONSES.deals;
+    else if (lower.includes('sla') || lower.includes('breach') || lower.includes('late')) reply = AGENT_RESPONSES.sla;
+    else { reply = AGENT_RESPONSES.default[agentResponseIndex % AGENT_RESPONSES.default.length]; agentResponseIndex++; }
+    appendAgentMsg('agent', reply);
+  }, 680);
+}
+
+function agentQuick(text) {
+  document.getElementById('agent-input').value = text;
+  agentSend();
+}
+
+function appendAgentMsg(role, text) {
+  const feed = document.getElementById('agent-feed');
+  if (!feed) return;
+  const now = new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
+  const div = document.createElement('div');
+  const isAgent = role === 'agent';
+  div.style.cssText = 'display:flex;gap:6px;align-items:flex-end;' + (isAgent ? '' : 'flex-direction:row-reverse');
+  div.innerHTML = isAgent
+    ? `<div style="width:22px;height:22px;border-radius:50%;background:rgba(34,211,200,.2);display:flex;align-items:center;justify-content:center;color:#22D3C8;font-size:10px;flex-shrink:0"><i class="ti ti-sparkles"></i></div><div style="background:rgba(255,255,255,.08);border-radius:10px;padding:7px 10px;max-width:180px"><div style="font-size:11.5px;color:#fff;line-height:1.4">${text}</div><div style="font-size:9.5px;color:rgba(255,255,255,.35);margin-top:3px">${now}</div></div>`
+    : `<div style="background:var(--teal);border-radius:10px;padding:7px 10px;max-width:180px"><div style="font-size:11.5px;color:var(--navy);line-height:1.4">${text}</div><div style="font-size:9.5px;color:rgba(26,31,46,.5);margin-top:3px">${now}</div></div>`;
+  feed.appendChild(div);
+  feed.scrollTop = feed.scrollHeight;
+}
+
+(document.getElementById('agent-input')||{addEventListener:()=>{}}).addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); agentSend(); }
+});
+// ─── Deal detail — extended data ─────────────────────────────────────────────
+const DEAL_EXT = {
+  1:{initials:'NC',cc:'#0EA5E9',email:'n.caron@galerieslafayette.com',phone:'+33 6 45 12 78 90',loc:'Paris, France',prob:15,close:'Oct 2026',src:'LinkedIn',crm:'#PD-5104',own:'Omar F.'},
+  2:{initials:'JB',cc:'#059669',email:'j.blanc@fnacdarty.com',phone:'+33 6 78 23 45 90',loc:'Ivry-sur-Seine, France',prob:30,close:'Aug 2026',src:'Outbound',crm:'#PD-5201',own:'Rania K.'},
+  3:{initials:'AP',cc:'#7C3AED',email:'a.petit@loreal.com',phone:'+33 6 34 56 78 90',loc:'Clichy, France',prob:45,close:'Jul 2026',src:'Referral',crm:'#PD-4944',own:'Ahmed B.'},
+  4:{initials:'SM',cc:'#7C3AED',email:'sophie.martin@highco.com',phone:'+33 6 12 34 56 78',loc:'Paris, France',prob:72,close:'30 Jun 2026',src:'Inbound',crm:'#PD-4821',own:'Fadoua H.'},
+  5:{initials:'MD',cc:'#1E40AF',email:'m.dubois@bnpparibas.com',phone:'+33 6 56 78 12 34',loc:'Paris, France',prob:85,close:'15 Jun 2026',src:'Inbound',crm:'#PD-4756',own:'Ahmed B.'},
+  6:{initials:'PL',cc:'#0F766E',email:'p.laurent@societegenerale.fr',phone:'+33 6 89 01 23 45',loc:'La Défense, France',prob:95,close:'5 Jun 2026',src:'Account',crm:'#PD-4612',own:'Leila M.'},
+};
+
+const DEAL_NOTES = {
+  1:[{t:'Nathalie replied to LinkedIn within 24h — high responsiveness. Mentioned evaluating retail media for 2027.',a:'Omar F.',d:'Jun 2 2026'},{t:'GL operates 65 stores in France. Strong FMCG brand presence — potential 60+ screens.',a:'Omar F.',d:'Jun 1 2026'}],
+  2:[{t:'Discovery call done May 28 — Jérôme confirmed Fnac Darty owns 340 in-store screens across 65 locations. Very receptive.',a:'Rania K.',d:'May 28 2026'},{t:'Gates 0 and 1 confirmed GO. Gates 2-4 pending — 5-gate scorecard in progress.',a:'Rania K.',d:'May 28 2026'}],
+  3:[{t:'Anna raised GDPR concerns early. Will need strong data governance narrative in the proposal.',a:'Ahmed B.',d:'May 22 2026'},{t:'Technical assessment sent to IT team. Follow up if no response by May 29.',a:'Ahmed B.',d:'May 22 2026'}],
+  4:[{t:'Sophie very interested in the Analytics module. Prioritize in demo.',a:'Fadoua H.',d:'May 15 2026'},{t:'Budget confirmed: €280K approved by CFO. Final decision in June.',a:'Fadoua H.',d:'May 12 2026'}],
+  5:[{t:'Marc confirmed proposal accepted in principle. Main sticking point: data governance terms.',a:'Ahmed B.',d:'May 17 2026'},{t:'BNP legal team reviewing DPA — expected 5 business days. Target signature May 28.',a:'Ahmed B.',d:'May 17 2026'}],
+  6:[{t:'Contract sent to Pierre May 18. Legal pre-approved. Waiting for DocuSign.',a:'Leila M.',d:'May 18 2026'},{t:'SG is a strategic anchor client — key for brand pipeline in banking segment.',a:'Fadoua H.',d:'May 16 2026'}],
+};
+
+const DEAL_ACTIVITY = {
+  1:[
+    {bg:'rgba(34,211,200,.1)',col:'var(--teal)',icon:'ti-brand-linkedin',t:'LinkedIn connection request accepted — Nathalie Caron responded',a:'Omar F.',d:'Jun 2 2026 · 11:15'},
+    {bg:'rgba(34,211,200,.1)',col:'var(--teal)',icon:'ti-message',t:'LinkedIn message sent — AiOO retail media intro',a:'Omar F.',d:'Jun 1 2026 · 09:30'},
+    {bg:'var(--bg)',col:'var(--t3)',icon:'ti-plus',t:'Deal created — source: LinkedIn prospecting campaign',a:'System',d:'Jun 1 2026'},
+  ],
+  2:[
+    {bg:'var(--amber-bg)',col:'var(--amber)',icon:'ti-clipboard-list',t:'5-Gate discovery assessment started — Gates 0 & 1 confirmed GO',a:'Rania K.',d:'May 28 2026 · 16:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-phone',t:'Discovery call — 52 min · Jérôme Blanc',a:'Rania K.',d:'May 28 2026 · 14:00'},
+    {bg:'var(--bg)',col:'var(--t3)',icon:'ti-mail',t:'Email sent — Discovery call invitation',a:'Rania K.',d:'May 25 2026 · 10:00'},
+    {bg:'var(--bg)',col:'var(--t3)',icon:'ti-plus',t:'Deal created from outbound campaign',a:'System',d:'May 22 2026'},
+  ],
+  3:[
+    {bg:'var(--amber-bg)',col:'var(--amber)',icon:'ti-send',t:'Technical assessment questionnaire sent — a.petit@loreal.com',a:'Ahmed B.',d:'May 22 2026 · 15:30'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-clipboard-check',t:'Discovery assessment completed — Score 64/100 · 4/5 gates GO',a:'Ahmed B.',d:'May 22 2026 · 14:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-phone',t:'Discovery call — 40 min · Anna Petit',a:'Ahmed B.',d:'May 20 2026 · 11:00'},
+    {bg:'var(--bg)',col:'var(--t3)',icon:'ti-mail',t:'Email sent — Intro to AiOO platform',a:'Ahmed B.',d:'May 18 2026 · 09:00'},
+    {bg:'var(--bg)',col:'var(--t3)',icon:'ti-plus',t:'Deal created — referral from Carrefour Group',a:'System',d:'May 17 2026'},
+  ],
+  4:[
+    {bg:'var(--amber-bg)',col:'var(--amber)',icon:'ti-file-text',t:'Proposal draft generated — €280K · Awaiting Sophie review',a:'Fadoua H.',d:'May 16 2026 · 16:00'},
+    {bg:'var(--amber-bg)',col:'var(--amber)',icon:'ti-send',t:'Technical assessment sent — sophie.martin@highco.com',a:'Fadoua H.',d:'May 16 2026 · 09:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-clipboard-check',t:'Discovery assessment completed — Score 82/100',a:'Fadoua H.',d:'May 14 2026 · 14:32'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-phone',t:'Discovery call — 45 min · Sophie Martin',a:'Fadoua H.',d:'May 12 2026 · 10:00'},
+    {bg:'var(--bg)',col:'var(--t3)',icon:'ti-mail',t:'Email sent — Demo appointment confirmation',a:'Fadoua H.',d:'May 10 2026 · 09:15'},
+    {bg:'var(--bg)',col:'var(--t3)',icon:'ti-plus',t:'Deal created from Pipedrive',a:'System',d:'May 8 2026'},
+  ],
+  5:[
+    {bg:'var(--amber-bg)',col:'var(--amber)',icon:'ti-writing',t:'Negotiation started — data governance annex under review by BNP legal',a:'Ahmed B.',d:'May 17 2026 · 11:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-check',t:'Proposal accepted in principle — Marc Dubois confirmed verbally',a:'Ahmed B.',d:'May 17 2026 · 09:30'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-clipboard-check',t:'Manager validation approved — Ahmed B.',a:'Fadoua H.',d:'May 16 2026 · 18:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-file-text',t:'Proposal sent — €420K · BNP Paribas Screen Network',a:'Ahmed B.',d:'May 15 2026 · 14:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-clipboard-check',t:'Technical assessment passed — Score 91/100',a:'Ahmed B.',d:'May 14 2026 · 16:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-clipboard-check',t:'Discovery assessment passed — Score 91/100',a:'Ahmed B.',d:'May 12 2026 · 14:00'},
+  ],
+  6:[
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-signature',t:'Contract sent for signature via DocuSign — Pierre Laurent',a:'Leila M.',d:'May 18 2026 · 10:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-check',t:'Legal review complete — no blocking issues identified',a:'Leila M.',d:'May 17 2026 · 17:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-check',t:'Manager validation approved — Fadoua H.',a:'Fadoua H.',d:'May 16 2026 · 09:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-file-text',t:'Final contract sent — €340K · 24-month term',a:'Leila M.',d:'May 15 2026 · 14:00'},
+    {bg:'var(--green-bg)',col:'var(--green)',icon:'ti-clipboard-check',t:'Both assessments passed — Discovery 95, Technical 95',a:'Leila M.',d:'May 10 2026 · 16:00'},
+  ],
+};
+
+const DEAL_DOCS = {
+  1:[],
+  2:[{icon:'ti-file-text',name:'Discovery_Call_Notes_Fnac.docx',type:'Notes',status:'b-amber',statusText:'Draft',date:'May 28 2026'}],
+  3:[
+    {icon:'ti-file-text',name:'Discovery_Notes_LOreal.docx',type:'Notes',status:'b-green',statusText:'Finalized',date:'May 22 2026'},
+    {icon:'ti-file',name:'Technical_Assessment_Form.pdf',type:'Assessment',status:'b-amber',statusText:'Sent',date:'May 22 2026'},
+  ],
+  4:[
+    {icon:'ti-file-text',name:'Cahier_des_charges_HighCo.pdf',type:'Client brief',status:'b-green',statusText:'Received',date:'May 12 2026'},
+    {icon:'ti-file-spreadsheet',name:'Discovery_Notes_HighCo.docx',type:'Notes',status:'b-green',statusText:'Finalized',date:'May 14 2026'},
+    {icon:'ti-file-text',name:'AiOO_Proposal_HighCo_v1.pdf',type:'Proposal',status:'b-amber',statusText:'Under review',date:'May 16 2026'},
+  ],
+  5:[
+    {icon:'ti-file-text',name:'AiOO_Proposal_BNP_v1.pdf',type:'Proposal',status:'b-green',statusText:'Accepted',date:'May 15 2026'},
+    {icon:'ti-file',name:'NDA_BNP_Paribas.pdf',type:'Legal',status:'b-green',statusText:'Signed',date:'May 13 2026'},
+    {icon:'ti-file-text',name:'Contract_Draft_BNP_v1.docx',type:'Contract',status:'b-amber',statusText:'Under review',date:'May 17 2026'},
+  ],
+  6:[
+    {icon:'ti-file-text',name:'AiOO_Proposal_SG_v2.pdf',type:'Proposal',status:'b-green',statusText:'Accepted',date:'May 14 2026'},
+    {icon:'ti-file',name:'NDA_SocieteGenerale.pdf',type:'Legal',status:'b-green',statusText:'Signed',date:'May 10 2026'},
+    {icon:'ti-file-text',name:'Contract_Final_SG.pdf',type:'Contract',status:'b-amber',statusText:'Awaiting signature',date:'May 18 2026'},
+  ],
+};
+
+// ─── Pipeline strip ───────────────────────────────────────────────────────────
+function dealPipelineStrip(stage) {
+  const steps = ['Prospecting','Discovery','Qualification','Proposal','Negotiation','Closing'];
+  const idx = steps.indexOf(stage);
+  return steps.map((s,i) => {
+    const done = i < idx, active = i === idx;
+    return (i>0?'<div class="ps-arrow">›</div>':'') +
+      '<div class="ps-step'+(done?' done':active?' active':'')+'">'+
+      (done?'<i class="ti ti-check" style="font-size:11px"></i>':'')+s+'</div>';
+  }).join('');
+}
+
+// ─── Header buttons per stage ─────────────────────────────────────────────────
+const STAGE_BTN = {
+  'Prospecting': ['<button class="btn btn-primary btn-sm"><i class="ti ti-calendar"></i>Schedule call</button>'],
+  'Discovery':   ['<button class="btn btn-secondary btn-sm"><i class="ti ti-edit"></i>Edit</button>','<button class="btn btn-primary btn-sm"><i class="ti ti-clipboard-list"></i>Run assessment</button>'],
+  'Qualification':['<button class="btn btn-secondary btn-sm"><i class="ti ti-send"></i>Follow up</button>','<button class="btn btn-primary btn-sm"><i class="ti ti-sparkles"></i>AI Analysis</button>'],
+  'Proposal':    ['<button class="btn btn-secondary btn-sm"><i class="ti ti-edit"></i>Edit</button>','<button class="btn btn-primary btn-sm"><i class="ti ti-send"></i>Send proposal</button>'],
+  'Negotiation': ['<button class="btn btn-secondary btn-sm"><i class="ti ti-edit"></i>Edit</button>','<button class="btn btn-primary btn-sm"><i class="ti ti-writing"></i>Finalize contract</button>'],
+  'Closing':     ['<button class="btn btn-secondary btn-sm"><i class="ti ti-edit"></i>Edit</button>','<button class="btn btn-primary btn-sm"><i class="ti ti-signature"></i>Follow up signature</button>'],
+};
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+function renderDealHeader(deal, ext) {
+  const stageBadge = STAGE_BADGE[deal.stage]||'b-gray';
+  const btns = (STAGE_BTN[deal.stage]||[]).join('');
+  const av = deal.co.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+  return '<div class="deal-hdr-top">' +
+    '<div class="co-av">'+av+'</div>' +
+    '<div style="flex:1">' +
+      '<div class="deal-name">'+deal.co+'</div>' +
+      '<div class="deal-meta">' +
+        '<span>'+deal.contact+'</span><span style="color:var(--border)">·</span>' +
+        '<span>'+deal.role+'</span><span style="color:var(--border)">·</span>' +
+        '<span>'+ext.email+'</span><span style="color:var(--border)">·</span>' +
+        '<span class="badge '+stageBadge+'"><span class="b-dot"></span>'+deal.stage+'</span>' +
+      '</div>' +
+    '</div>' +
+    '<div><div class="deal-value">€'+Number(deal.value/1000).toFixed(0)+' 000</div><div class="deal-value-label">Estimated value</div></div>' +
+    '<div style="display:flex;gap:6px;margin-left:10px">'+btns+'</div>' +
+  '</div>' +
+  '<div class="pipeline-strip">'+dealPipelineStrip(deal.stage)+'</div>';
+}
+
+// ─── Overview tab ─────────────────────────────────────────────────────────────
+const NEXT_ACTION = {
+  'Prospecting':{bg:'rgba(34,211,200,.08)',border:'rgba(34,211,200,.2)',ic:'var(--teal)',icon:'ti-calendar',title:'Schedule intro call',desc:(d)=>'First contact made '+d.date+'. '+d.note,btn:'Schedule call',btnIcon:'ti-calendar'},
+  'Discovery':{bg:'var(--amber-bg)',border:'var(--amber-bd)',ic:'var(--amber)',icon:'ti-clipboard-list',title:'Run the 5-Gate Assessment',desc:()=>'Discovery call completed. Run the 5-gate scorecard to qualify this opportunity and determine next steps.',btn:'Start assessment',btnIcon:'ti-clipboard-list'},
+  'Qualification':{bg:'var(--amber-bg)',border:'var(--amber-bd)',ic:'var(--amber)',icon:'ti-send',title:'Follow up on Technical Assessment',desc:(d)=>'Technical assessment sent to '+d.contact+'. No response after 6 days — a reminder could unblock the deal.',btn:'Send reminder',btnIcon:'ti-send'},
+  'Proposal':{bg:'var(--amber-bg)',border:'var(--amber-bd)',ic:'var(--amber)',icon:'ti-send',title:'Send the commercial proposal',desc:(d)=>d.contact+' has been waiting 3 days. The deal risks going cold without a proposal this week.',btn:'Generate & send proposal',btnIcon:'ti-send'},
+  'Negotiation':{bg:'rgba(26,31,46,.06)',border:'rgba(26,31,46,.15)',ic:'var(--navy)',icon:'ti-writing',title:'Finalize commercial terms',desc:()=>'Proposal accepted in principle. Negotiate the data governance annex and finalise pricing before sending the contract.',btn:'Open contract editor',btnIcon:'ti-writing'},
+  'Closing':{bg:'var(--green-bg)',border:'rgba(22,163,74,.2)',ic:'var(--green)',icon:'ti-signature',title:'Get final signature',desc:()=>'Contract sent for signature. Legal review complete. Follow up to confirm reception and signature date.',btn:'Follow up',btnIcon:'ti-mail'},
+};
+
+const QUAL_ROWS = {
+  'Prospecting':[
+    {icon:'ti-circle',cls:'todo',label:'Discovery call',sub:'Not yet scheduled',badge:'b-gray',text:'To do'},
+    {icon:'ti-circle',cls:'todo',label:'5-Gate Assessment',sub:'Requires discovery call first',badge:'b-gray',text:'To do'},
+    {icon:'ti-circle',cls:'todo',label:'Technical Assessment',sub:'Conditional on discovery result',badge:'b-gray',text:'To do'},
+  ],
+  'Discovery':[
+    {icon:'ti-clock',cls:'wip',label:'Discovery call',sub:'Completed — 5-gate scorecard in progress',badge:'b-amber',text:'In progress'},
+    {icon:'ti-circle',cls:'todo',label:'Technical Assessment',sub:'Conditional on discovery result',badge:'b-gray',text:'To do'},
+    {icon:'ti-circle',cls:'todo',label:'Manager validation',sub:'Required before sending proposal',badge:'b-gray',text:'To do'},
+  ],
+  'Qualification':[
+    {icon:'ti-check',cls:'done',label:'Discovery validated',sub:'Score 64 · 4/5 gates GO · May 22',badge:'b-amber',text:'Needs work'},
+    {icon:'ti-clock',cls:'wip',label:'Technical Assessment',sub:'Questionnaire sent May 22 — awaiting response',badge:'b-amber',text:'Pending'},
+    {icon:'ti-circle',cls:'todo',label:'Manager validation',sub:'Required before sending proposal',badge:'b-gray',text:'To do'},
+  ],
+  'Proposal':[
+    {icon:'ti-check',cls:'done',label:'Discovery validated',sub:'Score 82 · Completed May 14',badge:'b-green',text:'Pass'},
+    {icon:'ti-clock',cls:'wip',label:'Technical Assessment',sub:'Questionnaire sent — awaiting response',badge:'b-amber',text:'Pending'},
+    {icon:'ti-circle',cls:'todo',label:'Manager validation',sub:'Requires approval before signing',badge:'b-gray',text:'To do'},
+  ],
+  'Negotiation':[
+    {icon:'ti-check',cls:'done',label:'Discovery validated',sub:'Score 91 · Completed May 12',badge:'b-green',text:'Pass'},
+    {icon:'ti-check',cls:'done',label:'Technical Assessment',sub:'Score 91 · All dimensions passed · May 14',badge:'b-green',text:'Pass'},
+    {icon:'ti-check',cls:'done',label:'Manager validation',sub:'Approved May 16 · Fadoua H.',badge:'b-green',text:'Approved'},
+  ],
+  'Closing':[
+    {icon:'ti-check',cls:'done',label:'Discovery validated',sub:'Score 95 · Completed May 10',badge:'b-green',text:'Pass'},
+    {icon:'ti-check',cls:'done',label:'Technical Assessment',sub:'Score 95 · All dimensions passed · May 12',badge:'b-green',text:'Pass'},
+    {icon:'ti-check',cls:'done',label:'Manager validation',sub:'Approved May 15 · Fadoua H.',badge:'b-green',text:'Approved'},
+  ],
+};
+
+function renderOverviewTab(deal, ext) {
+  const na = NEXT_ACTION[deal.stage]||NEXT_ACTION['Proposal'];
+  const qr = QUAL_ROWS[deal.stage]||QUAL_ROWS['Proposal'];
+  const allDone = qr.every(r=>r.cls==='done');
+  const qualBadge = allDone ? '<span class="badge b-green"><span class="b-dot"></span>Qualified</span>' :
+    deal.stage==='Prospecting' ? '<span class="badge b-gray">Not started</span>' :
+    '<span class="badge b-amber"><span class="b-dot"></span>In progress</span>';
+  const notes = (DEAL_NOTES[deal.id]||[]).map(n=>
+    '<div class="act-item"><div class="act-dot"><i class="ti ti-note"></i></div><div><div class="act-title">'+n.t+'</div><div class="act-time">'+n.a+' · '+n.d+'</div></div></div>'
+  ).join('');
+
+  return '<div class="two-col">' +
+    '<div class="col-stack">' +
+      '<div style="background:'+na.bg+';border:1px solid '+na.border+';border-radius:var(--r);padding:14px 18px;display:flex;gap:12px;align-items:flex-start">' +
+        '<div style="width:36px;height:36px;border-radius:8px;background:'+na.ic+';display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0"><i class="ti '+na.icon+'"></i></div>' +
+        '<div><div style="font-size:13.5px;font-weight:700;color:var(--t1);margin-bottom:3px">Recommended next action</div>' +
+        '<div style="font-size:12.5px;color:var(--t2)">'+na.desc(deal)+'</div>' +
+        '<button class="btn btn-primary btn-sm" style="margin-top:8px"><i class="ti '+na.btnIcon+'"></i>'+na.btn+'</button></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="card-header"><div class="card-title">Qualification</div>'+qualBadge+'</div>' +
+        '<div class="card-body" style="padding:12px 18px">'+
+          qr.map(r=>'<div class="qual-row"><div class="qr-icon '+r.cls+'"><i class="ti '+r.icon+'"></i></div><div style="flex:1"><div class="qr-label">'+r.label+'</div><div class="qr-sub">'+r.sub+'</div></div><span class="badge '+r.badge+'">'+r.text+'</span></div>').join('')+
+        '</div></div>' +
+      (notes ? '<div class="card"><div class="card-header"><div class="card-title">Notes</div><button class="btn btn-secondary btn-xs"><i class="ti ti-plus"></i>Add</button></div><div class="card-body" style="padding:12px 18px">'+notes+'</div></div>' : '') +
+    '</div>' +
+    '<div class="col-stack">' +
+      '<div class="card"><div class="card-header"><div class="card-title">Information</div><button class="btn btn-secondary btn-xs"><i class="ti ti-edit"></i></button></div>' +
+      '<div class="card-body" style="padding:0"><div style="display:grid;grid-template-columns:1fr 1fr;gap:0">' +
+        '<div style="padding:10px 16px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Value</div><div style="font-size:14px;font-weight:700">€'+Number(deal.value).toLocaleString()+'</div></div>' +
+        '<div style="padding:10px 16px;border-bottom:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Probability</div><div style="font-size:14px;font-weight:700">'+ext.prob+'%</div></div>' +
+        '<div style="padding:10px 16px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Expected close</div><div style="font-size:14px;font-weight:700">'+ext.close+'</div></div>' +
+        '<div style="padding:10px 16px;border-bottom:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Source</div><div style="font-size:14px;font-weight:700">'+ext.src+'</div></div>' +
+        '<div style="padding:10px 16px;border-right:1px solid var(--border2)"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Owner</div><div style="font-size:13px;font-weight:600">'+ext.own+'</div></div>' +
+        '<div style="padding:10px 16px"><div style="font-size:10px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">CRM ID</div><div style="font-size:13px;color:var(--t3)">'+ext.crm+'</div></div>' +
+      '</div></div></div>' +
+      '<div class="card"><div class="card-header"><div class="card-title">Main contact</div></div>' +
+      '<div class="card-body" style="padding:14px 18px">' +
+        '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">' +
+          '<div style="width:38px;height:38px;border-radius:50%;background:'+ext.cc+';display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff">'+ext.initials+'</div>' +
+          '<div><div style="font-size:13.5px;font-weight:600">'+deal.contact+'</div><div style="font-size:12px;color:var(--t3)">'+deal.role+' · '+deal.co+'</div></div>' +
+        '</div>' +
+        '<div style="display:flex;flex-direction:column;gap:6px">' +
+          '<div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-mail" style="color:var(--t4)"></i>'+ext.email+'</div>' +
+          '<div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-phone" style="color:var(--t4)"></i>'+ext.phone+'</div>' +
+          '<div style="font-size:12.5px;color:var(--t2);display:flex;align-items:center;gap:6px"><i class="ti ti-map-pin" style="color:var(--t4)"></i>'+ext.loc+'</div>' +
+        '</div>' +
+      '</div></div>' +
+    '</div>' +
+  '</div>';
+}
+
+// ─── Assessment tab ───────────────────────────────────────────────────────────
+function emptyAssessment(icon, title, desc, btn) {
+  return '<div style="text-align:center;padding:60px 20px">' +
+    '<i class="ti '+icon+'" style="font-size:44px;color:var(--border);display:block;margin-bottom:14px"></i>' +
+    '<div style="font-size:15px;font-weight:600;color:var(--t2);margin-bottom:6px">'+title+'</div>' +
+    '<div style="font-size:13px;color:var(--t3);margin-bottom:18px;max-width:380px;margin-left:auto;margin-right:auto">'+desc+'</div>' +
+    (btn?'<button class="btn btn-primary btn-sm"><i class="ti ti-sparkles"></i>'+btn+'</button>':'') +
+  '</div>';
+}
+
+function discoveryGateRow(id, num, labelBg, name, sub, go, nogo, pend, statusBadge, questions) {
+  const total = go + nogo + pend;
+  const barCols = Array(total).fill(0).map((_,i) =>
+    '<div style="background:'+(i<go?'var(--green)':i<go+nogo?'var(--red)':'#E5E7EB')+';height:4px;flex:1"></div>'
+  ).join('');
+  const qHtml = questions.map((q,qi) =>
+    '<div style="padding:10px 18px;display:flex;align-items:flex-start;gap:12px;'+(qi<questions.length-1?'border-bottom:1px solid var(--border2);':'')+
+    (q.badge==='nogo'?'background:var(--red-bg);':q.badge==='needswork'?'background:#FFFBEB;':'')+'">' +
+    (q.badge==='go'?'<span class="badge b-green">GO</span>':q.badge==='nogo'?'<span class="badge b-red">NO-GO</span>':q.badge==='needswork'?'<span class="badge" style="background:#FFFBEB;color:var(--amber)">NEEDS WORK</span>':'<span class="badge" style="background:#F3F4F6;color:var(--t3)">PENDING</span>') +
+    '<div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--t1);margin-bottom:3px">'+q.q+'</div>' +
+    '<div style="font-size:11.5px;color:var(--t3);margin-bottom:'+(q.a?'4':'0')+'px">'+q.src+'</div>' +
+    (q.a?'<div style="font-size:12.5px;color:var(--t2)">'+q.a+'</div>':'') +
+    '</div><button class="btn btn-secondary btn-xs" style="flex-shrink:0"><i class="ti ti-edit"></i>Edit</button></div>'
+  ).join('');
+
+  return '<tr class="ta-row" onclick="toggleTaDim(\''+id+'\')" style="border-bottom:1px solid var(--border2);cursor:pointer">' +
+    '<td style="padding:11px 18px"><div style="display:flex;align-items:center;gap:8px">' +
+      '<span style="font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:3px;background:'+labelBg+';color:#fff">'+num+'</span>' +
+      '<div><div style="font-size:13px;font-weight:600;color:var(--t1)">'+name+'</div><div style="font-size:11px;color:var(--t3)">'+sub+'</div></div>' +
+    '</div></td>' +
+    '<td style="padding:11px 14px;text-align:center;color:'+(go>0?'var(--green)':'var(--t4)')+';font-weight:700">'+go+'</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:'+(nogo>0?'var(--red)':'var(--t4)')+';font-weight:700">'+nogo+'</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:'+(pend>0?'var(--amber)':'var(--t4)')+';font-weight:700">'+pend+'</td>' +
+    '<td style="padding:11px 14px;text-align:center">' +
+      (statusBadge==='GO'?'<span class="badge b-green" style="font-size:10.5px">GO</span>' :
+       statusBadge==='NO-GO'?'<span class="badge b-red" style="font-size:10.5px">NO-GO</span>' :
+       '<span class="badge" style="background:#F3F4F6;color:var(--t3);font-size:10.5px">PENDING</span>') +
+    '</td>' +
+    '<td style="padding:11px 12px;text-align:center"><i class="ti ti-chevron-down" id="chev-'+id+'" style="color:var(--t3);font-size:13px;transition:transform .2s"></i></td>' +
+  '</tr>' +
+  '<tr id="'+id+'" style="display:none"><td colspan="6" style="padding:0;background:var(--bg);border-bottom:1px solid var(--border2)">'+qHtml+'</td></tr>';
+}
+
+function renderDiscoveryTable(label, labelColor, gates, totalGO, totalNOGO, totalPend) {
+  const barPct = Math.round(totalGO/5*100);
+  const barCol = totalNOGO>0?'var(--red)':barPct>=100?'var(--green)':'var(--amber)';
+  const headerBadge = totalNOGO>0?'<span style="font-size:12px;color:var(--red);font-weight:600">'+totalGO+' / 5 gates · '+totalNOGO+' NO-GO</span>' :
+    totalGO===5?'<span style="font-size:12px;color:var(--green);font-weight:600">5 / 5 gates passed</span>' :
+    '<span style="font-size:12px;color:var(--amber);font-weight:600">'+totalGO+' / 5 gates confirmed</span>';
+  const overallGO = gates.reduce((s,g)=>s+g.go,0);
+  const overallNO = gates.reduce((s,g)=>s+g.nogo,0);
+  const overallP = gates.reduce((s,g)=>s+g.pend,0);
+
+  return '<div class="card" style="margin-bottom:28px;overflow:hidden">' +
+    '<div class="card-header"><div><div class="card-title">'+label+'</div><div class="card-sub">Click a gate to see details</div></div>'+headerBadge+'</div>' +
+    '<div style="height:4px;background:#E5E7EB"><div style="width:'+barPct+'%;height:4px;background:'+barCol+'"></div></div>' +
+    '<table style="width:100%;border-collapse:collapse;font-size:12.5px"><thead><tr style="background:var(--bg)">' +
+      '<th style="padding:9px 18px;text-align:left;font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">Gate</th>' +
+      '<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">GO</th>' +
+      '<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">NO-GO</th>' +
+      '<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">Pending</th>' +
+      '<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">Status</th>' +
+      '<th style="width:28px;border-bottom:1px solid var(--border2)"></th>' +
+    '</tr></thead><tbody>' +
+    gates.map(g=>discoveryGateRow(g.id, g.num, g.labelBg, g.name, g.sub, g.go, g.nogo, g.pend, g.status, g.questions)).join('') +
+    '<tr style="background:var(--bg)"><td style="padding:11px 18px;font-weight:700;color:var(--t1);font-size:13px">Overall</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:var(--green);font-weight:700">'+overallGO+'</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:'+(overallNO>0?'var(--red)':'var(--t4)')+';font-weight:700">'+overallNO+'</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:'+(overallP>0?'var(--amber)':'var(--t4)')+';font-weight:700">'+overallP+'</td>' +
+    '<td colspan="2"></td></tr>' +
+    '</tbody></table>' +
+    '<div style="padding:12px 18px;display:flex;align-items:center;gap:10px;border-top:1px solid var(--border2);background:var(--bg)">' +
+      '<div style="width:26px;height:26px;border-radius:50%;background:'+(overallNO>0?'var(--red-bg)':totalGO===5?'var(--green-bg)':'#F3F4F6')+';display:flex;align-items:center;justify-content:center;flex-shrink:0">' +
+        '<i class="ti '+(overallNO>0?'ti-alert-triangle':totalGO===5?'ti-circle-check':'ti-hourglass')+'" style="color:'+(overallNO>0?'var(--red)':totalGO===5?'var(--green)':'var(--t3)')+';font-size:13px"></i>' +
+      '</div>' +
+      '<div style="font-size:12.5px;color:var(--t3)">' +
+        (overallNO>0?'<strong style="color:var(--t2)">Not qualified</strong> — NO-GO on at least one gate. Action required before progressing.' :
+         totalGO===5?'<strong style="color:var(--t2)">Qualified</strong> — All gates passed. Ready to advance.' :
+         '<strong style="color:var(--t2)">In progress</strong> — '+overallP+' questions pending. Early signals '+(overallGO>overallNO?'positive':'cautious')+'.') +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+function renderTechTableSimple(status) {
+  const dims = [
+    {letter:'A',name:'Physical Space & Mounting',sub:'Screen locations, sightlines',pass:status==='passed'?2:0,nw:0,bl:0,pend:status==='passed'?0:4},
+    {letter:'B',name:'Power & Electrical',sub:'Electrical supply — #1 deployment blocker',pass:status==='passed'?4:0,nw:0,bl:0,pend:status==='passed'?0:4},
+    {letter:'C',name:'Connectivity',sub:'Internet reliability and network policy',pass:status==='passed'?4:0,nw:0,bl:0,pend:status==='passed'?0:4},
+    {letter:'D',name:'Existing Technology',sub:'POS systems, digital signage, measurement',pass:status==='passed'?3:0,nw:0,bl:0,pend:status==='passed'?0:3},
+  ];
+  const answered = dims.reduce((s,d)=>s+d.pass+d.nw+d.bl,0);
+  const total = 15;
+  const pct = Math.round(answered/total*100);
+  const statusText = status==='passed'?'15 / 15 answered — All passed':
+    status==='in-progress'?'3 / 15 answered':
+    'Awaiting response — 0 / 15 answered';
+  const statusColor = status==='passed'?'var(--green)':status==='in-progress'?'var(--amber)':'var(--t3)';
+
+  return '<div style="display:flex;align-items:flex-start;justify-content:space-between;margin:28px 0 14px;gap:16px">' +
+    '<div><div style="font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px">Retail Media Technical Site Assessment</div>' +
+    '<div style="font-size:12px;color:'+statusColor+';font-weight:600;display:flex;align-items:center;gap:5px"><i class="ti '+(status==='passed'?'ti-circle-check':status==='in-progress'?'ti-clock':'ti-hourglass')+'"></i>'+statusText+'</div></div>' +
+    '<div style="display:flex;gap:8px;flex-shrink:0">' +
+    (status!=='passed'?'<button class="btn btn-secondary btn-sm"><i class="ti ti-send"></i>Follow up</button>':'') +
+    '<button class="btn btn-secondary btn-sm" onclick="window.open(\'https://aioo.tech/assessment/en/technical_assessment\',\'_blank\')"><i class="ti ti-external-link"></i>View form</button></div>' +
+  '</div>' +
+  '<div class="card" style="margin-bottom:28px;overflow:hidden">' +
+    '<div class="card-header"><div><div class="card-title">Technical Assessment</div><div class="card-sub">Click a dimension to see details</div></div><span style="font-size:12px;color:'+statusColor+';font-weight:600">'+answered+' / '+total+' answered</span></div>' +
+    '<div style="height:4px;background:#E5E7EB"><div style="width:'+pct+'%;height:4px;background:'+statusColor+'"></div></div>' +
+    '<table style="width:100%;border-collapse:collapse;font-size:12.5px"><thead><tr style="background:var(--bg)">' +
+      '<th style="padding:9px 18px;text-align:left;font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">Dimension</th>' +
+      '<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">Pass</th>' +
+      '<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">Needs Work</th>' +
+      '<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">Blocker</th>' +
+      '<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2)">Pending</th>' +
+      '<th style="width:28px;border-bottom:1px solid var(--border2)"></th>' +
+    '</tr></thead><tbody>' +
+    dims.map((d,i)=>'<tr class="ta-row" style="border-bottom:1px solid var(--border2)"><td style="padding:11px 18px">' +
+      '<div style="display:flex;align-items:center;gap:8px"><span style="font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:3px;background:var(--navy);color:#fff">'+d.letter+'</span>' +
+      '<div><div style="font-size:13px;font-weight:600;color:var(--t1)">'+d.name+'</div><div style="font-size:11px;color:var(--t3)">'+d.sub+'</div></div></div></td>' +
+      '<td style="padding:11px 14px;text-align:center;color:'+(d.pass>0?'var(--green)':'var(--t4)')+';font-weight:700">'+d.pass+'</td>' +
+      '<td style="padding:11px 14px;text-align:center;color:'+(d.nw>0?'var(--amber)':'var(--t4)')+';font-weight:700">'+d.nw+'</td>' +
+      '<td style="padding:11px 14px;text-align:center;color:'+(d.bl>0?'var(--red)':'var(--t4)')+';font-weight:700">'+d.bl+'</td>' +
+      '<td style="padding:11px 14px;text-align:center;color:'+(d.pend>0?'var(--amber)':'var(--t4)')+';font-weight:700">'+d.pend+'</td>' +
+      '<td></td></tr>'
+    ).join('') +
+    '<tr style="background:var(--bg)"><td style="padding:11px 18px;font-weight:700;color:var(--t1);font-size:13px">Overall</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:var(--green);font-weight:700">'+dims.reduce((s,d)=>s+d.pass,0)+'</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:var(--t4);font-weight:700">0</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:var(--t4);font-weight:700">0</td>' +
+    '<td style="padding:11px 14px;text-align:center;color:'+(status!=='passed'?'var(--amber)':'var(--t4)')+';font-weight:700">'+dims.reduce((s,d)=>s+d.pend,0)+'</td>' +
+    '<td></td></tr></tbody></table>' +
+    '<div style="padding:12px 18px;display:flex;align-items:center;gap:10px;border-top:1px solid var(--border2);background:var(--bg)">' +
+      '<div style="width:26px;height:26px;border-radius:50%;background:'+(status==='passed'?'var(--green-bg)':'#F3F4F6')+';display:flex;align-items:center;justify-content:center;flex-shrink:0">' +
+        '<i class="ti '+(status==='passed'?'ti-circle-check':'ti-hourglass')+'" style="color:'+(status==='passed'?'var(--green)':'var(--t3)')+';font-size:13px"></i>' +
+      '</div>' +
+      '<div style="font-size:12.5px;color:var(--t3)">' +
+        (status==='passed'?'<strong style="color:var(--t2)">All clear</strong> — All 15 questions answered and passed. Site is deployment-ready.' :
+         status==='in-progress'?'<strong style="color:var(--t2)">Partial results</strong> — 3 / 15 answered. Early signals positive. Awaiting full response.' :
+         '<strong style="color:var(--t2)">Awaiting response</strong> — Questionnaire sent. No answers received yet.') +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+// Gate data per deal
+const GATES = {
+  2: [ // Fnac Darty — Discovery: Gates 0-1 GO, 2-4 PENDING
+    {id:'fd-0',num:'0',labelBg:'var(--navy)',name:'Infrastructure Control',sub:'Screen ownership & IoT installation rights',go:2,nogo:0,pend:0,status:'GO',questions:[
+      {badge:'go',q:'Does the prospect own or directly operate their in-store screens?',src:'Client · Confirmed',a:'Jérôme confirmed Fnac Darty owns 340 screens across 65 locations.'},
+      {badge:'go',q:'Can AiOO obtain installation rights for IoT hardware at store level?',src:'Client · Confirmed',a:'No exclusivity agreement in place — installation rights confirmed.'},
+    ]},
+    {id:'fd-1',num:'1',labelBg:'var(--navy)',name:'Strategic Fit',sub:'Retail category, brand presence, geography',go:3,nogo:0,pend:0,status:'GO',questions:[
+      {badge:'go',q:'What retail category does this prospect operate in?',src:'Client · Confirmed',a:'Consumer electronics retail — qualifying category for AiOO.'},
+      {badge:'go',q:'Are major FMCG brands present and active in this retailer\'s stores?',src:'AI · 88% confidence',a:'Major brands including Samsung, Sony, LG confirmed as active partners.'},
+      {badge:'go',q:'Does the retailer operate in a geography where AiOO can secure brand demand?',src:'Client · Confirmed',a:'France and Belgium — active AiOO markets with strong brand pipeline.'},
+    ]},
+    {id:'fd-2',num:'2',labelBg:'#9CA3AF',name:'Network Scale',sub:'Store count, screen density, expansion plan',go:0,nogo:0,pend:3,status:'PENDING',questions:[
+      {badge:'pending',q:'How many screens or screen locations exist or are planned per store?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'What is the minimum number of stores / screens to launch a viable network?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Is there a credible plan for network expansion beyond the initial deployment?',src:'Questionnaire · Awaiting response',a:''},
+    ]},
+    {id:'fd-3',num:'3',labelBg:'#9CA3AF',name:'Data Access Willingness',sub:'First-party data sharing & governance',go:0,nogo:0,pend:3,status:'PENDING',questions:[
+      {badge:'pending',q:'Does the retailer have a loyalty card or comparable first-party data asset?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Is the retailer open to sharing anonymised audience data?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Would the retailer accept a data governance framework co-designed with AiOO?',src:'Questionnaire · Awaiting response',a:''},
+    ]},
+    {id:'fd-4',num:'4',labelBg:'#9CA3AF',name:'Commercial Openness',sub:'Revenue model, contract terms, partnerships',go:0,nogo:0,pend:3,status:'PENDING',questions:[
+      {badge:'pending',q:'Is the retailer open to a revenue-sharing model?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Does the retailer accept a minimum 12-month contract?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Has the retailer prior experience with media partnerships?',src:'Questionnaire · Awaiting response',a:''},
+    ]},
+  ],
+  3: [ // L'Oréal — Qualification: 4 GO, Gate 3 partial
+    {id:'lo-0',num:'0',labelBg:'var(--navy)',name:'Infrastructure Control',sub:'Screen ownership & IoT rights',go:2,nogo:0,pend:0,status:'GO',questions:[
+      {badge:'go',q:'Does the prospect own or directly operate their in-store screens?',src:'Client · Confirmed',a:'L\'Oréal Retail confirmed ownership of all in-store screens across 42 locations.'},
+      {badge:'go',q:'Can AiOO obtain installation rights for IoT hardware at store level?',src:'Client · Confirmed',a:'Installation rights confirmed — no existing exclusivity clause.'},
+    ]},
+    {id:'lo-1',num:'1',labelBg:'var(--navy)',name:'Strategic Fit',sub:'Retail category, brand presence, geography',go:3,nogo:0,pend:0,status:'GO',questions:[
+      {badge:'go',q:'What retail category does this prospect operate in?',src:'Client · Confirmed',a:'Beauty & cosmetics retail — high brand density, qualifying category.'},
+      {badge:'go',q:'Are major FMCG brands present and active in this retailer\'s stores?',src:'AI · 92% confidence',a:'L\'Oréal, Unilever, P&G confirmed as active promotional partners across all stores.'},
+      {badge:'go',q:'Does the retailer operate in a geography where AiOO can secure brand demand?',src:'Client · Confirmed',a:'France, Belgium, and Morocco — all active AiOO markets.'},
+    ]},
+    {id:'lo-2',num:'2',labelBg:'var(--navy)',name:'Network Scale',sub:'Store count, screen density, expansion plan',go:3,nogo:0,pend:0,status:'GO',questions:[
+      {badge:'go',q:'How many screens or screen locations exist or are planned per store?',src:'Client · Confirmed',a:'2 screens per store (entrance and main aisle), 42 stores = 84 screens minimum.'},
+      {badge:'go',q:'What is the minimum number of stores / screens to launch a viable network?',src:'AI · 90% confidence',a:'42 stores exceeds the 3-store minimum — very strong network potential.'},
+      {badge:'go',q:'Is there a credible plan for network expansion?',src:'Client · Confirmed',a:'12 new store openings planned for Q1 2027.'},
+    ]},
+    {id:'lo-3',num:'3',labelBg:'var(--red)',name:'Data Access Willingness',sub:'First-party data sharing & governance',go:1,nogo:1,pend:1,status:'NO-GO',questions:[
+      {badge:'go',q:'Does the retailer have a loyalty card or comparable first-party data asset?',src:'AI · 95% confidence',a:'L\'Oréal Retail Club has 1.2M registered members generating purchase-level data.'},
+      {badge:'nogo',q:'Is the retailer open to sharing anonymised audience data with AiOO and brand partners?',src:'AI · 78% confidence',a:'Anna expressed strong reluctance — GDPR concerns and competitive data sensitivity.'},
+      {badge:'pending',q:'Would the retailer accept a data governance framework co-designed with AiOO\'s DPO?',src:'Questionnaire · Awaiting response',a:''},
+    ]},
+    {id:'lo-4',num:'4',labelBg:'#9CA3AF',name:'Commercial Openness',sub:'Revenue model, contract terms, partnerships',go:0,nogo:0,pend:3,status:'PENDING',questions:[
+      {badge:'pending',q:'Is the retailer open to a revenue-sharing model based on measured ad performance?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Does the retailer accept a minimum 12-month contract?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Has the retailer prior experience with media partnerships?',src:'Questionnaire · Awaiting response',a:''},
+    ]},
+  ],
+  4: [ // HighCo — Proposal: 3/5, Gate 3 NO-GO, Gate 4 pending
+    {id:'hc-0',num:'0',labelBg:'var(--navy)',name:'Infrastructure Control',sub:'Screen ownership & IoT installation rights',go:2,nogo:0,pend:0,status:'GO',questions:[
+      {badge:'go',q:'Does the prospect own or directly operate their in-store screens?',src:'AI · 96% confidence',a:'Prospect directly stated they own the screens.'},
+      {badge:'go',q:'Can AiOO obtain installation rights for IoT hardware at store level?',src:'AI · 95% confidence',a:'Prospect confirmed AiOO can obtain store-level IoT hardware installation rights.'},
+    ]},
+    {id:'hc-1',num:'1',labelBg:'var(--navy)',name:'Strategic Fit',sub:'Retail category, brand presence, geography',go:3,nogo:0,pend:0,status:'GO',questions:[
+      {badge:'go',q:'What retail category does this prospect operate in?',src:'Operator · Confirmed',a:'Prospect operates in FMCG distribution — a qualifying category for AiOO\'s network model.'},
+      {badge:'go',q:'Are major FMCG brands present and active in this retailer\'s stores?',src:'AI · 88% confidence',a:'Major brands including Unilever, P&G and Danone confirmed as active promotional partners.'},
+      {badge:'go',q:'Does the retailer operate in a geography where AiOO has or can secure brand demand?',src:'Operator · Confirmed',a:'Prospect operates in France and Belgium — both active AiOO markets with strong brand pipeline.'},
+    ]},
+    {id:'hc-2',num:'2',labelBg:'var(--navy)',name:'Network Scale',sub:'Store count, screen density, expansion plan',go:3,nogo:0,pend:0,status:'GO',questions:[
+      {badge:'go',q:'How many screens or screen locations exist or are planned per store?',src:'Operator · Confirmed',a:'3 screens per store (entrance, central aisle, checkout), totalling 15 screens across 5 locations.'},
+      {badge:'go',q:'What is the minimum number of stores / screens to launch a viable network?',src:'AI · 91% confidence',a:'5 stores exceeds the 3-store minimum threshold — network is viable from day 1.'},
+      {badge:'go',q:'Is there a credible plan for network expansion beyond the initial deployment?',src:'Operator · Confirmed',a:'HighCo confirmed planned expansion to 12 additional locations by Q1 2027.'},
+    ]},
+    {id:'hc-3',num:'3',labelBg:'var(--red)',name:'Data Access Willingness',sub:'First-party data sharing & governance',go:1,nogo:1,pend:1,status:'NO-GO',questions:[
+      {badge:'go',q:'Does the retailer have a loyalty card or comparable first-party data asset?',src:'AI · 93% confidence',a:'HighCo confirmed active loyalty programme with 280K registered members.'},
+      {badge:'nogo',q:'Is the retailer open to sharing anonymised audience data with AiOO and brand partners?',src:'AI · 82% confidence',a:'Prospect expressed strong reluctance due to GDPR concerns and competitive sensitivity.'},
+      {badge:'pending',q:'Would the retailer accept a data governance framework co-designed with AiOO\'s DPO?',src:'Questionnaire · Awaiting response — sent May 16',a:''},
+    ]},
+    {id:'hc-4',num:'4',labelBg:'#9CA3AF',name:'Commercial Openness',sub:'Revenue model, contract terms, brand partnerships',go:0,nogo:0,pend:4,status:'PENDING',questions:[
+      {badge:'pending',q:'Is the retailer open to a revenue-sharing model based on measured ad performance?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Does the retailer accept a minimum 12-month contract commitment?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Is the retailer open to co-branded communication with AiOO brand partners?',src:'Questionnaire · Awaiting response',a:''},
+      {badge:'pending',q:'Does the retailer have prior experience with media or advertising partnerships?',src:'Questionnaire · Awaiting response',a:''},
+    ]},
+  ],
+};
+
+function renderAssessmentsTab(deal) {
+  if (deal.stage === 'Prospecting') {
+    return emptyAssessment('ti-clipboard', 'No assessment started', 'Complete the intro call first, then run the 5-gate discovery assessment to qualify this opportunity.', 'Start assessment');
+  }
+  if (deal.stage === 'Discovery') {
+    const gates = GATES[deal.id] || GATES[2];
+    return '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:16px">' +
+      '<div><div style="font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-.5px;margin-bottom:3px">Assessments</div>' +
+      '<div style="font-size:12px;color:var(--amber);font-weight:600;display:flex;align-items:center;gap:5px"><i class="ti ti-clock"></i>Discovery assessment in progress — 2 / 5 gates confirmed</div></div>' +
+      '<div style="display:flex;gap:8px"><button class="btn btn-secondary btn-sm"><i class="ti ti-rotate-clockwise"></i>Re-run</button><button class="btn btn-primary btn-sm"><i class="ti ti-sparkles"></i>AI Analysis</button></div></div>' +
+      renderDiscoveryTable('Discovery Assessment', 'var(--amber)', gates, 2, 0, 9);
+  }
+  if (deal.stage === 'Qualification') {
+    const gates = GATES[deal.id] || GATES[3];
+    return '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:16px">' +
+      '<div><div style="font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-.5px;margin-bottom:3px">Assessments</div>' +
+      '<div style="font-size:12px;color:var(--red);font-weight:600;display:flex;align-items:center;gap:5px"><i class="ti ti-alert-triangle"></i>Not qualified — Gate 3 (Data Access) is NO-GO · May 22, 2026</div></div>' +
+      '<div style="display:flex;gap:8px"><button class="btn btn-secondary btn-sm"><i class="ti ti-rotate-clockwise"></i>Re-run</button><button class="btn btn-primary btn-sm"><i class="ti ti-sparkles"></i>AI Analysis</button></div></div>' +
+      renderDiscoveryTable('Discovery Assessment', 'var(--red)', gates, 4, 1, 4) +
+      renderTechTableSimple('pending');
+  }
+  if (deal.stage === 'Proposal') {
+    const gates = GATES[4];
+    return '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:16px">' +
+      '<div><div style="font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-.5px;margin-bottom:3px">Assessments</div>' +
+      '<div style="font-size:12px;color:var(--red);font-weight:600;display:flex;align-items:center;gap:5px"><i class="ti ti-alert-triangle"></i>Not qualified — Gate 3 (Data Access) is NO-GO · May 14, 2026</div></div>' +
+      '<div style="display:flex;gap:8px"><button class="btn btn-secondary btn-sm"><i class="ti ti-rotate-clockwise"></i>Re-run</button><button class="btn btn-primary btn-sm"><i class="ti ti-sparkles"></i>AI Analysis</button></div></div>' +
+      renderDiscoveryTable('Discovery Assessment', 'var(--red)', gates, 3, 1, 5) +
+      renderTechTableSimple('in-progress');
+  }
+  if (deal.stage === 'Negotiation' || deal.stage === 'Closing') {
+    const score = deal.stage === 'Closing' ? 95 : 91;
+    return '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:16px">' +
+      '<div><div style="font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-.5px;margin-bottom:3px">Assessments</div>' +
+      '<div style="font-size:12px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:5px"><i class="ti ti-circle-check"></i>Fully qualified — Both assessments passed · Score '+score+'/100</div></div>' +
+      '<div style="display:flex;gap:8px"><button class="btn btn-secondary btn-sm"><i class="ti ti-file-text"></i>Download report</button><button class="btn btn-primary btn-sm"><i class="ti ti-sparkles"></i>AI Analysis</button></div></div>' +
+      '<div class="card" style="margin-bottom:16px">' +
+        '<div class="card-header"><div class="card-title">Qualification summary</div><span class="badge b-green"><span class="b-dot"></span>Fully qualified — '+score+'/100</span></div>' +
+        '<div class="card-body" style="padding:12px 18px">' +
+          '<div class="qual-row"><div class="qr-icon done"><i class="ti ti-check"></i></div><div style="flex:1"><div class="qr-label">Discovery Assessment</div><div class="qr-sub">5 / 5 gates passed · Score '+score+' · All criteria met</div></div><span class="badge b-green">Pass</span></div>' +
+          '<div class="qual-row"><div class="qr-icon done"><i class="ti ti-check"></i></div><div style="flex:1"><div class="qr-label">Technical Assessment</div><div class="qr-sub">15 / 15 questions answered · All dimensions passed · Site deployment-ready</div></div><span class="badge b-green">Pass</span></div>' +
+          '<div class="qual-row"><div class="qr-icon done"><i class="ti ti-check"></i></div><div style="flex:1"><div class="qr-label">Manager validation</div><div class="qr-sub">Approved by Fadoua H. · '+(deal.stage==='Closing'?'May 15':'May 16')+' 2026</div></div><span class="badge b-green">Approved</span></div>' +
+        '</div>' +
+      '</div>';
+  }
+  return '';
+}
+
+// ─── Documents tab ────────────────────────────────────────────────────────────
+function renderDocumentsTab(deal) {
+  const docs = DEAL_DOCS[deal.id]||[];
+  if (!docs.length) {
+    return emptyAssessment('ti-folder', 'No documents yet', 'Documents will appear here once you run the discovery assessment and generate proposals.', '');
+  }
+  return '<div class="card"><div class="card-header"><div class="card-title">Deal documents</div>' +
+    '<button class="btn btn-secondary btn-sm"><i class="ti ti-sparkles"></i>Generate proposal</button></div>' +
+    '<div class="table-wrap"><table><thead><tr><th>File</th><th>Type</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody>' +
+    docs.map(d=>'<tr><td><div style="display:flex;align-items:center;gap:8px"><i class="ti '+d.icon+'" style="color:var(--t3)"></i><span class="td-main">'+d.name+'</span></div></td>' +
+      '<td><span class="badge b-gray">'+d.type+'</span></td>' +
+      '<td><span class="badge '+d.status+'"><span class="b-dot"></span>'+d.statusText+'</span></td>' +
+      '<td style="color:var(--t3)">'+d.date+'</td>' +
+      '<td><div class="row-actions"><button class="btn btn-secondary btn-xs"><i class="ti ti-download"></i></button></div></td></tr>'
+    ).join('') +
+    '</tbody></table></div></div>';
+}
+
+// ─── Activity tab ─────────────────────────────────────────────────────────────
+function renderActivityTab(deal) {
+  const items = DEAL_ACTIVITY[deal.id]||[];
+  return '<div class="card"><div class="card-header"><div class="card-title">Deal history</div><button class="btn btn-secondary btn-sm"><i class="ti ti-plus"></i>Add note</button></div>' +
+    '<div class="card-body" style="padding:12px 18px">' +
+    items.map(i=>'<div class="act-item"><div class="act-dot" style="background:'+i.bg+';color:'+i.col+'"><i class="ti '+i.icon+'"></i></div>' +
+      '<div><div class="act-title">'+i.t+'</div><div class="act-time">'+i.a+' · '+i.d+'</div></div></div>'
+    ).join('') +
+    '</div></div>';
+}
+
+// ─── Master render function ───────────────────────────────────────────────────
+function openDeal(id) {
+  // Clear first so we see fresh content
+  const hdr = document.getElementById('deal-hdr-wrap');
+  const ov = document.getElementById('dtab-overview');
+  if (hdr) hdr.innerHTML = '';
+  if (ov) ov.innerHTML = '';
+  try {
+    renderDealDetail(id);
+  } catch(e) {
+    // Show error on screen so we can diagnose
+    if (ov) ov.innerHTML = '<div style="padding:24px;font-family:monospace;color:var(--red);background:var(--red-bg);border-radius:8px;margin:16px 0">' +
+      '<b>Render error (deal ' + id + '):</b> ' + e.message + '</div>';
+  }
+  showPage('deal-detail');
+}
+
+function renderDealDetail(id) {
+  const deal = DEALS.find(d => d.id === id);
+  if (!deal) return;
+  const ext = DEAL_EXT[id] || DEAL_EXT[4];
+  // Header
+  document.getElementById('deal-hdr-wrap').innerHTML = renderDealHeader(deal, ext);
+  // Tabs
+  document.getElementById('dtab-overview').innerHTML    = renderOverviewTab(deal, ext);
+  document.getElementById('dtab-assessments').innerHTML = renderAssessmentsTab(deal);
+  document.getElementById('dtab-documents').innerHTML   = renderDocumentsTab(deal);
+  document.getElementById('dtab-activity').innerHTML    = renderActivityTab(deal);
+  // Badge
+  const hasAssess = deal.stage !== 'Prospecting';
+  document.getElementById('assess-badge').textContent = hasAssess ? (deal.stage==='Negotiation'||deal.stage==='Closing'?'2':'1') : '0';
+  // Reset to overview tab
+  switchDealTab('overview');
+  // Update breadcrumb
+  const bc = document.getElementById('breadcrumb');
+  if (bc) bc.innerHTML = '<span class="bc-item" onclick="showPage(\'deals\')">Deals</span><span class="bc-sep">/</span><span class="bc-item cur">'+deal.co+'</span>';
+}
+
+// Pre-render default deal (HighCo) on load
+window.addEventListener('DOMContentLoaded', () => renderDealDetail(4));
+
 </script>
-</body>
-</html>
